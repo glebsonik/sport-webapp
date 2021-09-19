@@ -1,16 +1,10 @@
 <h1>Sign in to your account</h1>
 <%= form_with do |form| %>
-  <%# if @user.errors.any? %>
-<!--    <div id="error_explanation">-->
-<!--      <h2><%#= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>-->
-
-<!--      <ul>-->
-        <%# @user.errors.full_messages.each do |message| %>
-<!--          <li><%#= message %></li>-->
-        <%# end %>
-<!--      </ul>-->
-<!--    </div>-->
-  <%# end %>
+  <% if flash.alert %>
+    <div id="error_explanation">
+      <span><%= flash.alert %></span>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= form.label :user_name %>

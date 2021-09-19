@@ -17,19 +17,23 @@
         </a>
       </div>
       <div>
-        <%= link_to "Sign in", sign_in_path, {style: 'color: #D72130;'}%>
-        <span style="
+        <% if current_user %>
+          Logged in as <%= current_user.user_name %>
+          <%= link_to "Sign out", sign_out_path %>
+        <% else %>
+          <%= link_to "Sign in", sign_in_path, {style: 'color: #D72130;'}%>
+          <span style="
           border: 1px solid #D72130;
-          box-sizing:border-box; font-family: Open Sans;
-          font-style: normal;
-          font-weight: 600;
-          font-size: 12px;
-          line-height: 17px;
-          text-align: center;
-        padding: 20px;">
+            box-sizing:border-box; font-family: Open Sans;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 17px;
+            text-align: center;
+            padding: 20px;">
           <%= link_to "Sign up", sign_up_path, {style: 'color: #D72130; margin-right:5px; font-weight:bolder;'}%>
         </span>
-
+        <% end %>
       </div>
     </div>
     <% if notice %>
