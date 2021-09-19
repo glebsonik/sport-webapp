@@ -34,6 +34,7 @@
           <%= link_to "Sign up", sign_up_path, {style: 'color: #D72130; margin-right:5px; font-weight:bolder;'}%>
         </span>
         <% end %>
+        <%= link_to "Check auth", profiles_index_path, {style: "#{current_user.nil? ? "color: #B99E9E;" : "color: #D72130;"}"}%>
       </div>
     </div>
     <% if notice %>
