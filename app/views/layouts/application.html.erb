@@ -8,7 +8,35 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  <header>
+    <div style="display: flex; justify-content: space-between">
+      <div>
+        <a style="font-size: 3em; color:black;" href="<%=root_path%>">
+          <span style="text-decoration: line-through">Porn</span> Sport
+          <span style="background-color: #ff7500; border-radius: 3px; padding: 3px;">Hub</span>
+        </a>
+      </div>
+      <div>
+        <%= link_to "Sign in", sign_in_path, {style: 'color: #D72130;'}%>
+        <span style="
+          border: 1px solid #D72130;
+          box-sizing:border-box; font-family: Open Sans;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 17px;
+          text-align: center;
+        padding: 20px;">
+          <%= link_to "Sign up", sign_up_path, {style: 'color: #D72130; margin-right:5px; font-weight:bolder;'}%>
+        </span>
 
+      </div>
+    </div>
+    <% if notice %>
+      <p id="notice"><%= notice %></p>
+    <% end %>
+
+  </header>
   <body>
     <%= yield %>
   </body>
