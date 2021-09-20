@@ -9,32 +9,24 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <header>
-    <div style="display: flex; justify-content: space-between">
+    <div class="header_upper_nav">
       <div>
-        <a style="font-size: 3em; color:black;" href="<%=root_path%>">
-          <span style="text-decoration: line-through">Porn</span> Sport
-          <span style="background-color: #ff7500; border-radius: 3px; padding: 3px;">Hub</span>
+        <a class="logo" href="<%=root_path%>">
+          <span>Porn</span> Sport
+          <span>Hub</span>
         </a>
       </div>
-      <div>
+      <div class="auth_icons">
         <% if current_user %>
           Logged in as <%= current_user.user_name %>
-          <%= link_to "Sign out", sign_out_path %>
+          <%= link_to "Sign out", sign_out_path, {class: 'default_link'} %>
         <% else %>
-          <%= link_to "Sign in", sign_in_path, {style: 'color: #D72130;'}%>
+          <%= link_to "Sign in", sign_in_path, {class: 'default_link'}%>
           <span style="
-          border: 1px solid #D72130;
-            box-sizing:border-box; font-family: Open Sans;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 12px;
-            line-height: 17px;
-            text-align: center;
-            padding: 20px;">
-          <%= link_to "Sign up", sign_up_path, {style: 'color: #D72130; margin-right:5px; font-weight:bolder;'}%>
+          ">
+          <%= link_to "Sign up", sign_up_path, {class: 'bordered_button'}%>
         </span>
         <% end %>
-        <%= link_to "Check auth", profiles_index_path, {style: "#{current_user.nil? ? "color: #B99E9E;" : "color: #D72130;"}"}%>
       </div>
     </div>
     <% if notice %>
