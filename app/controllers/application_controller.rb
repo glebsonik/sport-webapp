@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def current_user
     return nil unless session[:user_token]
-    user_id = helpers.get_user_id(session[:user_token])
+    user_id = Encryptor.new.decrypt_data(session[:user_token])
     @current_user ||= User.find(user_id)
   end
   helper_method :current_user

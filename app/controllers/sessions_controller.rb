@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     p user && user.authenticate(params[:password])
     if user && user.authenticate(params[:password])
       reset_session
-      session[:user_token] = helpers.get_user_token(user.id)
+      session[:user_token] = Encryptor.new.encrypt_data(user.id)
       redirect_to root_url, notice: "User was successfully created!"
     else
       flash.now.alert = "Incorrect email or password, try again."
