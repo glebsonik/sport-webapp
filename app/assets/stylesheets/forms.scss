@@ -1,6 +1,6 @@
 @font-face {
-  //font-family: "Roboto";
-  //src: local(roboto), url(fonts/Roboto-Medium.ttf)
+  font-family: "Roboto";
+  src: url(fonts/Roboto-Regular.ttf)
 }
 input {
   border: 1px solid #D4D9E2;
@@ -10,7 +10,7 @@ input {
 }
 label {
   font-size: 1rem;
-  font-family: "Roboto", "Open Sans", serif;
+  font-family: "Roboto",  serif;
   color: #7F8899;
   margin-bottom: 2px;
 }
