@@ -19,12 +19,12 @@
       <div class="auth_icons">
         <% if current_user %>
           Logged in as <%= current_user.user_name %>
-          <%= link_to "Sign out", sign_out_path, {class: 'default_link'} %>
+          <%= link_to "Sign out", sign_out_path, {class: 'btn-simple'} %>
         <% else %>
-          <%= link_to "Sign in", sign_in_path, {class: 'default_link'}%>
+          <%= link_to "Sign in", sign_in_path, {class: 'btn-simple'}%>
           <span style="
           ">
-          <%= link_to "Sign up", sign_up_path, {class: 'bordered_button'}%>
+          <%= link_to "Sign up", sign_up_path, {class: 'btn-outlined'}%>
         </span>
         <% end %>
       </div>
