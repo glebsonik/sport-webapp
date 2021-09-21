@@ -3,9 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    params.permit(:user_name, :password)
     user = User.find_by(user_name: params[:user_name])
-    p user && user.authenticate(params[:password])
     if user && user.authenticate(params[:password])
       reset_session
       session[:user_token] = Encryptor.new.encrypt_data(user.id)
