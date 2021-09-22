@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to root_url, notice: "User was successfully created!"
     else
-      render :new, alert: "Incorrect values"
+      render :new
     end
   end
 
