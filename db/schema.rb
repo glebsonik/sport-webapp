@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_09_18_120010) do
     t.string "first_name"
     t.string "last_name"
     t.string "profile_picture"
-    t.date "registered_date"
+    t.datetime "registered_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
