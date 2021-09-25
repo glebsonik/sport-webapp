@@ -38,6 +38,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   gem 'pry'
+  gem 'dotenv'
+  gem 'rspec'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -48,7 +51,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'haml'
-  gem "haml-rails", "~> 2.0"
+  gem 'haml-rails', '~> 2.0'
 end
 
 group :test do
