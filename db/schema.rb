@@ -10,10 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_18_120010) do
+ActiveRecord::Schema.define(version: 2021_09_26_183919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "category_translations", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "language_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_category_translations_on_category_id"
+    t.index ["language_id"], name: "index_category_translations_on_language_id"
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string "key"
+    t.string "disaply_name"
+    t.string "icon"
+    t.boolean "hidden"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
@@ -31,4 +55,6 @@ ActiveRecord::Schema.define(version: 2021_09_18_120010) do
     t.index ["user_name"], name: "index_users_on_user_name", unique: true
   end
 
+  add_foreign_key "category_translations", "categories"
+  add_foreign_key "category_translations", "languages"
 end
