@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
 
   def redirect_by_status(user)
     if user.status == 'active'
-      redirect_to root_url, notice: "User was successfully created!"
+      redirect_to root_url, notice: "Successfully signed in!"
     elsif user.status == 'pending_email'
       redirect_to resend_preview_url
     elsif user.status == 'blocked'

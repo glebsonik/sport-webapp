@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       send_confirmation_email(@user)
 
-      redirect_to root_url, notice: "User was successfully created!"
+      redirect_to root_url, notice: "User was successfully created! Please check your email and confirm account"
     else
       render :new
     end
