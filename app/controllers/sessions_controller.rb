@@ -7,8 +7,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       create_user_session!(user)
-
-      redirect_to root_url, notice: "User was successfully created!"
+      redirect_by_status(user)
     else
       redirect_to sign_in_url, alert: "Incorrect email or password, try again."
     end
@@ -29,5 +28,17 @@ class SessionsController < ApplicationController
   def delete_user_session!
     reset_session
     session[:user_token] = nil
+  end
+
+  def redirect_by_status(user)
+    if user.status == 'active'
+      redirect_to root_url, notice: "User was successfully created!"
+    elsif user.status == 'pending_email'
+      redirect_to resend_preview_url
+    elsif user.status == 'blocked'
+      redirect_to root_url
+    else
+      render template: "shared/500.html", status: 500
+    end
   end
 end

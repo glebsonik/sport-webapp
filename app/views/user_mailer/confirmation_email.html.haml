@@ -1,0 +1,45 @@
+!!! 5
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %style
+    :css
+      body > * {
+        display: inline-block;
+
+      }
+      h2 {
+        color: #D72130;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 28px;
+        line-height: 28px;
+      }
+      a {
+        background-color: #D72130;
+        font-size: 24px;
+        text-align: center;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        padding: 15px 15%;
+        color:#ffffff;
+        text-decoration:none;
+      }
+  %body(style="font-family: Open Sans; align-items:center;")
+
+  %h1(style="text-align: center; font-weight: 400;")
+    Hello, #{@user.user_name}! You have successfully registered to Sports Hub
+  %div(style="padding: 5px; text-align: center;" class='nav')
+    %div
+      %svg{style: "margin-bottom: 10px;", fill: "none", height: "30", viewbox: "0 0 21 16", width: "30", xmlns: "http://www.w3.org/2000/svg"}
+        %path{:d => "M1 9L8 14.5L20 1", :stroke => "#D72130", "stroke-linejoin" => "round", "stroke-width" => "2"}
+      %h2
+        Sports Hub
+    %div
+      %p(style="color:#596377; font-size:19px;")
+        Now you will reccive the latest news in the world of sport
+
+      %a(href=@url style="display:inline-block; margin-top:10px;")
+        Confirm registration
+      %p
+        If you did not register an account on our web site, please ignore this message
