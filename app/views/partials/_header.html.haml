@@ -1,0 +1,18 @@
+%body
+  %header
+    .header_upper_nav
+      %div
+        %a.logo{:href => root_path}
+          %span Porn
+          Sport
+          %span Hub
+      .auth_icons
+        - if current_user
+          Logged in as #{current_user.user_name}
+          \#{link_to "Sign out", sign_out_path, {class: 'btn-link'}}
+        - else
+          = link_to "Sign in", sign_in_path, {class: 'btn-link'}
+          %span{:style => "\n        "}
+            = link_to "Sign up", sign_up_path, {class: 'btn-secondary'}
+    - if notice
+      %p#notice= notice

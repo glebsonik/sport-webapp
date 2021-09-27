@@ -1,0 +1,13 @@
+%h1 Sign in to your account
+= form_with do |form|
+  - if flash.alert
+    #error_explanation
+      %span= flash.alert
+  .field
+    = form.label :user_name
+    = form.text_field :user_name
+  .field
+    = form.label :password
+    = form.password_field :password
+  .actions
+    = form.submit "Sign in"

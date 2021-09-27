@@ -1,0 +1,26 @@
+.logo {
+  text-decoration: none;
+  font-size: 2.5rem;
+  color: black;
+}
+.logo>:first-child {
+  text-decoration: line-through;
+}
+.logo>:nth-child(2) {
+  background-color: #ff7500;
+  border-radius: 3px;
+  padding: 3px;
+}
+
+.header_upper_nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header_upper_nav > *{
+  margin: 5px;
+}
+
+.auth_icons > * {
+  margin-right: 20px;
+}
