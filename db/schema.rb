@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_27_195618) do
+ActiveRecord::Schema.define(version: 2021_09_27_202445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,17 @@ ActiveRecord::Schema.define(version: 2021_09_27_195618) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "teams", force: :cascade do |t|
+    t.bigint "conference_id"
+    t.bigint "location_id"
+    t.string "team_name"
+    t.string "logo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conference_id"], name: "index_teams_on_conference_id"
+    t.index ["location_id"], name: "index_teams_on_location_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "user_name"
@@ -99,4 +110,6 @@ ActiveRecord::Schema.define(version: 2021_09_27_195618) do
   add_foreign_key "conferences", "categories"
   add_foreign_key "location_translations", "conferences"
   add_foreign_key "location_translations", "languages"
+  add_foreign_key "teams", "conferences"
+  add_foreign_key "teams", "locations"
 end
