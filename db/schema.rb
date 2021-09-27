@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_26_183919) do
+ActiveRecord::Schema.define(version: 2021_09_27_195618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,11 +31,47 @@ ActiveRecord::Schema.define(version: 2021_09_26_183919) do
     t.index ["language_id"], name: "index_category_translations_on_language_id"
   end
 
+  create_table "conference_translations", force: :cascade do |t|
+    t.bigint "conference_id"
+    t.bigint "language_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conference_id"], name: "index_conference_translations_on_conference_id"
+    t.index ["language_id"], name: "index_conference_translations_on_language_id"
+  end
+
+  create_table "conferences", force: :cascade do |t|
+    t.bigint "category_id"
+    t.string "key_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_conferences_on_category_id"
+  end
+
   create_table "languages", force: :cascade do |t|
     t.string "key"
     t.string "display_name"
     t.string "icon"
     t.boolean "hidden"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "location_translations", force: :cascade do |t|
+    t.bigint "conference_id"
+    t.bigint "language_id"
+    t.string "country_name"
+    t.string "state_name"
+    t.string "city_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conference_id"], name: "index_location_translations_on_conference_id"
+    t.index ["language_id"], name: "index_location_translations_on_language_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "key_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,4 +94,9 @@ ActiveRecord::Schema.define(version: 2021_09_26_183919) do
 
   add_foreign_key "category_translations", "categories"
   add_foreign_key "category_translations", "languages"
+  add_foreign_key "conference_translations", "conferences"
+  add_foreign_key "conference_translations", "languages"
+  add_foreign_key "conferences", "categories"
+  add_foreign_key "location_translations", "conferences"
+  add_foreign_key "location_translations", "languages"
 end
