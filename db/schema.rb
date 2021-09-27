@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2021_09_26_183919) do
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
+    t.string "key_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -32,7 +33,7 @@ ActiveRecord::Schema.define(version: 2021_09_26_183919) do
 
   create_table "languages", force: :cascade do |t|
     t.string "key"
-    t.string "disaply_name"
+    t.string "display_name"
     t.string "icon"
     t.boolean "hidden"
     t.datetime "created_at", null: false

@@ -2,7 +2,7 @@ class CreateLanguages < ActiveRecord::Migration[5.2]
   def change
     create_table :languages do |t|
       t.string :key
-      t.string :disaply_name
+      t.string :display_name
       t.string :icon
       t.boolean :hidden
 
