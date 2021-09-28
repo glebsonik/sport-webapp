@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2021_09_27_202445) do
   create_table "teams", force: :cascade do |t|
     t.bigint "conference_id"
     t.bigint "location_id"
-    t.string "team_name"
+    t.string "name"
     t.string "logo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
