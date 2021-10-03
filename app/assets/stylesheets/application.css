@@ -14,7 +14,7 @@
  *= require_self
  */
 
-#alert-error {
+.alert {
     margin: 11px;
     border: 2px solid #D72130;
     width: 33%;
