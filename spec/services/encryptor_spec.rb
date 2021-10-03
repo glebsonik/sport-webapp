@@ -37,7 +37,7 @@ RSpec.describe Encryptor, type: :service do
         encryptor = Encryptor.new('some_defiitely_wrong key')
         test_string_to_encrypt = "Will not encrypt"
 
-        expect {encryptor.encrypt(test_string_to_encrypt)}.to raise_error
+        expect {encryptor.encrypt(test_string_to_encrypt)}.to raise_error(OpenSSL::Cipher::CipherError)
       end
     end
 
