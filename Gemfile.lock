@@ -161,10 +161,6 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (1.8.2)
-    rspec (3.9.0)
-      rspec-core (~> 3.9.0)
-      rspec-expectations (~> 3.9.0)
-      rspec-mocks (~> 3.9.0)
     rspec-core (3.9.3)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.3)
@@ -254,8 +250,7 @@ DEPENDENCIES
   pry
   puma (~> 3.11)
   rails (~> 5.2.6)
-  rspec
-  rspec-rails
+  rspec-rails (>= 2.0.0.beta)
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
