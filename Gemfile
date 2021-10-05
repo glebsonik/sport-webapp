@@ -51,6 +51,7 @@ group :development do
   gem 'haml'
   gem 'haml-rails', '~> 2.0'
   gem "letter_opener"
+  gem 'trix'
 end
 
 group :test do
