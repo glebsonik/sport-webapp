@@ -25,3 +25,12 @@
   margin-right: 20px;
   vertical-align: middle;
 }
+
+.admin_nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+.admin_nav > * {
+  margin: 10px 5px;
+}

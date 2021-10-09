@@ -2,7 +2,7 @@
   %header
     .header_upper_nav
       %div
-        %a.logo{:href => root_path}
+        %a.logo{:href => local_assigns[:header_link] || root_path}
           %span Porn
           Sport
           %span Hub

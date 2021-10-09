@@ -1,8 +1,9 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
 
-  get 'email_confirmation/show', as: :confirm_email
-  get 'home/show'
+  get 'admin_home/index', as: :admin_home
+  get 'email_confirmation/index', as: :confirm_email
+  get 'home/index'
 
   root to: "home#index"
   get 'sign_up', to: 'users#new', as: :sign_up
