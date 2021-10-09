@@ -2,7 +2,7 @@
 Rails.application.routes.draw do
 
   get 'email_confirmation/show', as: :confirm_email
-  get 'home/index'
+  get 'home/show'
 
   root to: "home#index"
   get 'sign_up', to: 'users#new', as: :sign_up
@@ -13,6 +13,6 @@ Rails.application.routes.draw do
 
   get 'logout', to: 'sessions#destroy', as: :sign_out
 
-  get 'email/resend_preview', to: 'email_confirmation#resend_preview', as: :resend_preview
+  get 'email/preconfirmation', to: 'email_confirmation#preconfirmation', as: :preconfirmation
   get 'email/resend', to: 'email_confirmation#resend_email', as: :resend_email
 end

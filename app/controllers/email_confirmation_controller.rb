@@ -1,8 +1,9 @@
+EMAIL_LINK_EXPIRATION = 5.days
 class EmailConfirmationController < ApplicationController
 
-  before_action :validate_payload, only: :index
+  before_action :validate_payload, only: :show
 
-  def index
+  def show
     user_params = get_user_params
 
     user = User.find_by(user_name: user_params[:user_name])
@@ -10,15 +11,15 @@ class EmailConfirmationController < ApplicationController
       user.status = 'active'
       unless user.save
         flash.now[:alert] = "Something went wrong. Please try again or re-request email confirmation"
-        render :index
+        render :show
       end
     else
       flash.now[:alert] = "Something went wrong. Please try again or re-request email confirmation"
-      render :index
+      render :show
     end
   end
 
-  def resend_preview
+  def preconfirmation
   end
 
   def resend_email
@@ -38,6 +39,6 @@ class EmailConfirmationController < ApplicationController
   end
 
   def link_not_expired?(creation_time)
-    (Time.parse(creation_time) + 5.days) > Time.zone.now
+    (Time.parse(creation_time) + EMAIL_LINK_EXPIRATION) > Time.zone.now
   end
 end

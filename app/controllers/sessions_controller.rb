@@ -34,11 +34,11 @@ class SessionsController < ApplicationController
     if user.status == 'active'
       redirect_to root_url, notice: "Successfully signed in!"
     elsif user.status == 'pending_email'
-      redirect_to resend_preview_url
+      redirect_to preconfirmation_url
     elsif user.status == 'blocked'
       redirect_to root_url
     else
-      render template: "shared/500.html", status: 500
+      render template: "shared/500.html", status: 501
     end
   end
 end

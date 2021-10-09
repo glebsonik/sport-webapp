@@ -5,9 +5,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    @user.status = 'pending_email'
-    @user.role = 'member'
+    @user = User.new(default_user_params)
 
     if @user.save
       send_confirmation_email(@user)
@@ -24,7 +22,11 @@ class UsersController < ApplicationController
     UserMailer.with(user: user).confirmation_email.deliver_later
   end
 
-  def user_params
+  def default_user_params
+    permitted_user_params.merge({ status: :pending_email, role: :member })
+  end
+
+  def permitted_user_params
     params.require(:user).permit(:email, :user_name, :password, :password_confirmation)
   end
 end
