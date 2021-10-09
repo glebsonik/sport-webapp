@@ -1,6 +1,11 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
 
+  get 'articles/create'
+  get 'articles/:key_name', to: 'articles#new', as: :new_article
+  get 'create_articles/create'
+  get 'admin_categories/:key_name', to: 'admin_categories#show', as: :admin_categories
+
   get 'admin_home/index', as: :admin_home
   get 'email_confirmation/index', as: :confirm_email
   get 'home/index'

@@ -1,0 +1,6 @@
+- content_for :before_nav do
+  %div.admin_nav
+    %h1= @translated_category.name
+    %div
+      = link_to "+ New Article", new_article_path, {class: "btn-primary" }
+%p You are in category #{@translated_category.name}
