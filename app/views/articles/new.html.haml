@@ -1,1 +1,20 @@
+= javascript_include_tag "create_article/article_file_upload", data: {"turbolinks" => false}
 %h1 I am gonna create an ahuenniy article for #{@translated_category.name} !!!
+
+%div.create-article-form{"data-turbolinks"=> "false"}
+  %div#img-preview-section{style: 'display: none;'}
+    %div#img-preview
+    %div#img-preview-toolbar
+      %span#delete-preview-image
+        %svg{width:"66", height:"66", viewBox:"0 0 34 34"}
+          #{File.read('app/assets/images/svgs/delete_img.svg').html_safe}
+  %div.article-placeholder
+    %span
+      #{File.read('app/assets/images/svgs/add_article_photo.svg').html_safe}
+    %label
+      %input{type: 'file', id: 'file-input', style:'display: none'}
+      %span.article-placeholder-text
+        %span.btn-link + Add picture
+        or drop it right here
+        %br
+          You can add next formats: png, jpg, jpeg, tiff

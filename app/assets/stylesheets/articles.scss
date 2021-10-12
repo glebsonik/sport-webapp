@@ -1,3 +1,63 @@
 // Place all the styles related to the articles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.article-placeholder {
+  border: 1px solid #D4D9E2;
+  height: 500px;
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.article-placeholder > * {
+  margin: 7px 0px;
+}
+
+.article-placeholder-text {
+  color: #232323;
+  cursor: pointer;
+}
+
+#img-preview-section {
+  position: relative;
+  height: 500px;
+  width: 50%;
+}
+
+#img-preview {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  background-size:100% 100%;
+  z-index: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+#img-preview-toolbar {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+#img-eventer{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+}
+#img-preview-toolbar > * {
+  margin: 5px 20px;
+}
+
+
