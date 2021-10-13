@@ -39,7 +39,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   gem 'pry'
   gem 'dotenv'
-  gem 'rspec-rails', ">= 2.0.0.beta"
 end
 
 group :development do
@@ -60,8 +59,8 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
-  # gem 'rspec'
-  # gem 'rspec-rails'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

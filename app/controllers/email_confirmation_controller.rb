@@ -7,7 +7,7 @@ class EmailConfirmationController < ApplicationController
     user_params = get_user_params
 
     user = User.find_by(user_name: user_params[:user_name])
-    if link_not_expired?(user_params[:created_at]) && user
+    if link_not_expired?(user_params[:created_at]) && user.present?
       user.status = 'active'
       unless user.save
         flash.now[:alert] = "Something went wrong. Please try again or re-request email confirmation"
@@ -17,6 +17,12 @@ class EmailConfirmationController < ApplicationController
       flash.now[:alert] = "Something went wrong. Please try again or re-request email confirmation"
       render :show
     end
+    # user = User.find(user_params[:user_name])
+    #
+    # return user.update!(status: :active) if link_not_expired?(user_params[:created_at]) && user.present?
+    #
+    # flash.now[:alert] = "Something went wrong. Please try again or re-request email confirmation"
+    # render :index
   end
 
   def preconfirmation
