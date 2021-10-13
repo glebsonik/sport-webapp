@@ -9,8 +9,7 @@ RSpec.describe "EmailConfirmations", type: :request do
     end
 
     it "returns redirects if invalid payload" do
-      invalid_payload = {payload: "invalid_payload_value"}
-      get "/email_confirmation/show?#{invalid_payload.to_query}"
+      get "/email_confirmation/show?payload=invalid_payload_value"
       expect(response).to have_http_status(:redirect)
     end
   end
