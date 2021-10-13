@@ -1,6 +1,8 @@
 class UserMailDataProcessor
 
-  def initialize(delimiter = ';;;')
+  DEFAULT_DATA_DELIMITER = ';;;'
+
+  def initialize(delimiter = DEFAULT_DATA_DELIMITER)
     @encryptor = Encryptor.new(Rails.application.credentials.mail_token_key)
     @delimiter = delimiter
   end

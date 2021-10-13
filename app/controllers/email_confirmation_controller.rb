@@ -1,5 +1,6 @@
-EMAIL_LINK_EXPIRATION = 5.days
 class EmailConfirmationController < ApplicationController
+
+  EMAIL_LINK_EXPIRATION = 5.days
 
   before_action :validate_payload, only: :show
 
