@@ -1,5 +1,4 @@
 class EmailConfirmationController < ApplicationController
-
   EMAIL_LINK_EXPIRATION = 5.days
 
   before_action :validate_payload, only: :show
@@ -8,22 +7,13 @@ class EmailConfirmationController < ApplicationController
     user_params = get_user_params
 
     user = User.find_by(user_name: user_params[:user_name])
-    if link_not_expired?(user_params[:created_at]) && user.present?
-      user.status = 'active'
-      unless user.save
-        flash.now[:alert] = "Something went wrong. Please try again or re-request email confirmation"
-        render :show
-      end
+
+    if link_not_expired?(user_params[:created_at]) && user.present? && user.update(status: :active)
+      redirect_to root_url, notice: 'Welcome to the SportHub!'
     else
-      flash.now[:alert] = "Something went wrong. Please try again or re-request email confirmation"
+      flash.now[:alert] = "Something went wrong. Please try to re-request email confirmation or contact our support"
       render :show
     end
-    # user = User.find(user_params[:user_name])
-    #
-    # return user.update!(status: :active) if link_not_expired?(user_params[:created_at]) && user.present?
-    #
-    # flash.now[:alert] = "Something went wrong. Please try again or re-request email confirmation"
-    # render :index
   end
 
   def preconfirmation

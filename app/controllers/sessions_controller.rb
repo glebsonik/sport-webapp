@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       create_user_session!(user)
+
       redirect_by_status(user)
     else
       redirect_to sign_in_url, alert: "Incorrect email or password, try again."
