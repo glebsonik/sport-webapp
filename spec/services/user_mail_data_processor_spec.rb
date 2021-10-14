@@ -18,13 +18,14 @@ RSpec.describe UserMailDataProcessor, type: :service do
   describe "#get_user_params" do
     subject(:user_params) { data_processor.get_user_params(encrypted_payload) }
     let(:encrypted_payload) { "+6HBhsLPZeMHGNMhEKu1B3pZ01y3MSXPrLcvE0rmDsZ7UZfnZ9QvtZEzy2CX--BEgYeE7g3GCXDAX9--BWHVGFcwMO0G0WB6Qfyy/A==" }
+    let(:expected_timestamp) { "2021-10-13 17:36:12 UTC" }
 
     it "returns user params that contains user_name" do
       expect(user_params[:user_name]).to eq(user_double.user_name)
     end
 
     it "returns user params created_at timestamp correct value" do
-      expect{ Time.parse(user_params[:created_at]) }.not_to raise_error
+      expect(user_params[:created_at]).to eq(expected_timestamp)
     end
   end
 
