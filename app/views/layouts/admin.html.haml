@@ -1,9 +1,13 @@
 %title AdminSportWebapp
 
 = render partial: 'partials/app_defaults'
-= render partial: 'partials/header', locals: {header_link: admin_home_path}
-= yield :before_nav
-%div
-  - @translated_categories.each_with_index do |translated_category, index|
-    = link_to translated_category.name, admin_categories_path(@key_names[index])
+%header
+  %div
+    = render partial: 'partials/header', locals: {header_link: admin_home_path}
+  %div
+    %div
+      = yield :before_nav
+    %div
+      - @translated_categories.each_with_index do |translated_category, index|
+        = link_to translated_category.name, admin_categories_path(@key_names[index])
 = yield
