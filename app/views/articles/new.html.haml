@@ -1,20 +1,56 @@
-= javascript_include_tag "create_article/article_file_upload", data: {"turbolinks" => false}
-%h1 I am gonna create an ahuenniy article for #{@translated_category.name} !!!
-
-%div.create-article-form{"data-turbolinks"=> "false"}
-  %div#img-preview-section{style: 'display: none;'}
-    %div#img-preview
-    %div#img-preview-toolbar
-      %span#delete-preview-image
-        %svg{width:"66", height:"66", viewBox:"0 0 34 34"}
-          #{File.read('app/assets/images/svgs/delete_img.svg').html_safe}
-  %div.article-placeholder
-    %span
-      #{File.read('app/assets/images/svgs/add_article_photo.svg').html_safe}
-    %label
-      %input{type: 'file', id: 'file-input', style:'display: none'}
-      %span.article-placeholder-text
-        %span.btn-link + Add picture
-        or drop it right here
-        %br
-          You can add next formats: png, jpg, jpeg, tiff
+= javascript_include_tag "create_article/article_file_upload"
+= javascript_include_tag "create_article/update_selectors"
+- content_for :before_nav do
+  %div.create-article-pre-header
+    %h1= @translated_category.name
+    %div
+      = link_to 'Cancel', '/', {class: 'btn-link'}
+      = link_to 'Save', '/', {class: 'btn-primary'}
+= form_with(url: articles_create_path) do |form|
+  %div.create-article-form
+    %div#img-preview-section{style: 'display: none;'}
+      %div#img-preview
+      %div#img-preview-toolbar
+        %span#delete-preview-image
+          %svg{width:"66", height:"66", viewBox:"0 0 34 34"}
+            #{File.read('app/assets/images/svgs/delete_img.svg').html_safe}
+    %div#img-placeholder.no-file
+      %span
+        #{File.read('app/assets/images/svgs/add_article_photo.svg').html_safe}
+      %label
+        %input#article-image{type: 'file', style:'display: none'}
+        %span.article-placeholder-text
+          %span.btn-link + Add picture
+          or drop it right here
+          %br
+            You can add next formats: png, jpg, jpeg, tiff
+    %div.choose-article-nav-container
+      %div
+        %label.form-label Conference
+        = select_tag('conference-select', options_from_collection_for_select(@translated_conferences, "conference_id", "name"),
+         prompt:'Not Selected',
+         class: 'emptySelect')
+      %div
+        %label.form-label Team
+        = select_tag('team-select', nil, prompt: 'Not Selected', class: 'emptySelect')
+      %div
+        %label.form-label Location
+        = select_tag('location-select', nil, prompt: 'Not Selected', class: 'emptySelect')
+    %div
+      %label.form-label Alt. *
+      = form.text_field(:alt_image, placeholder: 'Alternative text for picture')
+    %div
+      %label.form-label Article headline *
+      = form.text_field(:headline, placeholder: 'Name')
+    %div
+      %label.form-label Caption *
+      = form.text_field(:headline, placeholder: 'Write caption text here')
+    %div
+      %label.form-label Content *
+      %trix-editor{input: 'article-content', resize: 'vertical', style: 'overflow-y: auto', placeholder: 'Please write your article content here'}
+      = form.text_field(:content, type: 'hidden', id: 'article-content')
+    %div{style: ''}
+      %span Show comments:
+      %label.switch
+        = form.check_box(:show_comments, checked: true)
+        %span.slider.round

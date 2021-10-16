@@ -7,7 +7,19 @@ input {
   box-sizing: border-box;
   width: 30%;
   font-size: 1.2rem;
+  height: 36px;
 }
+select {
+  border: 1px solid #D4D9E2;
+  box-sizing: border-box;
+  font-size: 1.2rem;
+  height: 36px;
+}
+
+.emptySelect {
+  color: #8d8e8f;
+}
+
 label {
   font-size: 1rem;
   font-family: "Roboto",  serif;
@@ -17,7 +29,25 @@ label {
 
 .create-article-form {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 15%;
+}
+
+.create-article-form > * {
+  flex-basis: 100%;
+  width: 100%;
+  margin: 15px 0px;
+}
+
+.create-article-form input {
+  width: 100%;
+}
+
+.form-label {
+  color: #7F8899;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
 }

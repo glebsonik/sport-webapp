@@ -2,18 +2,26 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.article-placeholder {
-  border: 1px solid #D4D9E2;
+#img-placeholder {
   height: 500px;
-  width: 55%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  flex-basis: 100%;
 }
 
-.article-placeholder > * {
+
+.no-file {
+  border: 1px solid #D4D9E2;
+}
+
+.file-dragged {
+  border: 2px solid #D72130;
+}
+
+#img-placeholder > * {
   margin: 7px 0px;
 }
 
@@ -50,14 +58,42 @@
   justify-content: center;
   align-items: flex-end;
 }
-#img-eventer{
-  position: relative;
-  height: 100%;
-  width: 100%;
-  z-index: 5;
-}
+
 #img-preview-toolbar > * {
   margin: 5px 20px;
 }
 
+.choose-article-nav-container {
+  display: flex;
+  justify-content: space-around;
+  flex-basis: 100%
+}
 
+.choose-article-nav-container > *{
+  flex-basis: 33%;
+}
+
+.choose-article-nav-container select,input{
+  width: 100%;
+}
+
+.choose-article-nav-container > :nth-child(even) {
+  margin: 5px 20%;
+}
+
+.create-article-pre-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 7%;
+}
+
+.create-article-pre-header > div * {
+  margin: 0 15px;
+}
+
+.create-article-pre-header .btn-primary {
+  width: 69px;
+  display: inline-block;
+  text-align: center;
+}
