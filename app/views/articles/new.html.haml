@@ -1,11 +1,12 @@
 = javascript_include_tag "create_article/article_file_upload"
 = javascript_include_tag "create_article/update_selectors"
+= javascript_include_tag "create_article/submit_form"
 - content_for :before_nav do
   %div.create-article-pre-header
     %h1= @translated_category.name
     %div
       = link_to 'Cancel', '/', {class: 'btn-link'}
-      = link_to 'Save', '/', {class: 'btn-primary'}
+      = link_to 'Save', '#', {id: 'save-article', class: 'btn-primary', 'data-form-path' => articles_create_path}
 = form_with(url: articles_create_path) do |form|
   %div.create-article-form
     %div#img-preview-section{style: 'display: none;'}
@@ -18,7 +19,7 @@
       %span
         #{File.read('app/assets/images/svgs/add_article_photo.svg').html_safe}
       %label
-        %input#article-image{type: 'file', style:'display: none'}
+        = form.file_field :picture, accept: 'image/png,image/jpeg,image/jpg,image/tiff', id: 'article-image', style:'display: none'
         %span.article-placeholder-text
           %span.btn-link + Add picture
           or drop it right here
@@ -44,13 +45,14 @@
       = form.text_field(:headline, placeholder: 'Name')
     %div
       %label.form-label Caption *
-      = form.text_field(:headline, placeholder: 'Write caption text here')
+      = form.text_field(:caption, placeholder: 'Write caption text here')
     %div
       %label.form-label Content *
       %trix-editor{input: 'article-content', resize: 'vertical', style: 'overflow-y: auto', placeholder: 'Please write your article content here'}
       = form.text_field(:content, type: 'hidden', id: 'article-content')
-    %div{style: ''}
+    %div
       %span Show comments:
       %label.switch
         = form.check_box(:show_comments, checked: true)
         %span.slider.round
+    = form.submit "Save article", {id: 'submit-article-form',style:'display: none;'}
