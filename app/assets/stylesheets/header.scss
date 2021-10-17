@@ -1,24 +1,45 @@
-.logo {
-  text-decoration: none;
-  font-size: 2.5rem;
-  color: black;
-}
-.logo>:first-child {
-  text-decoration: line-through;
-}
-.logo>:nth-child(2) {
-  background-color: #ff7500;
-  border-radius: 3px;
-  padding: 3px;
+$header-border-params: #EDEDED 1px solid;
+
+header {
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+
+  box-shadow: 0px 0px 37px rgba(0, 0, 0 , 15%);
+  z-index: 999;
 }
 
 .header_upper_nav {
   display: flex;
   justify-content: space-between;
+  border-bottom: $header-border-params;
 }
 
-.header_upper_nav > *{
-  margin: 5px;
+.logo-container {
+  flex-basis: 15%;
+}
+
+.logo {
+  text-decoration: none;
+  font-size: 27px;
+  display: block;
+  height: 82px;
+  color: #FFFFFF;
+  background-color: #D72130;
+  vertical-align: middle;
+  text-align: center;
+  top: 0;
+}
+a.logo > *{
+  padding-top: 15%;
+  display: inline-block;
+}
+
+.header-auth-container {
+  display: flex;
+  align-items: center;
+  border-left: $header-border-params;
+  padding-left: 10px;
 }
 
 .auth_icons > * {
@@ -33,13 +54,4 @@
 }
 .admin_nav > * {
   margin: 10px 5px;
-}
-
-header {
-  position: sticky;
-  top: 0;
-  background-color: #ffffff;
-  padding: 5px 5px;
-  box-shadow: 0px 0px 37px rgba(0, 0, 0 , 15%);
-  z-index: 999;
 }
