@@ -16,7 +16,7 @@ select {
   height: 36px;
 }
 
-.emptySelect {
+.empty-select {
   color: #8d8e8f;
 }
 
@@ -25,25 +25,6 @@ label {
   font-family: "Roboto",  serif;
   color: #7F8899;
   margin-bottom: 2px;
-}
-
-.create-article-form {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 15%;
-}
-
-.create-article-form > * {
-  flex-basis: 100%;
-  width: 100%;
-  margin: 15px 0px;
-}
-
-.create-article-form input {
-  width: 100%;
 }
 
 .form-label {

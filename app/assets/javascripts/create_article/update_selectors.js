@@ -1,6 +1,8 @@
-async function getTranslatedTeams(language_name, conferenceId) {
-    const translatedTeamsResponse = await fetch(`/api/v1/teams/teams?lang_key=${language_name}&conference_id=${conferenceId}`)
-    return translatedTeamsResponse.json();
+async function getTranslatedTeams(language_name, conferenceKey) {
+    const translatedTeamsResponse = await fetch(`/api/v1/teams/teams?lang_key=${language_name}&conference_key=${conferenceKey}`)
+    const responseJson = await translatedTeamsResponse.json();
+
+    return responseJson['error'] ? [] : responseJson
 }
 function getLanguageKey() {
     return document.cookie.split(';')
@@ -18,16 +20,16 @@ function addTeamsOptionsToSelect(selectEl, translatedTeams) {
     translatedTeams.forEach(team => {
         const option = document.createElement("option");
         option.text = team.name;
-        option.value = team.team_id;
+        option.value = team.id;
         selectEl.options.add(option);
     });
 }
 
 function styleIfNoValue(event) {
     if (event.target.value === '') {
-        event.target.className += ' emptySelect'
+        event.target.className += ' empty-select'
     } else {
-        event.target.classList.remove("emptySelect");
+        event.target.classList.remove("empty-select");
     }
 }
 
@@ -38,19 +40,18 @@ function setDisableForElementsByIds(elementIds, isDisabled) {
 }
 
 window.addEventListener('load', () => {
-    const selectsIds = ['conference-select', 'team-select', 'location-select']
+    const selectsIds = ['conference_key', 'team_id', 'location_key']
     selectsIds.forEach(selectId => {
         document.getElementById(selectId).addEventListener('change', styleIfNoValue);
     });
-    document.getElementById('conference-select').addEventListener('change',  async (event) => {
-        const teamSelect = document.getElementById('team-select');
+    document.getElementById('conference_key').addEventListener('change',  async (event) => {
+        const teamSelect = document.getElementById('team_id');
 
         emptySelectWithFirstPrompt(teamSelect);
 
         setDisableForElementsByIds(selectsIds, true);
 
-        const conferenceId = event.target.value
-        const translatedTeams = await getTranslatedTeams(getLanguageKey, conferenceId);
+        const translatedTeams = await getTranslatedTeams(getLanguageKey, event.target.value);
 
         addTeamsOptionsToSelect(teamSelect, translatedTeams);
 

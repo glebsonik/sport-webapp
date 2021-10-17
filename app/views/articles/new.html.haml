@@ -7,7 +7,7 @@
     %div
       = link_to 'Cancel', '/', {class: 'btn-link'}
       = link_to 'Save', '#', {id: 'save-article', class: 'btn-primary', 'data-form-path' => articles_create_path}
-= form_with(url: articles_create_path) do |form|
+= form_with(url: articles_create_path, local: true, html: { autocomplete: "off" }) do |form|
   %div.create-article-form
     %div#img-preview-section{style: 'display: none;'}
       %div#img-preview
@@ -25,18 +25,20 @@
           or drop it right here
           %br
             You can add next formats: png, jpg, jpeg, tiff
+    = form.hidden_field :article_type, value: (params[:article_id] || nil)
+    = form.hidden_field :category_key, value: params[:key_name]
     %div.choose-article-nav-container
       %div
         %label.form-label Conference
-        = select_tag('conference-select', options_from_collection_for_select(@translated_conferences, "conference_id", "name"),
+        = select_tag('conference_key', options_from_collection_for_select(@translated_conferences, "key_name", "name"),
          prompt:'Not Selected',
-         class: 'emptySelect')
+         class: 'empty-select')
       %div
         %label.form-label Team
-        = select_tag('team-select', nil, prompt: 'Not Selected', class: 'emptySelect')
+        = select_tag('team_id', nil, prompt: 'Not Selected', class: 'empty-select')
       %div
         %label.form-label Location
-        = select_tag('location-select', nil, prompt: 'Not Selected', class: 'emptySelect')
+        = select_tag('location_key', nil, prompt: 'Not Selected', class: 'empty-select')
     %div
       %label.form-label Alt. *
       = form.text_field(:alt_image, placeholder: 'Alternative text for picture')
@@ -55,4 +57,5 @@
       %label.switch
         = form.check_box(:show_comments, checked: true)
         %span.slider.round
+    = form.hidden_field :author_user_name, value: current_user.user_name
     = form.submit "Save article", {id: 'submit-article-form',style:'display: none;'}

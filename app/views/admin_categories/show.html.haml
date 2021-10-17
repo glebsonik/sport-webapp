@@ -4,3 +4,13 @@
     %div
       = link_to "+ New Article", new_article_path, {class: "btn-primary" }
 %p You are in category #{@translated_category.name}
+
+%div{style: 'display: flex; flex-direction:column;'}
+  - @translated_articles.each do |translated_article|
+    %div
+      %div
+        = translated_article.headline
+        = translated_article.alt_image
+        = translated_article.caption
+      %div
+        = image_tag(translated_article.picture_url, size: "192x108")

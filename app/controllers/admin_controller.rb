@@ -13,7 +13,7 @@ class AdminController < ApplicationController
       @translated_categories << category.category_translations.find_by(language_id: current_language.id)
       @key_names << category.key_name
     end
-    p @translated_categories
+    @translated_categories
   end
 
   def admin_authorize!

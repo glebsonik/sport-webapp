@@ -10,4 +10,7 @@
     %div
       - @translated_categories.each_with_index do |translated_category, index|
         = link_to translated_category.name, admin_categories_path(@key_names[index])
-= yield
+%main
+  - if notice
+    %div#notice #{notice}
+  = yield

@@ -2,6 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.create-article-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 15%;
+}
+
+.create-article-form {
+  trix-editor {
+    height: 200px;
+  }
+}
+
+.create-article-form > * {
+  flex-basis: 100%;
+  width: 100%;
+  margin: 15px 0px;
+}
+
+.create-article-form input {
+  width: 100%;
+}
+
 #img-placeholder {
   height: 500px;
   display: flex;
@@ -11,7 +36,6 @@
   text-align: center;
   flex-basis: 100%;
 }
-
 
 .no-file {
   border: 1px solid #D4D9E2;
@@ -78,7 +102,7 @@
 }
 
 .choose-article-nav-container > :nth-child(even) {
-  margin: 5px 20%;
+  margin: 0 20px;
 }
 
 .create-article-pre-header {
