@@ -10,6 +10,7 @@ class CreateArticleTranslations < ActiveRecord::Migration[5.2]
       t.text :content
       t.date :publish_date
       t.boolean :show_comments
+      t.string :status
 
       t.timestamps
     end

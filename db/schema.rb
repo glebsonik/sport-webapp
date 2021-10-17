@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2021_10_04_165350) do
     t.text "content"
     t.date "publish_date"
     t.boolean "show_comments"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_article_translations_on_article_id"
@@ -32,18 +33,18 @@ ActiveRecord::Schema.define(version: 2021_10_04_165350) do
   end
 
   create_table "articles", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "author_id"
     t.bigint "category_id"
     t.bigint "conference_id"
     t.bigint "team_id"
     t.bigint "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_articles_on_author_id"
     t.index ["category_id"], name: "index_articles_on_category_id"
     t.index ["conference_id"], name: "index_articles_on_conference_id"
     t.index ["location_id"], name: "index_articles_on_location_id"
     t.index ["team_id"], name: "index_articles_on_team_id"
-    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -140,7 +141,7 @@ ActiveRecord::Schema.define(version: 2021_10_04_165350) do
   add_foreign_key "articles", "conferences"
   add_foreign_key "articles", "locations"
   add_foreign_key "articles", "teams"
-  add_foreign_key "articles", "users"
+  add_foreign_key "articles", "users", column: "author_id"
   add_foreign_key "category_translations", "categories"
   add_foreign_key "category_translations", "languages"
   add_foreign_key "conference_translations", "conferences"
