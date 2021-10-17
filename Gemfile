@@ -35,6 +35,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   gem 'pry'
   gem 'dotenv'
+  gem 'carrierwave', '~> 2.0'
 end
 
 group :development do
