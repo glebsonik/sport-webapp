@@ -11,12 +11,7 @@ class ArticlesController < AdminController
   end
 
   def create
-    @article = Article.new(author_id: User.find_by(user_name: params[:author_user_name]).id,
-                           category_id: Category.find_by(key_name: params[:category_key]).id,
-                           conference_id: Conference.find_by(key_name: params[:conference_key]).id,
-                           team_id: params[:team_id],
-                           location_id: Location.find_by(key_name: params[:location_key])&.id,
-                           article_translations_attributes: [article_translation_params])
+    @article = Article.new(article_params)
 
     if @article.save
       redirect_to admin_categories_path(params[:category_key]), notice: "Article saved successfully!"
@@ -30,6 +25,16 @@ class ArticlesController < AdminController
   end
 
   private
+
+  def article_params
+    {author_id: User.find_by(user_name: params[:author_user_name]).id,
+     category_id: Category.find_by(key_name: params[:category_key]).id,
+     conference_id: Conference.find_by(key_name: params[:conference_key]).id,
+     team_id: params[:team_id],
+     location_id: Location.find_by(key_name: params[:location_key])&.id,
+     article_translations_attributes: [article_translation_params]}
+  end
+
   def article_translation_params
     {language_id: current_language.id,
      picture: params[:picture],
@@ -39,4 +44,5 @@ class ArticlesController < AdminController
      show_comments: params[:show_comments] == '1' ? true : false,
      status: :unpublished}
   end
+
 end
