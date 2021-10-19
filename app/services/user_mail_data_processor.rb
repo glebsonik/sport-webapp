@@ -1,5 +1,4 @@
 class UserMailDataProcessor
-
   DEFAULT_DATA_DELIMITER = ';;;'
 
   def initialize(delimiter = DEFAULT_DATA_DELIMITER)
