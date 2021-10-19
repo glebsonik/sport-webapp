@@ -9,6 +9,13 @@
   margin-left: auto;
   margin-right: auto;
   padding: 0 15%;
+
+  input:required:invalid {
+    background-color: rgba(215, 33, 48, 0.11);
+  }
+  select:required:invalid {
+    background-color: rgba(215, 33, 48, 0.11);
+  }
 }
 
 .create-article-form {

@@ -7,6 +7,8 @@
     %div
       = link_to 'Cancel', '/', {class: 'btn-link'}
       = link_to 'Save', '#', {id: 'save-article', class: 'btn-primary', 'data-form-path' => articles_create_path}
+%div#errors-in-form-modal{style: 'display: none'}
+  = render partial: 'partials/modal_error', locals: {modal_title: 'Error in forms', modal_content: '', modal_btn_text: 'Ok'}
 = form_with(url: articles_create_path, local: true, html: { autocomplete: "off" }) do |form|
   %div.create-article-form
     %div#img-preview-section{style: 'display: none;'}
@@ -15,11 +17,14 @@
         %span#delete-preview-image
           %svg{width:"66", height:"66", viewBox:"0 0 34 34"}
             #{File.read('app/assets/images/svgs/delete_img.svg').html_safe}
+    %label.form-label{style: 'margin-bottom: 0;'}
+      Picture *
     %div#img-placeholder.no-file
       %span
         #{File.read('app/assets/images/svgs/add_article_photo.svg').html_safe}
       %label
-        = form.file_field :picture, accept: 'image/png,image/jpeg,image/jpg,image/tiff', id: 'article-image', style:'display: none'
+        = form.file_field :picture, accept: 'image/png,image/jpeg,image/jpg,image/tiff', id: 'article-image',
+         style:'display: none', required: true
         %span.article-placeholder-text
           %span.btn-link + Add picture
           or drop it right here
@@ -29,33 +34,33 @@
     = form.hidden_field :category_key, value: params[:key_name]
     %div.choose-article-nav-container
       %div
-        %label.form-label Conference
+        %label.form-label Conference *
         = select_tag('conference_key', options_from_collection_for_select(@translated_conferences, "key_name", "name"),
-         prompt:'Not Selected',
-         class: 'empty-select')
+         prompt:'Not Selected', class: 'empty-select', required: true)
       %div
-        %label.form-label Team
-        = select_tag('team_id', nil, prompt: 'Not Selected', class: 'empty-select')
+        %label.form-label Team *
+        = select_tag('team_id', nil, prompt: 'Not Selected', class: 'empty-select', required: true)
       %div
         %label.form-label Location
         = select_tag('location_key', nil, prompt: 'Not Selected', class: 'empty-select')
     %div
       %label.form-label Alt. *
-      = form.text_field(:alt_image, placeholder: 'Alternative text for picture')
+      = form.text_field(:alt_image, placeholder: 'Alternative text for picture', required: true)
     %div
       %label.form-label Article headline *
-      = form.text_field(:headline, placeholder: 'Name')
+      = form.text_field(:headline, placeholder: 'Name', required: true)
     %div
       %label.form-label Caption *
-      = form.text_field(:caption, placeholder: 'Write caption text here')
+      = form.text_field(:caption, placeholder: 'Write caption text here', required: true)
     %div
       %label.form-label Content *
-      %trix-editor{input: 'article-content', resize: 'vertical', style: 'overflow-y: auto', placeholder: 'Please write your article content here'}
-      = form.text_field(:content, type: 'hidden', id: 'article-content')
+      %trix-editor{input: 'article-content', resize: 'vertical', style: 'overflow-y: auto',
+       placeholder: 'Please write your article content here', required: true}
+      = form.text_field(:content, type: 'hidden', id: 'article-content', required: true)
     %div
       %span Show comments:
       %label.switch
         = form.check_box(:show_comments, checked: true)
         %span.slider.round
     = form.hidden_field :author_user_name, value: current_user.user_name
-    = form.submit "Save article", {id: 'submit-article-form',style:'display: none;'}
+    = form.submit "Save article", {id: 'submit-article-form', style:'display: none;'}
