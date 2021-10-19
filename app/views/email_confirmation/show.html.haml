@@ -1,0 +1,14 @@
+-if flash.alert
+  %div
+    %svg{:fill => "none", :height => "81", :viewbox => "0 0 81 81", :width => "81", :xmlns => "http://www.w3.org/2000/svg"}
+      %rect{:fill => "#D72130", :height => "81", :rx => "40.5", :width => "81"}
+      %path{:d => "M3 3L24.2132 24.2132", :stroke => "white", "stroke-linecap" => "round", "stroke-width" => "6", :transform => "translate(+27.5, +25.5)"}
+      %path{:d => "M24.2148 3L3.00164 24.2132", :stroke => "white", "stroke-linecap" => "round", "stroke-width" => "6", :transform => "translate(+27.5, +25.5)"}
+  %div
+    An error occurred while
+-else
+  %div
+    %svg{style: "margin-bottom: 10px;", fill: "none", height: "30", viewbox: "0 0 21 16", width: "30", xmlns: "http://www.w3.org/2000/svg"}
+      %path{:d => "M1 9L8 14.5L20 1", :stroke => "#D72130", "stroke-linejoin" => "round", "stroke-width" => "2"}
+  %div{style: "color: #D72130"}
+    Success!
