@@ -1,5 +1,5 @@
 %h1 Sign in to your account
-= form_with do |form|
+= form_with(local: true) do |form|
   - if flash.alert
     #error_explanation
       %span= flash.alert
