@@ -13,4 +13,9 @@ class User < ApplicationRecord
     blocked: 'blocked'
   }
 
+  enum role: {
+    admin: 'admin',
+    member: 'member'
+  }
+
 end
