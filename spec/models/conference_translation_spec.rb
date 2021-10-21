@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe ConferenceTranslation, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validations' do
+    it { should belong_to(:conference) }
+    it { should belong_to(:language) }
+    it { should validate_presence_of(:name) }
+    it { should delegate_method(:key_name).to(:conference) }
+  end
 end
