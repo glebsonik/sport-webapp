@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_04_165350) do
+ActiveRecord::Schema.define(version: 2021_10_20_191722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,8 +98,10 @@ ActiveRecord::Schema.define(version: 2021_10_04_165350) do
     t.string "city_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "location_id"
     t.index ["conference_id"], name: "index_location_translations_on_conference_id"
     t.index ["language_id"], name: "index_location_translations_on_language_id"
+    t.index ["location_id"], name: "index_location_translations_on_location_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -149,6 +151,7 @@ ActiveRecord::Schema.define(version: 2021_10_04_165350) do
   add_foreign_key "conferences", "categories"
   add_foreign_key "location_translations", "conferences"
   add_foreign_key "location_translations", "languages"
+  add_foreign_key "location_translations", "locations"
   add_foreign_key "teams", "conferences"
   add_foreign_key "teams", "locations"
 end
