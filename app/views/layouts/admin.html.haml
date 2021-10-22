@@ -8,8 +8,8 @@
     %div
       = yield :before_nav
     %div
-      - @translated_categories.each_with_index do |translated_category, index|
-        = link_to translated_category.name, admin_categories_path(@key_names[index])
+      - @translated_categories.each do |translated_category|
+        = link_to translated_category.name, admin_categories_path(translated_category.key_name)
 %main
   - if notice
     %div#notice #{notice}
