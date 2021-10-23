@@ -1,22 +1,21 @@
 class ArticlesController < AdminController
   def new
-    category = Category.find_by(key_name: params[:key_name])
-    @translated_category = category.translation_for(current_language.id)
+    @translated_category = CategoryTranslation.translation_for(params[:key_name], current_language_key)
 
-    @conferences = category.conferences
-
-    @translated_conferences = category.conferences.map do |conference|
-      conference.translation_for(current_language.id)
-    end
+    @translated_conferences = ConferenceTranslation.left_joins(:language, conference: :category)
+                                                   .where(categories: { key_name: params[:key_name] })
+                                                   .where(languages:  { key: current_language_key })
   end
 
   def create
-    @article = Article.new(article_params)
+    @article = Article.new(default_article_with_translation_params)
 
     if @article.save
-      redirect_to admin_categories_path(params[:category_key]), notice: "Article saved successfully!"
+      redirect_to admin_categories_path(Category.find(params[:category_id]).key_name),
+                  notice: "Article saved successfully!"
     else
-      redirect_to admin_categories_path(params[:category_key]), alert: "Couldn't save article. Something went wrong!"
+      flash.now[:alert] = "Couldn't save article. Something went wrong!"
+      render :new
     end
   end
 
@@ -26,23 +25,26 @@ class ArticlesController < AdminController
 
   private
 
+  def default_article_with_translation_params
+    defaults = article_params
+    defaults[:article_translations_attributes] = [article_translation_params]
+    defaults
+  end
+
   def article_params
-    {author_id: User.find_by(user_name: params[:author_user_name]).id,
-     category_id: Category.find_by(key_name: params[:category_key]).id,
-     conference_id: Conference.find_by(key_name: params[:conference_key]).id,
-     team_id: params[:team_id],
-     location_id: Location.find_by(key_name: params[:location_key])&.id,
-     article_translations_attributes: [article_translation_params]}
+    params
+      .permit(:category_id, :conference_id, :team_id, :location_id)
+      .merge(author_id: current_user.id)
+      .to_hash
   end
 
   def article_translation_params
-    {language_id: current_language.id,
-     picture: params[:picture],
-     alt_image: params[:alt_image],
-     caption: params[:caption],
-     content: params[:content],
-     show_comments: params[:show_comments] == '1' ? true : false,
-     status: :unpublished}
+    article_params_keys = [:language_id, :picture, :alt_image, :headline, :caption, :content]
+    translation_params = params.permit(article_params_keys).to_hash
+    translation_params[:show_comments] = translation_params[:show_comments] == "1" ? true : false
+    translation_params[:language_id] = current_language.id
+    translation_params[:status] = :unpublished
+    translation_params
   end
 
 end

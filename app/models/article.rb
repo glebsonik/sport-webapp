@@ -8,8 +8,4 @@ class Article < ApplicationRecord
   has_many :article_translations
   accepts_nested_attributes_for :article_translations
 
-  def translation_for(language_id)
-    self.article_translations.find_by(language_id: language_id)
-  end
-
 end

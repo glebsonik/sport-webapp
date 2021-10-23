@@ -5,4 +5,5 @@ class ConferenceTranslation < ApplicationRecord
   validates :name, presence: true
 
   delegate :key_name, to: :conference
+
 end

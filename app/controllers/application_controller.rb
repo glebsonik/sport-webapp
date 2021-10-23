@@ -2,7 +2,7 @@ DEFAULT_LANGUAGE = 'en'
 LANG_EXPIRATION_TIME = 1.years
 
 class ApplicationController < ActionController::Base
-  helper_method :current_user
+  helper_method :current_user, :current_language
   before_action :validate_or_set_language
 
   include LanguageControllable

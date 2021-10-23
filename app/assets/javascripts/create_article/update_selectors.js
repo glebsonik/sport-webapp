@@ -1,5 +1,5 @@
-async function getTranslatedTeams(language_name, conferenceKey) {
-    const translatedTeamsResponse = await fetch(`/api/v1/teams/teams?lang_key=${language_name}&conference_key=${conferenceKey}`)
+async function getTranslatedTeams(languageName, conferenceId) {
+    const translatedTeamsResponse = await fetch(`/api/v1/teams/teams?lang_key=${languageName}&conference_id=${conferenceId}`)
     const responseJson = await translatedTeamsResponse.json();
 
     return responseJson['error'] ? [] : responseJson
@@ -40,11 +40,11 @@ function setDisableForElementsByIds(elementIds, isDisabled) {
 }
 
 window.addEventListener('load', () => {
-    const selectsIds = ['conference_key', 'team_id', 'location_key']
+    const selectsIds = ['conference_id', 'team_id', 'location_id']
     selectsIds.forEach(selectId => {
         document.getElementById(selectId).addEventListener('change', styleIfNoValue);
     });
-    document.getElementById('conference_key').addEventListener('change',  async (event) => {
+    document.getElementById('conference_id').addEventListener('change',  async (event) => {
         const teamSelect = document.getElementById('team_id');
 
         emptySelectWithFirstPrompt(teamSelect);

@@ -12,7 +12,7 @@ function addModalEvents(modalId) {
 }
 
 function isFormValid() {
-    let formValid = false
+    let formValid = true
     getAllFields().forEach(field => {
         formValid = formValid && field.checkValidity();
     });
@@ -21,7 +21,7 @@ function isFormValid() {
 
 function getAllFields() {
     return document.getElementsByClassName('create-article-form')[0]
-        .querySelectorAll('input[required],select[required]');
+        .querySelectorAll('input[id][required],select[required]');
 }
 function isValidImage(){
     return document.getElementById('article-image').checkValidity();
@@ -43,7 +43,6 @@ window.addEventListener('load', () => {
             console.log("VALID");
             document.getElementById('submit-article-form').click();
         } else {
-            console.log("== INVALID ==");
             let errorText = "";
             if (!isValidImage())
                 errorText = "You need to attach image for your article";

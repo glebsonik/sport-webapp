@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$preview-section-height: 650px;
+
 .create-article-form {
   display: flex;
   flex-wrap: wrap;
@@ -35,7 +37,7 @@
 }
 
 #img-placeholder {
-  height: 500px;
+  height: $preview-section-height;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,7 +65,7 @@
 
 #img-preview-section {
   position: relative;
-  height: 500px;
+  height: $preview-section-height;
   width: 50%;
 }
 

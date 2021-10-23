@@ -3,8 +3,12 @@ module LanguageControllable
 
   private
 
+  def current_language_key
+    cookies[:language] || DEFAULT_LANGUAGE
+  end
+
   def current_language
-    Language.find_by(key: cookies[:language] || DEFAULT_LANGUAGE)
+    @current_language ||= Language.find_by(key: current_language_key)
   end
 
 end
