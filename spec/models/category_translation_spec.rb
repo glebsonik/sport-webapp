@@ -9,12 +9,11 @@ RSpec.describe CategoryTranslation, type: :model do
   end
 
   describe '#translation_for' do
+    subject(:translation_for_category) { CategoryTranslation.translation_for(category_key, language.key) }
     let(:category_key) { 'nba' }
     let(:translated_category_name) { 'NBA' }
     let(:language_key) { 'en' }
     let(:language) {Language.find_by(key: language_key)}
-
-    subject(:translation_for_category) { CategoryTranslation.translation_for(category_key, language.key) }
 
     before do
       Language.create!(key: language_key, display_name: 'English')

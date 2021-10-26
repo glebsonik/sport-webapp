@@ -3,7 +3,6 @@ require "spec_helper"
 
 RSpec.describe Encryptor, type: :service do
   subject(:encryptor) { Encryptor.new(specific_key) }
-
   let(:specific_key) { Rails.application.credentials.test[:test_key] }
   let(:test_string_decrypted) { 'TestValue' }
   let(:test_string_encrypted) { 'B2yt2pEcb0fIVafUM1/v1gF24g==--qWi4d24l+aQN01Cw--mrRtz3Nk1joVFTYJ6C1qwQ==' }
