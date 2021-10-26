@@ -6,6 +6,7 @@ require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'carrierwave/test/matchers'
+require "json_matchers/rspec"
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -71,3 +72,5 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+JsonMatchers.schema_root = "spec/support/api/schemas"
