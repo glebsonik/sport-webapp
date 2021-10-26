@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'admin_categories/:key_name', to: 'admin_categories#show', as: :admin_categories
 
   get 'admin_home/index', as: :admin_home
-  get 'email_confirmation/index', as: :confirm_email
+  get 'email_confirmation/show', as: :confirm_email
   get 'home/index'
 
   root to: "home#index"
