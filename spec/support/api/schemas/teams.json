@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "teams.schema.json",
+  "title": "Teams",
+  "description": "A teams collection",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "conference_id": {
+        "type": "integer"
+      },
+      "location_id": {
+        "type": ["string", "null"]
+      },
+      "name": {
+        "type": "string"
+      },
+      "logo": {
+        "type": ["string", "null"]
+      }
+    },
+    "required": [ "id", "conference_id", "name"]
+  }
+}

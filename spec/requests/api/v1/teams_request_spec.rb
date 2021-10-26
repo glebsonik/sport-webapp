@@ -1,18 +1,41 @@
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Teams", type: :request do
+RSpec.describe Api::V1::TeamsController, type: :request do
 
   describe "GET /teams" do
-    it "returns http success" do
-      get "/api/v1/teams/teams"
-      expect(response).to have_http_status(:success)
-    end
-  end
+    subject(:send_request) { get "/api/v1/teams/teams?conference_id=#{conference_id}" }
+    let(:language_key) { 'en' }
+    let(:language) {Language.find_by(key: language_key)}
+    let(:conference_key_name) { 'nba_conf_1' }
+    let(:conference_id) {Conference.find_by(key_name: conference_key_name).id}
+    let(:team_name) { "NBA Conf Team 1" }
 
-  describe "GET /by_id" do
-    it "returns http success" do
-      get "/api/v1/teams/by_id"
-      expect(response).to have_http_status(:success)
+    before do
+      Language.create!(key: language_key, display_name: "English")
+      category = Category.create!(key_name: 'nba')
+      category.category_translations.create!(language_id: language.id, name: 'NBA')
+      conference = category.conferences.create!(key_name: conference_key_name)
+      conference.conference_translations.create!(language_id: language.id, name: "NBA Conf 1")
+      conference.teams.create!(name: team_name)
+
+      send_request
+    end
+
+    context "when given conference_id param" do
+      subject(:parsed_response) {JSON.parse(response.body)}
+      let(:expected_team_json) { Team.find_by(name: team_name).as_json(except: [:created_at, :updated_at]) }
+
+      it "returns http success status when given conference_id param" do
+        expect(response).to have_http_status(:success)
+      end
+
+      it "returns teams correct JSON array" do
+        expect(response).to match_json_schema("teams")
+      end
+
+      it "has corresponding team in JSON array" do
+        expect(parsed_response[0]).to eq(expected_team_json)
+      end
     end
   end
 
