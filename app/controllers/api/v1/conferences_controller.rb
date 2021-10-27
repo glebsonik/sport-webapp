@@ -8,7 +8,7 @@ module Api
       #
       #   @translated_conferences = ConferenceTranslation.left_joins(:conference, :language)
       #                                                  .where(conference: {category_id: category_id},
-      #                                                         language: {key: params[:lang_key] || DEFAULT_LANGUAGE})
+      #                                                         language: {key: params[:lang_key] || LanguageControllable::DEFAULT_LANGUAGE})
       #
       #   render json: @translated_conferences, except: [:created_at, :updated_at]
       # end
