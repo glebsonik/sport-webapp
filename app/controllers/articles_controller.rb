@@ -11,7 +11,7 @@ class ArticlesController < AdminController
     @article = Article.new(default_article_with_translation_params)
 
     if @article.save
-      redirect_to admin_categories_path(Category.find(params[:category_id]).key_name),
+      redirect_to admin_categories_path(@article.category_id),
                   notice: "Article saved successfully!"
     else
       flash.now[:alert] = "Couldn't save article. Something went wrong!"
