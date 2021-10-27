@@ -254,7 +254,7 @@ DEPENDENCIES
   chromedriver-helper
   dotenv
   haml
-  haml-rails (~> 2.0)
+  haml-rails
   jbuilder (~> 2.5)
   json_matchers
   letter_opener
