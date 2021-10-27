@@ -10,10 +10,4 @@ RSpec.describe Article, type: :model do
     it { should have_many(:article_translations) }
     it { should accept_nested_attributes_for(:article_translations) }
   end
-
-  describe ".translation_for" do
-    #WIP
-    # TODO: Discuss with Andrii
-  end
-
 end
