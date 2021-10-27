@@ -6,7 +6,7 @@
     %h1= @translated_category.name
     %div
       = link_to 'Cancel', '/', {class: 'btn-link'}
-      = link_to 'Save', '#', {id: 'save-article', class: 'btn-primary', 'data-form-path' => articles_create_path}
+      = link_to 'Save', '/', {id: 'save-article', class: 'btn-primary', 'data-form-path' => articles_create_path}
 %div#errors-in-form-modal{style: 'display: none'}
   = render partial: 'partials/modal_error', locals: {modal_title: 'Error in forms', modal_content: '', modal_btn_text: 'Ok'}
 
