@@ -36,6 +36,8 @@ gem 'carrierwave', '~> 2.0'
 gem 'haml'
 gem 'haml-rails'
 
+gem 'trix'
+
 group :development, :test do
   gem 'pry'
   gem 'dotenv'
@@ -49,7 +51,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem "letter_opener"
-  gem 'trix'
 end
 
 group :test do
