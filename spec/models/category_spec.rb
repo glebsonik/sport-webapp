@@ -8,8 +8,4 @@ RSpec.describe Category, type: :model do
     it { should validate_uniqueness_of(:key_name) }
   end
 
-  describe '.translation_for' do
-
-  end
-
 end

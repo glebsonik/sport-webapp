@@ -8,8 +8,4 @@ RSpec.describe Conference, type: :model do
     it { should validate_presence_of(:key_name) }
     it { should validate_uniqueness_of(:key_name) }
   end
-
-  describe '.translation_for' do
-    #WIP
-  end
 end
