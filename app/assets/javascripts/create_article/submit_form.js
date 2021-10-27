@@ -40,7 +40,6 @@ window.addEventListener('load', () => {
 
     document.getElementById('save-article').addEventListener('click', (e)=> {
         if (isFormValid()) {
-            console.log("VALID");
             document.getElementById('submit-article-form').click();
         } else {
             let errorText = "";

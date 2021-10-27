@@ -62,7 +62,6 @@ function dragExit(e) {
     preventDragDefault(e);
 
     if (e.fromElement.className && e.fromElement.classList.contains('create-article-form')) {
-        console.log("dragLeave");
         document.getElementById('img-placeholder').classList.remove('file-dragged');
     }
 }
@@ -81,7 +80,6 @@ window.addEventListener('load', () => {
     addHoverEffect();
 
     document.getElementById('article-image').addEventListener('change', function(e) {
-        console.log(e);
         if (this.files[0]) {
             const imgPreview = document.getElementById('img-preview');
 
