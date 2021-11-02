@@ -44,4 +44,4 @@ hierarchy = [
 ]
 
 en_lang = Language.find_or_create_by!(key: 'en')
-HierarchySeeder.new(en_lang).seed_data(hierarchy)
+CategorySeeder.new(en_lang).seed_data(hierarchy)

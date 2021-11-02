@@ -1,4 +1,4 @@
-class HierarchySeeder
+class CategorySeeder
   def initialize(language)
     @language = language
   end
