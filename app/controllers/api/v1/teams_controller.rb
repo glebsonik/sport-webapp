@@ -2,7 +2,7 @@ module Api
   module V1
     class TeamsController < ApplicationController
       def teams
-        return render json: {error: "please specify conference_id"}, status: 400 unless params[:conference_id]
+        return render json: {error: "conference_id is required"}, status: 400 unless params[:conference_id]
 
         @teams = Team.where(conference_id: params[:conference_id])
 
