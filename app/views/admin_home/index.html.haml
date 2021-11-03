@@ -1,12 +1,2 @@
--# = javascript_include_tag 'categories_fetcher/article_relations'
 %h1
-  You are on secret admin page
--# = render partial: 'partials/category_admin_menu'
-
--# = form_for(@article) do |form|
--#   = form.trix_editor :body
--#<trix-editor input="job_description"></trix-editor>
-%trix-editor{input: "job_description", input: 'rich_aboba'}
-%input{type: 'hidden', id: 'rich_aboba'}
-
-%button{id: 'amogus'} Aboba
+  You are on admin home page
