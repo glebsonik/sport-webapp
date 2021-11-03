@@ -1,12 +1,14 @@
 class ArticleTranslation < ApplicationRecord
+  include ArticleData
+
   belongs_to :article
   belongs_to :language
 
   validates :picture, :alt_image, :caption, :headline, :content, presence: true
 
   enum status: {
-    unpublished: 'unpublished',
-    published: 'published'
+    unpublished: UNPUBLISHED,
+    published: PUBLISHED
   }
 
   mount_uploader :picture, ArticlePictureUploader

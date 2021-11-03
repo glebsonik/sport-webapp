@@ -43,7 +43,7 @@ class ArticlesController < AdminController
     translation_params = params.permit(article_params_keys).to_hash
     translation_params[:show_comments] = translation_params[:show_comments] == "1" ? true : false
     translation_params[:language_id] = current_language.id
-    translation_params[:status] = :unpublished
+    translation_params[:status] = ArticleData::UNPUBLISHED
     translation_params
   end
 
