@@ -15,7 +15,9 @@ module LanguageControllable
   end
 
   def current_language
-    @current_language ||= Language.find_by(key: current_language_key)
+    @current_language ||= Rails.cache.fetch("current_language", expires_in: 24.hours) do
+      Language.find_by(key: current_language_key)
+    end
   end
 
 end
