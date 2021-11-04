@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def default_user_params
-    permitted_user_params.merge({ status: :pending_email, role: :member })
+    permitted_user_params.merge({ status: :pending_email, role: UserData::MEMBER })
   end
 
   def permitted_user_params
