@@ -10,7 +10,8 @@ class AdminController < ApplicationController
   end
 
   def admin_authorize!
-    authorize!
-    redirect_to root_path, alert: "You don't have permission for this operation" unless current_user.admin?
+    if authorize! && current_user&.admin?
+      redirect_to root_path, alert: "You don't have permission for this operation"
+    end
   end
 end
