@@ -1,0 +1,25 @@
+en:
+  email:
+    already_sent: 'We have already sent you an email'
+    send_again: 'Send again'
+    error_message: 'An error occurred:'
+    success: 'Success!'
+  user_home:
+    title: 'Home Page'
+  user_header:
+    logged_in_as: 'Logged in as'
+    sign_in: 'Sign in'
+    sign_up: 'Sign up'
+    sign_out: 'Sign out'
+  sign_in_page:
+    user_name_label: 'User name'
+    password_label: 'Password'
+    sign_in_button: 'Sign in'
+  sign_up_page:
+    title: 'Create new user'
+    following_errors: 'There are following errors:'
+    email_label: 'Email'
+    user_name_label: 'User name'
+    password_label: 'Password'
+    password_confirmation_label: 'Confirm password'
+    sign_up_button: 'Sign up'

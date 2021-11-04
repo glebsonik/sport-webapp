@@ -5,10 +5,11 @@
   %div.create-article-pre-header
     %h1= @translated_category.name
     %div
-      = link_to 'Cancel', '/', {class: 'btn-link'}
-      = link_to 'Save', '/', {id: 'save-article', class: 'btn-primary', 'data-form-path' => articles_create_path}
+      = link_to t('admin_articles.cancel_link'), '/', {class: 'btn-link'}
+      = link_to t('admin_articles.save_article_button'), '/', {id: 'save-article', class: 'btn-primary', 'data-form-path' => articles_create_path}
 %div#errors-in-form-modal{style: 'display: none'}
-  = render partial: 'partials/modal_error', locals: {modal_title: 'Error in forms', modal_content: '', modal_btn_text: 'Ok'}
+  = render partial: 'partials/modal_error', locals: {modal_title: t('admin_articles.error_modal.modal_title'),
+   modal_content: '', modal_btn_text: t('admin_articles.error_modal.ok_button')}
 
 = form_with(url: articles_create_path, local: true, html: { autocomplete: "off" }) do |form|
   %div.create-article-form
@@ -18,8 +19,7 @@
         %span#delete-preview-image
           %svg{width:"66", height:"66", viewBox:"0 0 34 34"}
             #{File.read('app/assets/images/svgs/delete_img.svg').html_safe}
-    %label.form-label{style: 'margin-bottom: 0;'}
-      Picture *
+    %label.form-label{style: 'margin-bottom: 0;'}= "#{t('admin_articles.picture_label')} *"
     %div#img-placeholder.no-file
       %span
         #{File.read('app/assets/images/svgs/add_article_photo.svg').html_safe}
@@ -27,10 +27,10 @@
         = form.file_field :picture, accept: 'image/png,image/jpeg,image/jpg,image/tiff', id: 'article-image',
          style:'display: none', required: true
         %span.article-placeholder-text
-          %span.btn-link + Add picture
-          or drop it right here
+          %span.btn-link= t('admin_articles.add_picture')
+          = t('admin_articles.or_drop_picture')
           %br
-            You can add next formats: png, jpg, jpeg, tiff
+            = t('admin_articles.allowed_formats')
 
     = form.hidden_field :article_id, value: params[:article_id]
     = form.hidden_field :category_id, value: @translated_category.category_id
@@ -38,37 +38,37 @@
 
     %div.choose-article-nav-container
       %div
-        %label.form-label Conference *
+        %label.form-label= "#{t('admin_articles.conference_label')} *"
         = select_tag('conference_id',
         options_from_collection_for_select(@translated_conferences, "conference_id", "name"),
-         prompt:'Not Selected', class: 'empty-select', required: true)
+         prompt: t('admin_articles.not_selected_value'), class: 'empty-select', required: true)
       %div
-        %label.form-label Team *
-        = select_tag('team_id', nil, prompt: 'Not Selected', class: 'empty-select', required: true)
+        %label.form-label= "#{t('admin_articles.teams_label')} *"
+        = select_tag('team_id', nil, prompt: t('admin_articles.not_selected_value'), class: 'empty-select', required: true)
       %div
-        %label.form-label Location
-        = select_tag('location_id', nil, prompt: 'Not Selected', class: 'empty-select')
+        %label.form-label= t('admin_articles.location_label')
+        = select_tag('location_id', nil, prompt: t('admin_articles.not_selected_value'), class: 'empty-select')
 
     %div
-      %label.form-label Alt. *
-      = form.text_field(:alt_image, placeholder: 'Alternative text for picture', required: true)
+      %label.form-label= "#{t('admin_articles.alt_label')} *"
+      = form.text_field(:alt_image, placeholder: t('admin_articles.alt_placeholder'), required: true)
 
     %div
-      %label.form-label Article headline *
-      = form.text_field(:headline, placeholder: 'Name', required: true)
+      %label.form-label= "#{t('admin_articles.headline_label')} *"
+      = form.text_field(:headline, placeholder: t('admin_articles.headline_placeholder'), required: true)
 
     %div
-      %label.form-label Caption *
-      = form.text_field(:caption, placeholder: 'Write caption text here', required: true)
+      %label.form-label= "#{t('admin_articles.caption_label')} *"
+      = form.text_field(:caption, placeholder: t('admin_articles.caption_placeholder'), required: true)
 
     %div
-      %label.form-label Content *
+      %label.form-label= "#{t('admin_articles.content_label')} *"
       %trix-editor{input: 'article-content', resize: 'vertical', style: 'overflow-y: auto',
-       placeholder: 'Please write your article content here', required: true}
+       placeholder: t('admin_articles.content_placeholder'), required: true}
       = form.text_field(:content, type: 'hidden', id: 'article-content', required: true)
 
     %div
-      %span Show comments:
+      %span= t('admin_articles.show_comments_label')
       %label.switch
         = form.check_box(:show_comments, checked: true)
         %span.slider.round

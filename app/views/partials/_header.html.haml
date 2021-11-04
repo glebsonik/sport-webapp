@@ -9,12 +9,12 @@
           #{File.read('app/assets/images/svgs/admin_swap.svg').html_safe}
       - if current_user&.active?
         %span
-          Logged in as
+          = t('user_header.logged_in_as')
           %span= current_user.user_name
-        #{link_to "Sign out", sign_out_path, {class: 'btn-link'}}
+        #{link_to t('user_header.sign_out'), sign_out_path, {class: 'btn-link'}}
       - else
-        = link_to "Sign in", sign_in_path, {class: 'btn-link'}
-        = link_to "Sign up", sign_up_path, {class: 'btn-secondary'}
+        = link_to t('user_header.sign_in'), sign_in_path, {class: 'btn-link'}
+        = link_to t('user_header.sign_up'), sign_up_path, {class: 'btn-secondary'}
 - if notice
   %p#notice= notice
 - if alert

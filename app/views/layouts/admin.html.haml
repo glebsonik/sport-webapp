@@ -1,6 +1,9 @@
 %title AdminSportWebapp
-
-= render partial: 'partials/app_defaults'
+%head
+  = csrf_meta_tags
+  = csp_meta_tag
+  = stylesheet_link_tag    'application', media: 'all'
+  = javascript_include_tag 'application'
 %header
   %div
     = render partial: 'partials/header', locals: {header_link: admin_home_path}
