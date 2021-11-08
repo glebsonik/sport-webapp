@@ -9,8 +9,4 @@ RSpec.describe ConferenceTranslation, type: :model do
   describe 'validations' do
     it { should validate_presence_of(:name) }
   end
-
-  describe 'delegations' do
-    it { should delegate_method(:key_name).to(:conference) }
-  end
 end

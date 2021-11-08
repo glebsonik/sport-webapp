@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_20_191722) do
+ActiveRecord::Schema.define(version: 2021_11_07_152444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2021_10_20_191722) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "key_name"
+    t.string "key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2021_10_20_191722) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "key"
     t.index ["category_id"], name: "index_category_translations_on_category_id"
     t.index ["language_id"], name: "index_category_translations_on_language_id"
   end
@@ -69,13 +70,14 @@ ActiveRecord::Schema.define(version: 2021_10_20_191722) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "key"
     t.index ["conference_id"], name: "index_conference_translations_on_conference_id"
     t.index ["language_id"], name: "index_conference_translations_on_language_id"
   end
 
   create_table "conferences", force: :cascade do |t|
     t.bigint "category_id"
-    t.string "key_name"
+    t.string "key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_conferences_on_category_id"
@@ -99,13 +101,14 @@ ActiveRecord::Schema.define(version: 2021_10_20_191722) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "location_id"
+    t.string "key"
     t.index ["conference_id"], name: "index_location_translations_on_conference_id"
     t.index ["language_id"], name: "index_location_translations_on_language_id"
     t.index ["location_id"], name: "index_location_translations_on_location_id"
   end
 
   create_table "locations", force: :cascade do |t|
-    t.string "key_name"
+    t.string "key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

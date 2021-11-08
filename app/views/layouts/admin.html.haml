@@ -9,7 +9,7 @@
       = yield :before_nav
     %div
       - @translated_categories.each do |translated_category|
-        = link_to translated_category.name, admin_categories_path(translated_category.key_name)
+        = link_to translated_category.name, admin_categories_path(translated_category.key)
 %main
   - if notice
     %div#notice #{notice}

@@ -1,6 +1,6 @@
 class AdminCategoriesController < AdminController
   def show
-    @translated_category = CategoryTranslation.translation_for(params[:key_name], current_language_key)
+    @translated_category = CategoryTranslation.translation_for(params[:key], current_language_key)
 
     return redirect_to(admin_home_url, alert: 'incorrect category') unless @translated_category
 

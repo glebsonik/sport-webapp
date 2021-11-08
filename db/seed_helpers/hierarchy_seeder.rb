@@ -7,8 +7,10 @@ class CategorySeeder
     hierarchy.each do |category_hash|
       conferences = category_hash.delete(:conferences)
       category_key, category_translation = category_hash.to_a[0]
-      category = Category.find_or_create_by!(key_name: category_key)
-      category.category_translations.find_or_create_by!(language_id: @language.id, name: category_translation)
+      category = Category.find_or_create_by!(key: category_key)
+      category.category_translations.find_or_create_by!(language_id: @language.id,
+                                                        name: category_translation,
+                                                        key: category_key)
       seed_conferences(category, conferences)
     end
   end
@@ -19,8 +21,10 @@ class CategorySeeder
     conferences.each do |conference_hash|
       teams = conference_hash.delete(:teams)
       conference_key, conference_translation = conference_hash.to_a[0]
-      conference = category.conferences.find_or_create_by!(key_name: conference_key)
-      conference.conference_translations.find_or_create_by!(language_id: @language.id, name: conference_translation)
+      conference = category.conferences.find_or_create_by!(key: conference_key)
+      conference.conference_translations.find_or_create_by!(language_id: @language.id,
+                                                            name: conference_translation,
+                                                            key: conference_key)
       seed_teams(conference, teams)
     end
   end

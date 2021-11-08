@@ -11,10 +11,6 @@ RSpec.describe CategoryTranslation, type: :model do
     it { should validate_presence_of(:name) }
   end
 
-  describe 'delegations' do
-    it { should delegate_method(:key_name).to(:category) }
-  end
-
   describe '#translation_for' do
     subject(:translation_for_category) { CategoryTranslation.translation_for(category_key, language.key) }
     let(:category_key) { 'nba' }
@@ -24,7 +20,7 @@ RSpec.describe CategoryTranslation, type: :model do
 
     before do
       Language.create!(key: language_key, display_name: 'English')
-      category = Category.find_or_create_by!(key_name: category_key)
+      category = Category.find_or_create_by!(key: category_key)
       category.category_translations.find_or_create_by!(language_id: language.id,
                                            name: translated_category_name)
     end

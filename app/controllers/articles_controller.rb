@@ -2,10 +2,10 @@ require './app/services/builders/article_params_builder.rb'
 
 class ArticlesController < AdminController
   def new
-    @translated_category = CategoryTranslation.translation_for(params[:key_name], current_language_key)
+    @translated_category = CategoryTranslation.translation_for(params[:key], current_language_key)
 
     @translated_conferences = ConferenceTranslation.left_joins(:language, conference: :category)
-                                                   .where(categories: { key_name: params[:key_name] })
+                                                   .where(categories: { key: params[:key] })
                                                    .where(languages:  { key: current_language_key })
   end
 
