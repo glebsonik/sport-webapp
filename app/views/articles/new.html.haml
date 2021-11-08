@@ -19,7 +19,7 @@
       %label.form-label{style: 'margin-bottom: 0;'}= "#{t('admin_articles.picture_label')} *"
       %a#preview-link.underlined-link
         #{File.read('app/assets/images/svgs/preview_article_icon.svg').html_safe}
-        Preview
+        = t('admin_articles.preview_link')
     %div#img-preview-section.article-image-layout{style: 'display: none;'}
       %div#img-preview
       %div#img-preview-toolbar

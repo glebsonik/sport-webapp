@@ -10,6 +10,7 @@ en:
     error_modal:
       modal_title: 'Error in forms'
       ok_button: 'Ok'
+    preview_link: 'Preview'
     picture_label: 'Picture'
     add_picture: '+ Add picture'
     or_drop_picture: 'or drop it right here'
@@ -27,3 +28,8 @@ en:
     content_label: 'Content'
     content_placeholder: 'Please write your article content here'
     show_comments_label: 'Show comments:'
+  article_preview:
+    conference: 'Conference goes here'
+    team: 'Team goes here'
+    headline: 'Your future article headline'
+    back_to_edit_page_link: 'Back to edit page'
