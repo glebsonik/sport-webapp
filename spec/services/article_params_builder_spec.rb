@@ -2,7 +2,7 @@ require './app/services/builders/article_params_builder'
 
 RSpec.describe ArticleParamsBuilder, type: :service do
   describe '#build' do
-    subject(:build) {ArticleParamsBuilder.new(params, author.id).build}
+    subject(:build) {ArticleParamsBuilder.new(params, author).build}
     let(:params) {
       ActionController::Parameters.new({category_id: category.id,
                                                     conference_id: conference.id,
