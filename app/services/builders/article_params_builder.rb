@@ -27,7 +27,7 @@ class ArticleParamsBuilder
 
   def translation_defaults(translation_params)
     translation_params[:show_comments] = translation_params[:show_comments] == "1" ? true : false
-    translation_params[:status] = ArticleStatuses::UNPUBLISHED
+    translation_params[:status] = Article::UNPUBLISHED
 
     translation_params
   end
