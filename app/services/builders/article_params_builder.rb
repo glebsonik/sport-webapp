@@ -36,6 +36,6 @@ class ArticleParamsBuilder
   end
 
   def sanitize_bool(value)
-    value == "1" ? true : false
+    BooleanSanitizer.sanitize(value)
   end
 end
