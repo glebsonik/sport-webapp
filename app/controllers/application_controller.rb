@@ -9,9 +9,7 @@ class ApplicationController < ActionController::Base
   def authorize!
     unless current_user.present? && current_user.active?
       redirect_to sign_in_url, alert: "You must be logged in for this operation"
-      false
     end
-    true
   end
 
   def current_user
