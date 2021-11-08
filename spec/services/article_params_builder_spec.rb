@@ -20,7 +20,7 @@ RSpec.describe ArticleParamsBuilder, type: :service do
     let(:team) { conference.teams.create!(name: 'Team 1') }
     let(:language) { Language.create!(key: 'en', display_name: 'English', hidden: false) }
     let(:author) {User.create!(user_name: 'name', email: 'test@email.com', password: '123456Tr',
-                               role: UserData::ADMIN, status: UserData::ACTIVE)}
+                               role: UserStatuses::ADMIN, status: UserStatuses::ACTIVE)}
 
     it 'returns hash' do
       expect(build).to be_instance_of Hash
