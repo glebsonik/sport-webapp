@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
-  include UserStatuses
+  include UserConstants
 
   has_secure_password
 
