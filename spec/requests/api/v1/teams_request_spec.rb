@@ -5,15 +5,15 @@ RSpec.describe Api::V1::TeamsController, type: :request do
   describe "GET /teams" do
     let(:language_key) { 'en' }
     let(:language) {Language.find_by(key: language_key)}
-    let(:conference_key_name) { 'nba_conf_1' }
-    let(:conference_id) {Conference.find_by(key_name: conference_key_name).id}
+    let(:conference_key) { 'nba_conf_1' }
+    let(:conference_id) {Conference.find_by(key: conference_key).id}
     let(:team_name) { "NBA Conf Team 1" }
 
     before do
       Language.create!(key: language_key, display_name: "English")
-      category = Category.create!(key_name: 'nba')
+      category = Category.create!(key: 'nba')
       category.category_translations.create!(language_id: language.id, name: 'NBA')
-      conference = category.conferences.create!(key_name: conference_key_name)
+      conference = category.conferences.create!(key: conference_key)
       conference.conference_translations.create!(language_id: language.id, name: "NBA Conf 1")
       conference.teams.create!(name: team_name)
     end

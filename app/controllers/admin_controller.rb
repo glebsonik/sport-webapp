@@ -6,11 +6,15 @@ class AdminController < ApplicationController
   private
 
   def categories
-    @translated_categories = CategoryTranslation.where(language_id: current_language.id).includes(:category)
+    #TODO: add cache delete when category update `Rails.cache.delete("recent_news")`
+
+    @translated_categories ||= Rails.cache.fetch("admin_nav_categories") do
+      CategoryTranslation.where(language_id: current_language.id).includes(:category)
+    end
   end
 
   def admin_authorize!
-    if authorize! && current_user&.admin?
+    if authorize! && not(current_user&.admin?)
       redirect_to root_path, alert: "You don't have permission for this operation"
     end
   end

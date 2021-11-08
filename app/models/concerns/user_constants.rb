@@ -1,4 +1,4 @@
-module UserData
+module UserConstants
   extend ActiveSupport::Concern
 
   PENDING_MAIL = 'pending_email'

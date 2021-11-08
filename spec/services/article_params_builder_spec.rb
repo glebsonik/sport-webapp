@@ -2,7 +2,7 @@ require './app/services/builders/article_params_builder'
 
 RSpec.describe ArticleParamsBuilder, type: :service do
   describe '#build' do
-    subject(:build) {ArticleParamsBuilder.new(params, author.id).build}
+    subject(:build) {ArticleParamsBuilder.new(params, author).build}
     let(:params) {
       ActionController::Parameters.new({category_id: category.id,
                                                     conference_id: conference.id,
@@ -15,12 +15,12 @@ RSpec.describe ArticleParamsBuilder, type: :service do
                                                     caption: 'caption',
                                                     content: 'Some <b>content</b> goes here'})
     }
-    let(:category) { Category.create!(key_name: 'nba') }
-    let(:conference) { category.conferences.create!(key_name: 'nba_conf_1') }
+    let(:category) { Category.create!(key: 'nba') }
+    let(:conference) { category.conferences.create!(key: 'nba_conf_1') }
     let(:team) { conference.teams.create!(name: 'Team 1') }
     let(:language) { Language.create!(key: 'en', display_name: 'English', hidden: false) }
     let(:author) {User.create!(user_name: 'name', email: 'test@email.com', password: '123456Tr',
-                               role: UserData::ADMIN, status: UserData::ACTIVE)}
+                               role: User::ADMIN, status: User::ACTIVE)}
 
     it 'returns hash' do
       expect(build).to be_instance_of Hash

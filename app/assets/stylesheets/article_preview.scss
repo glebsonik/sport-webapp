@@ -1,0 +1,33 @@
+#preview-container {
+  display: flex;
+  justify-content: space-around;
+  transition: all 0.3s ease-in-out;
+}
+
+#preview-container > * {
+  margin: 0 15px;
+}
+
+#show-article-link {
+  margin: 15px 0;
+}
+
+.main-preview-content {
+  flex-grow: 2;
+  margin: 0 36px;
+}
+
+.back-to-article-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#content {
+  text-align: justify;
+}
+
+.preview-image {
+  display: block;
+  width: 90%;
+  margin: 15px auto;
+}

@@ -1,34 +1,41 @@
 class ArticleParamsBuilder
-  def initialize(params, author_id)
+  def initialize(params, author)
     @params = params
-    @author_id = author_id
+    @author = author
   end
 
   def build
-    article = article_params
-    article[:article_translations_attributes] = [article_translation_params]
-
-    article
+    article_params.merge(article_translations_attributes: [article_translation_params])
   end
 
   private
+
+  attr_reader :params, :author
+
   def article_params
-    @params.permit([:category_id, :conference_id, :team_id, :location_id])
-           .merge(author_id: @author_id)
-           .to_hash
+    {
+      category_id:   params[:category_id],
+      conference_id: params[:conference_id],
+      team_id:       params[:team_id],
+      location_id:   params[:location_id],
+      author_id:     author.id
+    }
   end
 
   def article_translation_params
-    translation_params = @params.permit([:language_id, :picture, :alt_image, :headline, :caption, :content])
-                                .to_hash
-
-    translation_defaults(translation_params)
+    {
+      language_id:   params[:language_id],
+      picture:       params[:picture],
+      alt_image:     params[:alt_image],
+      headline:      params[:headline],
+      caption:       params[:caption],
+      content:       params[:content],
+      show_comments: sanitize_bool(params[:show_comments]),
+      status:        Article::UNPUBLISHED
+    }
   end
 
-  def translation_defaults(translation_params)
-    translation_params[:show_comments] = translation_params[:show_comments] == "1" ? true : false
-    translation_params[:status] = ArticleData::UNPUBLISHED
-
-    translation_params
+  def sanitize_bool(value)
+    value == "1" ? true : false
   end
 end

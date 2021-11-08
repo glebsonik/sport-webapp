@@ -11,6 +11,10 @@ main {
   margin: 15px 15px;
 }
 
+a {
+  color: #D72130;
+}
+
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -42,9 +46,9 @@ div {
 }
 
 .field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
+  input {
+    border: #B00100 2px solid;
+  }
 }
 
 #error_explanation {

@@ -1,5 +1,5 @@
 class ArticleTranslation < ApplicationRecord
-  include ArticleData
+  include ArticleStatuses
 
   belongs_to :article
   belongs_to :language

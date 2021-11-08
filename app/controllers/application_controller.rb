@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-
   helper_method :current_user, :current_language
   before_action :validate_or_set_language
   around_action :switch_locale
@@ -7,7 +6,6 @@ class ApplicationController < ActionController::Base
   include LanguageControllable
 
   private
-
 
   def authorize!
     unless current_user.present? && current_user.active?
@@ -20,8 +18,9 @@ class ApplicationController < ActionController::Base
   def current_user
     return unless session[:user_token].present?
 
-    user_id = Encryptor.new.decrypt(session[:user_token])
-    @current_user ||= User.find(user_id)
+    Rails.cache.fetch("current_user") do
+      user_id = Encryptor.new.decrypt(session[:user_token])
+      User.find(user_id)
+    end
   end
-
 end

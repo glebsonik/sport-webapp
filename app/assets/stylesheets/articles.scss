@@ -36,6 +36,30 @@ $preview-section-height: 650px;
   width: 100%;
 }
 
+.preview-link-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0;
+}
+
+.underlined-link {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.underlined-link::after {
+  content: '';
+  width: 0px;
+  height: 1px;
+  display: block;
+  background: #D72130;
+  transition: 300ms;
+}
+
+.underlined-link:hover::after {
+  width: 100%;
+}
+
 #img-placeholder {
   height: $preview-section-height;
   display: flex;
@@ -65,6 +89,8 @@ $preview-section-height: 650px;
 
 #img-preview-section {
   position: relative;
+}
+.article-image-layout {
   height: $preview-section-height;
   width: 50%;
 }
