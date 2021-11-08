@@ -1,25 +1,31 @@
 = javascript_include_tag "create_article/article_file_upload"
 = javascript_include_tag "create_article/update_selectors"
 = javascript_include_tag "create_article/submit_form"
+= javascript_include_tag "create_article/show_preview"
+
 - content_for :before_nav do
   %div.create-article-pre-header
     %h1= @translated_category.name
     %div
       = link_to 'Cancel', '/', {class: 'btn-link'}
-      = link_to 'Save', '/', {id: 'save-article', class: 'btn-primary', 'data-form-path' => articles_create_path}
+      = link_to 'Save', '#', {id: 'save-article', class: 'btn-primary', 'data-form-path' => articles_create_path}
 %div#errors-in-form-modal{style: 'display: none'}
   = render partial: 'partials/modal_error', locals: {modal_title: 'Error in forms', modal_content: '', modal_btn_text: 'Ok'}
 
-= form_with(url: articles_create_path, local: true, html: { autocomplete: "off" }) do |form|
+= form_with(url: articles_create_path, local: true, html: { autocomplete: "off" }, id: 'create-article-form') do |form|
   %div.create-article-form
-    %div#img-preview-section{style: 'display: none;'}
+    %div.preview-link-container
+      %label.form-label{style: 'margin-bottom: 0;'}
+        Picture *
+      %a#preview-link.underlined-link
+        #{File.read('app/assets/images/svgs/preview_article_icon.svg').html_safe}
+        Preview
+    %div#img-preview-section.article-image-layout{style: 'display: none;'}
       %div#img-preview
       %div#img-preview-toolbar
         %span#delete-preview-image
           %svg{width:"66", height:"66", viewBox:"0 0 34 34"}
             #{File.read('app/assets/images/svgs/delete_img.svg').html_safe}
-    %label.form-label{style: 'margin-bottom: 0;'}
-      Picture *
     %div#img-placeholder.no-file
       %span
         #{File.read('app/assets/images/svgs/add_article_photo.svg').html_safe}
@@ -74,3 +80,5 @@
         %span.slider.round
 
     = form.submit "Save article", {id: 'submit-article-form', style:'display: none;'}
+%div#preview-main{style: 'display: none;'}
+  = render partial: 'partials/article_preview', locals: {category_name: @translated_category.name}

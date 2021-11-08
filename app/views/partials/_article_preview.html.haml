@@ -1,0 +1,38 @@
+%div#preview-container
+  %div.preview-left-menu
+    %ul
+      %li HOME
+      %li NBA
+      %li NFL
+      %li MLB
+      %li NHL
+  %div.main-preview-content
+    %div.breadcrumbs
+      %span#category= local_assigns[:category_name]
+      %span >
+      %span#conference Conference goes here
+      %span >
+      %span#team Team goes here
+      %span >
+      %span#preview-headline Your future article headline
+    %div.back-to-article-container
+      %div
+        %a.underlined-link#show-article-link
+          #{File.read('app/assets/images/svgs/preview_article_icon.svg').html_safe}
+          Back to edit page
+    -#%div
+    %img#article-preview-image.preview-image
+    %div#content
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus varius nunc vel fringilla sollicitudin. Integer ac pretium neque, quis placerat nulla. Nulla posuere urna augue, quis semper arcu dapibus vitae. Sed turpis eros, euismod nec nunc et, pretium sodales lectus. Nulla vitae mattis turpis, non aliquam dolor. Nunc vitae sapien rutrum, euismod nisi ut, tempus odio. Praesent sit amet lobortis neque, vel fermentum odio.
+
+      In at leo commodo, maximus sapien non, viverra urna. Praesent gravida mauris non aliquam dictum. Quisque accumsan feugiat faucibus. Vestibulum nulla felis, porttitor ultrices scelerisque ac, efficitur nec nibh. Pellentesque lectus sem, malesuada quis luctus ut, mollis a ligula. Cras vehicula, ante imperdiet dictum elementum, ligula elit auctor tellus, eu interdum diam lorem sed metus. Etiam eu interdum neque, eget luctus nunc. Phasellus quis augue id arcu dignissim tempus ac nec eros. Vivamus efficitur consequat magna, blandit ornare magna sollicitudin non. Etiam sollicitudin est nibh, vitae dignissim nulla imperdiet commodo.
+
+      Sed suscipit tellus nulla, tincidunt pharetra nibh blandit at. Vivamus id nulla urna. Sed quam magna, ullamcorper eget vestibulum id, sagittis sit amet leo. Nullam gravida sed nibh et convallis. Vestibulum iaculis lorem vel sapien viverra, nec lobortis sem feugiat. Curabitur convallis orci a interdum viverra. Aenean non metus at libero tincidunt malesuada. Quisque tincidunt finibus semper. Nunc pharetra convallis velit eu consectetur. Aenean posuere massa id vehicula interdum. Vivamus non ex molestie, lobortis lorem blandit, malesuada enim. Maecenas cursus eros leo, at hendrerit ex egestas consequat.
+
+      Cras justo mauris, egestas et quam vitae, ullamcorper sollicitudin magna. Phasellus libero ex, lobortis ut libero sed, faucibus congue tortor. Donec dignissim magna nisi, sed suscipit est porta quis. Vivamus commodo diam sit amet odio pulvinar egestas. Nunc velit lorem, hendrerit in mi nec, lobortis commodo lacus. Sed sit amet dui erat. Nulla tristique diam at felis laoreet dictum.
+
+      Fusce mattis nisl a nisi lacinia tempus. Praesent accumsan velit eget urna malesuada, id ornare diam placerat. Fusce risus metus, viverra eget quam non, dictum pellentesque est. Morbi non aliquet dolor. Donec ut aliquam justo, eu hendrerit elit. Proin iaculis eu nisi ut tincidunt. Donec sodales id purus sit amet elementum. Nam pharetra nulla at neque tincidunt sagittis. Pellentesque sed mollis ex, id vehicula tortor. Vivamus lacus neque, blandit eu congue at, tincidunt eget sem.
+  %div.comments
+    Comments goes here
+  %div.preview-right-menu
+    Some content will go here
