@@ -1,4 +1,4 @@
-module ArticleData
+module ArticleStatuses
   extend ActiveSupport::Concern
 
   UNPUBLISHED = 'unpublished'
