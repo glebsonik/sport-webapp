@@ -22,7 +22,8 @@ RSpec.describe CategoryTranslation, type: :model do
       Language.create!(key: language_key, display_name: 'English')
       category = Category.find_or_create_by!(key: category_key)
       category.category_translations.find_or_create_by!(language_id: language.id,
-                                           name: translated_category_name)
+                                                        name: translated_category_name,
+                                                        key: category_key)
     end
 
     it 'returns category translation by language and category key' do
