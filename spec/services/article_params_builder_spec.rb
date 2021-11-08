@@ -64,7 +64,7 @@ RSpec.describe ArticleParamsBuilder, type: :service do
     end
 
     before do
-      allow_any_instance_of(ArticleParamsBuilder).to receive(:sanitize_bool).with(anything) do
+      allow_any_instance_of(described_class).to receive(:sanitize_bool).with(anything) do
         true
       end
     end
