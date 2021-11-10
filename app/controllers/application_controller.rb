@@ -10,15 +10,13 @@ class ApplicationController < ActionController::Base
   def authorize!
     unless current_user.present? && current_user.active?
       redirect_to sign_in_url, alert: "You must be logged in for this operation"
-      false
     end
-    true
   end
 
   def current_user
     return unless session[:user_token].present?
 
-    Rails.cache.fetch("current_user") do
+    Rails.cache.fetch(session[:user_token]) do
       user_id = Encryptor.new.decrypt(session[:user_token])
       User.find(user_id)
     end

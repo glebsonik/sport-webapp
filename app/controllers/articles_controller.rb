@@ -10,12 +10,10 @@ class ArticlesController < AdminController
   end
 
   def create
-    article_hash = ArticleParamsBuilder.new(params, current_user.id).build
+    article_hash = ArticleParamsBuilder.new(params, current_user).build
     @article = Article.new(article_hash)
     if @article.save
-      article_category_key = Category.find(@article.category_id)
-      redirect_to admin_categories_path(article_category_key),
-                  notice: "Article saved successfully!"
+      redirect_to admin_categories_path(@article.category.key), notice: "Article saved successfully!"
     else
       flash.now[:alert] = "Couldn't save article. Something went wrong!"
       render :new

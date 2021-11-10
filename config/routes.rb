@@ -27,26 +27,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get 'categories/categories'
-      get 'categories/translated'
-      get 'categories/by_id'
-      get 'categories/translated_by_id'
-    end
-  end
-
-  namespace :api do
-    namespace :v1 do
-      get 'conferences/conferences'
-      get 'conferences/translated'
-      get 'conferences/by_id'
-      get 'conferences/translated_by_id'
-    end
-  end
-
-  namespace :api do
-    namespace :v1 do
-      get 'teams/teams'
-      get 'teams/by_id'
+      get 'teams', to: 'teams#teams'
     end
   end
 

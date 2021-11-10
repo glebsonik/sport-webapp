@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe CategoryTranslation, type: :model do
-
   describe 'relations' do
     it { should belong_to(:category) }
     it { should belong_to(:language) }
@@ -12,24 +11,39 @@ RSpec.describe CategoryTranslation, type: :model do
   end
 
   describe '#translation_for' do
-    subject(:translation_for_category) { CategoryTranslation.translation_for(category_key, language.key) }
-    let(:category_key) { 'nba' }
+    subject(:translation_for_category) { described_class.translation_for(category_key, language_key) }
     let(:translated_category_name) { 'NBA' }
+    let(:category_key) { 'nba' }
     let(:language_key) { 'en' }
-    let(:language) {Language.find_by(key: language_key)}
+
+    let(:language) do
+      Language.create(
+        key: language_key,
+        display_name: 'English'
+      )
+    end
+    let(:category) do
+      Category.create(key: category_key)
+    end
+    let(:category_translation) do
+      CategoryTranslation.create(
+        language: language,
+        name: translated_category_name,
+        key: category_key,
+        category: category
+      )
+    end
 
     before do
-      Language.create!(key: language_key, display_name: 'English')
-      category = Category.find_or_create_by!(key: category_key)
-      category.category_translations.find_or_create_by!(language_id: language.id,
-                                                        name: translated_category_name,
-                                                        key: category_key)
+      language
+      category
+      category_translation
     end
 
     it 'returns category translation by language and category key' do
-      expect(translation_for_category.name).to eq(translated_category_name)
+      expect(translation_for_category.name).to        eq(translated_category_name)
       expect(translation_for_category.language_id).to eq(language.id)
+      expect(translation_for_category.category_id).to eq(category.id)
     end
   end
-
 end
