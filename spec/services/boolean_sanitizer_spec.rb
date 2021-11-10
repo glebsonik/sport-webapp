@@ -1,3 +1,4 @@
+require './app/services/sanitizers/boolean_sanitizer.rb'
 
 RSpec.describe BooleanSanitizer, type: :service do
   describe '.sanitize' do
