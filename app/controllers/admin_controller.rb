@@ -6,10 +6,8 @@ class AdminController < ApplicationController
   private
 
   def categories
-    #TODO: add cache delete when category update `Rails.cache.delete("recent_news")`
-
-    @translated_categories ||= Rails.cache.fetch("admin_nav_categories") do
-      CategoryTranslation.where(language_id: current_language.id).includes(:category)
+    @translated_categories ||= Rails.cache.fetch(CategoryTranslation::CACHE_KEY) do
+      CategoryTranslation.where(language_id: current_language.id)
     end
   end
 
