@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get 'teams', to: 'teams#teams'
+      get 'teams', to: 'teams#index'
     end
   end
 
