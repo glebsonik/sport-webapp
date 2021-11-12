@@ -1,5 +1,9 @@
 class AdminCategoriesController < AdminController
   def show
+    #TODO: Implement Presenter
+    # https://github.com/skrix/lunch_app/blob/eb9da0f73c22dcbe18234fead4621a01eb64cf3e/app/facades/menus/index_facade.rb
+    # https://github.com/skrix/lunch_app/blob/eb9da0f73c22dcbe18234fead4621a01eb64cf3e/app/controllers/menus_controller.rb
+    #
     @translated_category = CategoryTranslation.translation_for(params[:key], current_language_key)
 
     return redirect_to(admin_home_url, alert: 'incorrect category') unless @translated_category
