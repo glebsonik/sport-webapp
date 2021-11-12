@@ -1,3 +1,62 @@
 // Place all the styles related to the Admin controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$nav-height: 25px;
+
+.admin-nav-menu {
+  border-top: #EDEDED 1px solid;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+
+  .nav-arrow {
+    width: 50px;
+    height: $nav-height;
+  }
+}
+
+.admin-nav-categories {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-basis: 80%;
+  height: 43px;
+  gap: 15px;
+  overflow: hidden;
+  z-index: auto;
+}
+
+.admin-nav-categories:before {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 33%;
+  width: 1%;
+  box-shadow: inset 5px 1px 9px 0 #ffffff;
+}
+
+.admin-nav-categories:after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 33%;
+  width: 1%;
+  box-shadow: inset -6px -1px 7px 0px #ffffff;
+  left: 89%;
+}
+
+.admin-nav-link {
+  color: #B2B2B2;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: $nav-height;
+  display: inline-block;
+  z-index: auto;
+  white-space: nowrap;
+}
+
+.selected {
+  color: #D72130;
+}
