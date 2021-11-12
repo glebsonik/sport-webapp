@@ -1,0 +1,27 @@
+require './app/services/builders/article_params_builder.rb'
+
+class ArticlesController < AdminController
+  def new
+    @translated_category = CategoryTranslation.translation_for(params[:key], current_language_key)
+
+    @translated_conferences = ConferenceTranslation.left_joins(:language, conference: :category)
+                                                   .where(categories: { key: params[:key] })
+                                                   .where(languages:  { key: current_language_key })
+  end
+
+  def create
+    article_hash = ArticleParamsBuilder.new(params, current_user).build
+    @article = Article.new(article_hash)
+    if @article.save
+      redirect_to admin_categories_path(@article.category.key), notice: "Article saved successfully!"
+    else
+      flash.now[:alert] = "Couldn't save article. Something went wrong!"
+      render :new
+    end
+  end
+
+  def update
+    #WIP
+  end
+
+end

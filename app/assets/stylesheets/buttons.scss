@@ -1,5 +1,14 @@
 .btn-primary {
-  //background-color: #;
+  background-color: #D72130;
+  font-family: "Open Sans", serif;
+  //display: inline-block;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 8px 23px;
+}
+
+.btn-primary:hover {
+  outline: 1px solid #000000;
 }
 
 .btn-link {
@@ -13,9 +22,9 @@
   margin-right: 5px;
   font-weight: bolder;
   border: 1px solid #D72130;
-  box-sizing:border-box; font-family: Open Sans;
+  box-sizing: border-box;
+  font-family: "Open Sans", serif;
   font-style: normal;
-  font-weight: 600;
   font-size: 0.80rem;
   text-align: center;
   padding: 7px 15px;

@@ -1,8 +1,17 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
 
+  # TODO: transform to resources
+  put 'articles/update'
+  post 'articles/create'
+  get 'articles/:key', to: 'articles#new', as: :new_article
+  get 'create_articles/create'
+
+  get 'admin_categories/:key', to: 'admin_categories#show', as: :admin_categories
+
+  get 'admin_home/index', as: :admin_home
   get 'email_confirmation/show', as: :confirm_email
-  get 'home/show'
+  get 'home/index'
 
   root to: "home#index"
   get 'sign_up', to: 'users#new', as: :sign_up
@@ -15,4 +24,11 @@ Rails.application.routes.draw do
 
   get 'email/preconfirmation', to: 'email_confirmation#preconfirmation', as: :preconfirmation
   get 'email/resend', to: 'email_confirmation#resend_email', as: :resend_email
+
+  namespace :api do
+    namespace :v1 do
+      get 'teams', to: 'teams#index'
+    end
+  end
+
 end

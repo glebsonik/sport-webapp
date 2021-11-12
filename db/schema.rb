@@ -10,10 +10,119 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_18_120010) do
+ActiveRecord::Schema.define(version: 2021_11_07_152444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "article_translations", force: :cascade do |t|
+    t.bigint "article_id"
+    t.bigint "language_id"
+    t.string "picture"
+    t.string "alt_image"
+    t.string "caption"
+    t.string "headline"
+    t.text "content"
+    t.date "publish_date"
+    t.boolean "show_comments"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_article_translations_on_article_id"
+    t.index ["language_id"], name: "index_article_translations_on_language_id"
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.bigint "author_id"
+    t.bigint "category_id"
+    t.bigint "conference_id"
+    t.bigint "team_id"
+    t.bigint "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_articles_on_author_id"
+    t.index ["category_id"], name: "index_articles_on_category_id"
+    t.index ["conference_id"], name: "index_articles_on_conference_id"
+    t.index ["location_id"], name: "index_articles_on_location_id"
+    t.index ["team_id"], name: "index_articles_on_team_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "category_translations", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "language_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "key"
+    t.index ["category_id"], name: "index_category_translations_on_category_id"
+    t.index ["language_id"], name: "index_category_translations_on_language_id"
+  end
+
+  create_table "conference_translations", force: :cascade do |t|
+    t.bigint "conference_id"
+    t.bigint "language_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "key"
+    t.index ["conference_id"], name: "index_conference_translations_on_conference_id"
+    t.index ["language_id"], name: "index_conference_translations_on_language_id"
+  end
+
+  create_table "conferences", force: :cascade do |t|
+    t.bigint "category_id"
+    t.string "key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_conferences_on_category_id"
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string "key"
+    t.string "display_name"
+    t.string "icon"
+    t.boolean "hidden"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "location_translations", force: :cascade do |t|
+    t.bigint "conference_id"
+    t.bigint "language_id"
+    t.string "country_name"
+    t.string "state_name"
+    t.string "city_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "location_id"
+    t.string "key"
+    t.index ["conference_id"], name: "index_location_translations_on_conference_id"
+    t.index ["language_id"], name: "index_location_translations_on_language_id"
+    t.index ["location_id"], name: "index_location_translations_on_location_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.bigint "conference_id"
+    t.bigint "location_id"
+    t.string "name"
+    t.string "logo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conference_id"], name: "index_teams_on_conference_id"
+    t.index ["location_id"], name: "index_teams_on_location_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
@@ -31,4 +140,21 @@ ActiveRecord::Schema.define(version: 2021_09_18_120010) do
     t.index ["user_name"], name: "index_users_on_user_name", unique: true
   end
 
+  add_foreign_key "article_translations", "articles"
+  add_foreign_key "article_translations", "languages"
+  add_foreign_key "articles", "categories"
+  add_foreign_key "articles", "conferences"
+  add_foreign_key "articles", "locations"
+  add_foreign_key "articles", "teams"
+  add_foreign_key "articles", "users", column: "author_id"
+  add_foreign_key "category_translations", "categories"
+  add_foreign_key "category_translations", "languages"
+  add_foreign_key "conference_translations", "conferences"
+  add_foreign_key "conference_translations", "languages"
+  add_foreign_key "conferences", "categories"
+  add_foreign_key "location_translations", "conferences"
+  add_foreign_key "location_translations", "languages"
+  add_foreign_key "location_translations", "locations"
+  add_foreign_key "teams", "conferences"
+  add_foreign_key "teams", "locations"
 end

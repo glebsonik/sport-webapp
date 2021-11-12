@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user
+  helper_method :current_user, :current_language
+  before_action :validate_or_set_language
+
+  include LanguageControllable
 
   private
 
@@ -12,7 +15,9 @@ class ApplicationController < ActionController::Base
   def current_user
     return unless session[:user_token].present?
 
-    user_id = Encryptor.new.decrypt(session[:user_token])
-    @current_user ||= User.find(user_id)
+    Rails.cache.fetch(session[:user_token]) do
+      user_id = Encryptor.new.decrypt(session[:user_token])
+      User.find(user_id)
+    end
   end
 end

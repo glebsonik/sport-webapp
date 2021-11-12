@@ -1,0 +1,158 @@
+// Place all the styles related to the articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$preview-section-height: 650px;
+
+.create-article-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 15%;
+
+  input:required:invalid {
+    background-color: rgba(215, 33, 48, 0.11);
+  }
+  select:required:invalid {
+    background-color: rgba(215, 33, 48, 0.11);
+  }
+}
+
+.create-article-form {
+  trix-editor {
+    height: 200px;
+  }
+}
+
+.create-article-form > * {
+  flex-basis: 100%;
+  width: 100%;
+  margin: 15px 0px;
+}
+
+.create-article-form input {
+  width: 100%;
+}
+
+.preview-link-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0;
+}
+
+.underlined-link {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.underlined-link::after {
+  content: '';
+  width: 0px;
+  height: 1px;
+  display: block;
+  background: #D72130;
+  transition: 300ms;
+}
+
+.underlined-link:hover::after {
+  width: 100%;
+}
+
+#img-placeholder {
+  height: $preview-section-height;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-basis: 100%;
+}
+
+.no-file {
+  border: 1px solid #D4D9E2;
+}
+
+.file-dragged {
+  border: 2px solid #D72130;
+}
+
+#img-placeholder > * {
+  margin: 7px 0px;
+}
+
+.article-placeholder-text {
+  color: #232323;
+  cursor: pointer;
+}
+
+#img-preview-section {
+  position: relative;
+}
+.article-image-layout {
+  height: $preview-section-height;
+  width: 50%;
+}
+
+#img-preview {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  background-size:100% 100%;
+  z-index: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+#img-preview-toolbar {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+#img-preview-toolbar > * {
+  margin: 5px 20px;
+}
+
+.choose-article-nav-container {
+  display: flex;
+  justify-content: space-around;
+  flex-basis: 100%
+}
+
+.choose-article-nav-container > *{
+  flex-basis: 33%;
+}
+
+.choose-article-nav-container select,input{
+  width: 100%;
+}
+
+.choose-article-nav-container > :nth-child(even) {
+  margin: 0 20px;
+}
+
+.create-article-pre-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 7% 0;
+}
+
+.create-article-pre-header > div * {
+  margin: 0 15px;
+}
+
+.create-article-pre-header .btn-primary {
+  width: 69px;
+  display: inline-block;
+  text-align: center;
+}

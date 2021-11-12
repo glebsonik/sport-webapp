@@ -1,0 +1,21 @@
+%head
+  %title AdminSportWebapp
+  = csrf_meta_tags
+  = csp_meta_tag
+  = stylesheet_link_tag    'application', media: 'all'
+  = javascript_include_tag 'application'
+  = yield :head
+%body
+  %header
+    %div
+      = render partial: 'partials/header', locals: {header_link: admin_home_path}
+    %div
+      %div
+        = yield :before_nav
+      %div
+        - @translated_categories.each do |translated_category|
+          = link_to translated_category.name, admin_categories_path(translated_category.key)
+  %main
+    - if notice
+      %div#notice #{notice}
+    = yield

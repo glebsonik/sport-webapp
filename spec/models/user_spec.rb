@@ -16,6 +16,12 @@ RSpec.describe User, type: :model do
 
       it {should define_enum_for(:status).with_values(allowed_status_values).backed_by_column_of_type(:string) }
     end
+
+    describe 'user roles validation' do
+      let(:allowed_roles) { Hash.new(admin: 'admin', member: 'member')}
+
+      it {should define_enum_for(:role).with_values(allowed_roles).backed_by_column_of_type(:string)}
+    end
   end
 
   describe 'email validations' do
