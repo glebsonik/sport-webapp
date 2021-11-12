@@ -1,3 +1,26 @@
 // Place all the styles related to the AdminCategories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.article-tile {
+  display: flex;
+  gap: 15px;
+  margin: 15px 0;
+  .article-tile-image {
+
+  }
+
+  .article-tile-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .tile-headline {
+    font-weight: bold;
+  }
+
+  .tile-content-preview {
+    color: #7F7B7B;
+  }
+}

@@ -11,7 +11,9 @@ class AdminCategoriesController < AdminController
 
   def prepare_translated_articles(category_id)
     ArticleTranslation.left_joins(:language, :article)
-                      .where(languages: { key: current_language_key },
-                             articles: { category_id: category_id })
+                      .where(languages: { key: current_language_key }, articles: { category_id: category_id })
+                      .left_joins(:article, { article: :team }, article: {category: :category_translations})
+                      .select('article_translations.*, category_translations.name as category_name, teams.name as team_name')
+
   end
 end

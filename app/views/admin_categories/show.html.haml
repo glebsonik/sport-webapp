@@ -7,10 +7,15 @@
 
 %div{style: 'display: flex; flex-direction:column;'}
   - @translated_articles.each do |translated_article|
-    %div
-      %div
-        = translated_article.headline
-        = translated_article.alt_image
-        = translated_article.caption
-      %div
-        = image_tag(translated_article.picture_url, size: "192x108")
+    %div.article-tile
+      %div.article-tile-image= image_tag(translated_article.picture_url, size: '284x158')
+      %div.article-tile-text-container
+        %div
+          %div.tile-headline= translated_article.headline
+          %div.tile-content-preview= translated_article.caption
+        %div.tile-footer
+          %div
+            %span= translated_article.category_name
+            %span= '/'
+            %span= translated_article.team_name
+          %div= translated_article.status.capitalize
