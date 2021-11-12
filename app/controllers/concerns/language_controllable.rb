@@ -11,8 +11,7 @@ module LanguageControllable
   end
 
   def switch_locale(&action)
-    locale = cookies[:language] || I18n.default_locale
-    I18n.with_locale(locale, &action)
+    I18n.with_locale(current_language_key, &action)
   end
 
   def current_language_key
