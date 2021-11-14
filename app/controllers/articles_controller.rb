@@ -15,7 +15,7 @@ class ArticlesController < AdminController
     if @article.save
       redirect_to admin_categories_path(@article.category.key), notice: "Article saved successfully!"
     else
-      flash.now[:alert] = "Couldn't save article. Something went wrong!"
+      flash.now[:alert] = t('admin_articles.save_article_error')
       render :new
     end
   end
