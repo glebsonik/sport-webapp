@@ -2,16 +2,16 @@
   = javascript_include_tag  'admin_categories/article_additional_options'
 - content_for :before_nav do
   %div.admin_nav
-    %h1= @translated_category.name
+    %h1= @presenter.category_translation.name
     %div
       = link_to t('categories.new_article'), new_article_path, {class: "btn-primary" }
 %div#popup-outer.popup-outer{style: 'display: none'}
 %div#options-popup.additional-options-popup{style: 'display: none'}
-  %div.popup-btn= link_to "Publish", '#', {class: ''}
-  %div.popup-btn= link_to "Unpublish", '#', {class: ''}
-  %div.popup-btn= link_to "Move to Category >", '#', {class: ''}
+  %div.popup-btn= link_to "Publish", '#'
+  %div.popup-btn= link_to "Unpublish", '#'
+  %div.popup-btn= link_to "Move to Category >", '#'
 %div.article-tiles-container
-  - @translated_articles.each do |translated_article|
+  - @presenter.articles.each do |translated_article|
     %div.article-tile{value: translated_article.id, published: translated_article.published?.to_s}
       %div.article-tile-image= image_tag(translated_article.picture_url, size: '284x158')
       %div.article-tile-text-container
