@@ -6,22 +6,23 @@
   = javascript_include_tag 'application'
   = javascript_include_tag 'header/admin_nav_arrows'
   = yield :head
-%header
-  %div
-    = render partial: 'partials/header', locals: {header_link: admin_home_path}
-  %div
+%body
+  %header
     %div
-      = yield :before_nav
-    %nav.admin-nav-menu
+      = render partial: 'partials/header', locals: {header_link: admin_home_path}
+    %div
       %div
-        #{File.read('app/assets/images/svgs/arrow_nav_left.svg').html_safe}
-      %div.admin-nav-categories
-        - @translated_categories.each do |translated_category|
-          = link_to translated_category.name, admin_categories_path(translated_category.key),
-           class: "admin-nav-link#{params[:key] == translated_category.key ? ' selected' : nil }"
-      %div
-        #{File.read('app/assets/images/svgs/arrow_nav_right.svg').html_safe}
-%main
-  - if notice
-    %div#notice #{notice}
-  = yield
+        = yield :before_nav
+      %nav.admin-nav-menu
+        %div
+          #{File.read('app/assets/images/svgs/arrow_nav_left.svg').html_safe}
+        %div.admin-nav-categories
+          - @translated_categories.each do |translated_category|
+            = link_to translated_category.name, admin_categories_path(translated_category.key),
+             class: "admin-nav-link#{params[:key] == translated_category.key ? ' selected' : nil }"
+        %div
+          #{File.read('app/assets/images/svgs/arrow_nav_right.svg').html_safe}
+  %main
+    - if notice
+      %div#notice #{notice}
+    = yield

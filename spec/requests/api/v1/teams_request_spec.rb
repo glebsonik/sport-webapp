@@ -58,6 +58,7 @@ RSpec.describe Api::V1::TeamsController, type: :request do
 
       before do
         additional_conference
+        #TODO: Add another additional team using Factory Bot
         additional_team
         get '/api/v1/teams'
       end

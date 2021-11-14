@@ -28,6 +28,7 @@ en:
     content_label: 'Content'
     content_placeholder: 'Please write your article content here'
     show_comments_label: 'Show comments:'
+    save_article_error: "Couldn't save article. Something went wrong!"
   article_preview:
     conference: 'Conference goes here'
     team: 'Team goes here'

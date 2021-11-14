@@ -4,6 +4,10 @@ en:
     send_again: 'Send again'
     error_message: 'An error occurred:'
     success: 'Success!'
+    email_confirmation_alert: 'Something went wrong. Please try to re-request email confirmation or contact our support'
+    successful_notice: 'Welcome to the SportHub!'
+    sent_email_message: 'Email sent successfully'
+    email_validation_error: 'Error while processing email data'
   user_home:
     title: 'Home Page'
   user_header:

@@ -9,9 +9,9 @@ class EmailConfirmationController < ApplicationController
     user = User.find_by(user_name: user_params[:user_name])
 
     if link_not_expired?(user_params[:created_at]) && user.present? && user.update(status: :active)
-      redirect_to root_url, notice: 'Welcome to the SportHub!'
+      redirect_to root_url, notice: t('email.successful_notice')
     else
-      flash.now[:alert] = "Something went wrong. Please try to re-request email confirmation or contact our support"
+      flash.now[:alert] = t('email.email_confirmation_alert')
       render :show
     end
   end
@@ -21,14 +21,14 @@ class EmailConfirmationController < ApplicationController
 
   def resend_email
     UserMailer.with(user: current_user).confirmation_email.deliver_later
-    redirect_to root_url, notice: "Email sent successfully"
+    redirect_to root_url, notice: t('email.sent_email_message')
   end
 
   private
 
   def validate_payload
     payload_valid = UserMailDataProcessor.new.payload_valid?(params[:payload])
-    redirect_to root_url, alert: "Error while processing email data" unless payload_valid
+    redirect_to root_url, alert: t('email.email_validation_error') unless payload_valid
   end
 
   def get_user_params
