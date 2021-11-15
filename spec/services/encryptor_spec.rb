@@ -32,7 +32,6 @@ RSpec.describe Encryptor, type: :service do
         subject(:encrypt) { encryptor.encrypt(test_string_decrypted) }
 
         it 'raises an exception' do
-          # expect(encrypt).to raise_error(OpenSSL::Cipher::CipherError)
           expect{ encrypt }.to raise_error(OpenSSL::Cipher::CipherError)
         end
       end

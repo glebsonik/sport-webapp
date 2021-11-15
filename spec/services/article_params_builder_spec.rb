@@ -19,30 +19,12 @@ RSpec.describe ArticleParamsBuilder, type: :service do
       )
     end
 
-    let(:category) do
-      Category.create(key: 'nba')
-    end
-    let(:conference) do
-      Conference.create(key: 'nba_conf_1', category: category)
-    end
-    let(:team) do
-      Team.create(name: 'Team 1', conference: conference)
-    end
-    let(:language) do
-      Language.create(key: 'en', display_name: 'English', hidden: false)
-    end
-    let(:author) do
-      User.create(
-        user_name: 'name',
-        email: 'test@email.com',
-        password: '123456Tr',
-        role: User::ADMIN,
-        status: User::ACTIVE
-      )
-    end
-    let(:picture) do
-      fixture_file_upload('files/image.png', 'image/png')
-    end
+    let(:category)    { create(:category) }
+    let(:conference)  { create(:conference, category: category) }
+    let(:team)        { create(:team, conference: conference) }
+    let(:language)    { create(:language) }
+    let(:author)      { create(:user, :admin) }
+    let(:picture)     { fixture_file_upload('files/image.png', 'image/png') }
     let(:expected_hash) do
       {
         category_id:   category.id,
