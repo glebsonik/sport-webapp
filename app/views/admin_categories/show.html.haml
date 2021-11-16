@@ -2,8 +2,8 @@
   %div.admin_nav
     %h1= @translated_category.name
     %div
-      = link_to "+ New Article", new_article_path, {class: "btn-primary" }
-%p You are in category #{@translated_category.name}
+      = link_to t('categories.new_article'), new_article_path, {class: "btn-primary" }
+%p= t('categories.category_current', category: @translated_category.name)
 
 %div{style: 'display: flex; flex-direction:column;'}
   - @translated_articles.each do |translated_article|

@@ -10,16 +10,16 @@
     %div.breadcrumbs
       %span#category= local_assigns[:category_name]
       %span >
-      %span#conference Conference goes here
+      %span#conference = t('article_preview.conference')
       %span >
-      %span#team Team goes here
+      %span#team = t('article_preview.team')
       %span >
-      %span#preview-headline Your future article headline
+      %span#preview-headline = t('article_preview.headline')
     %div.back-to-article-container
       %div
         %a.underlined-link#show-article-link
           #{File.read('app/assets/images/svgs/preview_article_icon.svg').html_safe}
-          Back to edit page
+          = t('article_preview.back_to_edit_page_link')
     -#%div
     %img#article-preview-image.preview-image
     %div#content

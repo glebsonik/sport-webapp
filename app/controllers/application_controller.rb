@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user, :current_language
   before_action :validate_or_set_language
+  around_action :switch_locale
 
   include LanguageControllable
 
