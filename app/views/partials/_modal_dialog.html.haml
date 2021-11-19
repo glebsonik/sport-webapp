@@ -1,7 +1,6 @@
 %div.modal-outer{id: "#{local_assigns[:prefix]}-modal-outer"}
   %div.error-modal-icon
-    %div
-    #{File.read('app/assets/images/svgs/warning_in_triangle.svg').html_safe}
+    %div= File.read(local_assigns[:icon_path] || 'app/assets/images/svgs/warning_in_triangle.svg').html_safe
   %div.modal-body
     %div.offset-block
     %p{id: "#{local_assigns[:prefix]}-modal-title"}= local_assigns[:modal_title]
