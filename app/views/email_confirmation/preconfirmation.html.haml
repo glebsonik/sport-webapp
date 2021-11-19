@@ -6,5 +6,5 @@
   %rect{:fill => "#D72130", :height => "2.92166", :transform => "rotate(-29 3.54102 42.95)", :width => "21.3632", :x => "3.54102", :y => "42.95"}
   %path{"clip-rule" => "evenodd", :d => "M11.2344 47.0366L25.7669 38.9811L27.1834 41.5364L12.6508 49.592L11.2344 47.0366Z", :fill => "#D72130", "fill-rule" => "evenodd"}
   %path{"clip-rule" => "evenodd", :d => "M18.9277 51.1235L29.3081 45.3696L30.7246 47.9249L20.3442 53.6789L18.9277 51.1235Z", :fill => "#D72130", "fill-rule" => "evenodd"}
-%div We have already sent you an email
-=link_to "Send again", resend_email_path, {class: '.btn-primary'}
+%div= t('email.already_sent')
+=link_to t('email.send_again'), resend_email_path, {class: '.btn-primary'}

@@ -10,6 +10,10 @@ module LanguageControllable
     cookies[:language] ||= { value: DEFAULT_LANGUAGE, expires: LANG_EXPIRATION_TIME }
   end
 
+  def switch_locale(&action)
+    I18n.with_locale(current_language_key, &action)
+  end
+
   def current_language_key
     cookies[:language] || DEFAULT_LANGUAGE
   end

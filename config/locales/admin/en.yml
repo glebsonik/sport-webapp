@@ -1,0 +1,36 @@
+en:
+  categories:
+    category_current: 'You are in category: %{category}'
+    new_article: '+ New Article'
+  admin_home:
+    title: 'You are on admin home page'
+  admin_articles:
+    cancel_link: 'Cancel'
+    save_article_button: 'Save'
+    error_modal:
+      modal_title: 'Error in forms'
+      ok_button: 'Ok'
+    preview_link: 'Preview'
+    picture_label: 'Picture'
+    add_picture: '+ Add picture'
+    or_drop_picture: 'or drop it right here'
+    allowed_formats: 'You can add next formats: png, jpg, jpeg, tiff'
+    conference_label: 'Conference'
+    not_selected_value: 'Not Selected'
+    teams_label: 'Team'
+    location_label: 'Location'
+    alt_label: 'Alt.'
+    alt_placeholder: 'Alternative text for picture'
+    headline_label: 'Article headline'
+    headline_placeholder: 'Name'
+    caption_label: 'Caption'
+    caption_placeholder: 'Write caption text here'
+    content_label: 'Content'
+    content_placeholder: 'Please write your article content here'
+    show_comments_label: 'Show comments:'
+    save_article_error: "Couldn't save article. Something went wrong!"
+  article_preview:
+    conference: 'Conference goes here'
+    team: 'Team goes here'
+    headline: 'Your future article headline'
+    back_to_edit_page_link: 'Back to edit page'
