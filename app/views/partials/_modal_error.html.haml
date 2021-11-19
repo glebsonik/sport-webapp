@@ -1,9 +1,0 @@
-%div#modal-outer
-  %div.error-modal-icon
-    %div
-    #{File.read('app/assets/images/svgs/warning_in_triangle.svg').html_safe}
-  %div.modal-body
-    %div.offset-block
-    %p#modal-title= local_assigns[:modal_title]
-    %p#modal-content= local_assigns[:modal_content]
-    %button#modal-confirm.btn-primary= local_assigns[:modal_btn_text]

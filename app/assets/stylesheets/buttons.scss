@@ -5,6 +5,7 @@
   color: #FFFFFF;
   text-decoration: none;
   padding: 8px 23px;
+  cursor: pointer;
 }
 
 .btn-primary:hover {
@@ -15,6 +16,8 @@
   color: #D72130;
   font-family: "Open Sans", serif;
   font-weight: 600;
+  background-color: #fff;
+  cursor: pointer;
 }
 
 .btn-secondary {
@@ -28,4 +31,5 @@
   font-size: 0.80rem;
   text-align: center;
   padding: 7px 15px;
+  cursor: pointer;
 }
