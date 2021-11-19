@@ -2,7 +2,11 @@
 Rails.application.routes.draw do
 
   # TODO: transform to resources
+  put 'articles/publish/:id', to: 'articles#publish', as: :publish_article
+  put 'articles/unpublish/:id', to: 'articles#unpublish', as: :unpublish_article
   put 'articles/update'
+
+  delete 'articles/:id', to: 'articles#destroy', as: :delete_article
   post 'articles/create'
   get 'articles/:key', to: 'articles#new', as: :new_article
   get 'create_articles/create'

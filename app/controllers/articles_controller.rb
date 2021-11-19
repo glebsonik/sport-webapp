@@ -24,4 +24,36 @@ class ArticlesController < AdminController
     #WIP
   end
 
+  def publish
+    article = prepare_article(params[:id])
+    article.status = Article::PUBLISHED
+    unless article.save
+      redirect_to admin_categories_path(article.category_key), alert: 'An error while publishing article'
+    end
+    redirect_to admin_categories_path(article.category_key), notice: 'Article published'
+  end
+
+  def unpublish
+    article = prepare_article(params[:id])
+    article.status = Article::UNPUBLISHED
+    unless article.save
+      redirect_to admin_categories_path(article.category_key), alert: 'An error while unpublishing article'
+    end
+    redirect_to admin_categories_path(article.category_key), notice: 'Article unpublished'
+  end
+
+  def destroy
+    article = Article.left_joins(:category).select('articles.*, categories.key as category_key').find(params[:id])
+    article.destroy
+    redirect_to admin_categories_path(article.category_key), alert: 'Article deleted'
+  end
+
+  private
+
+  def prepare_article(id)
+    ArticleTranslation.left_joins(article: :category)
+                      .select('article_translations.*, categories.key as category_key')
+                      .find(id)
+  end
+
 end

@@ -7,9 +7,10 @@
       = link_to t('categories.new_article'), new_article_path, {class: "btn-primary" }
 %div#popup-outer.popup-outer{style: 'display: none'}
 %div#options-popup.additional-options-popup{style: 'display: none'}
-  %div.popup-btn= link_to "Publish", '#'
-  %div.popup-btn= link_to "Unpublish", '#'
-  %div.popup-btn= link_to "Move to Category >", '#'
+  %div.popup-btn= link_to "Publish", '/', id: 'publish', method: :put
+  %div.popup-btn= link_to "Unpublish", '/', id: 'unpublish', method: :put
+  %div.popup-btn= link_to "Delete", '/', id: 'delete', method: :delete
+  %div.popup-btn= link_to "Move to Category >", '/', id: 'move', method: :put
 %div.article-tiles-container
   - @presenter.articles.each do |translated_article|
     %div.article-tile{value: translated_article.id, published: translated_article.published?.to_s}
@@ -24,4 +25,9 @@
             %span= '/'
             %span= translated_article.team_name
           %div= translated_article.status.capitalize
-      %div.tile-opts{value: translated_article.id, published: translated_article.published?} ...
+      %div.tile-opts{article: translated_article.id,
+        published: translated_article.published?.to_s,
+        delete_url: delete_article_path(translated_article.article_id),
+        publish_url: publish_article_path(id: translated_article.id),
+        unpublish_url: unpublish_article_path(id: translated_article.id),
+        } ...

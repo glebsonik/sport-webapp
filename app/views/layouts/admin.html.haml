@@ -24,5 +24,7 @@
           #{File.read('app/assets/images/svgs/arrow_nav_right.svg').html_safe}
   %main
     - if notice
-      %div#notice #{notice}
+      %div#notice= notice
+    - if alert
+      %div#alert= alert
     = yield

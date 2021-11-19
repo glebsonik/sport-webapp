@@ -1,6 +1,24 @@
 function showContextOptions(event, background, popup) {
     showBackground(background);
     showPopup(event, popup);
+    console.log(event.target);
+    preparePopupInfo(event.target);
+}
+
+function preparePopupInfo(infoElement) {
+    const publishLink = document.getElementById('publish');
+    const unpublishLink = document.getElementById('unpublish');
+    if (infoElement.getAttribute('published') === 'true') {
+        publishLink.style.display = 'none';
+        unpublishLink.style.display = 'block';
+        unpublishLink.href = infoElement.getAttribute('unpublish_url');
+    } else {
+        publishLink.style.display = 'block';
+        publishLink.href = infoElement.getAttribute('publish_url');
+        unpublishLink.style.display = 'none';
+    }
+    const deleteLink = document.getElementById('delete');
+    deleteLink.href = infoElement.getAttribute('delete_url');
 }
 
 function showPopup(event, popup) {
@@ -10,7 +28,6 @@ function showPopup(event, popup) {
 }
 
 function showBackground(background) {
-    console.log('Show backgr');
     background.style.display = 'block';
 }
 

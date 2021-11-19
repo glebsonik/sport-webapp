@@ -7,7 +7,7 @@ RSpec.describe Article, type: :model do
     it { should belong_to(:conference) }
     it { should belong_to(:team).optional }
     it { should belong_to(:location).optional }
-    it { should have_many(:article_translations) }
+    it { should have_many(:article_translations).dependent(:destroy) }
   end
 
   describe 'nesting' do

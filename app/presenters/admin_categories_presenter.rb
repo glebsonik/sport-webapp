@@ -28,7 +28,7 @@ class AdminCategoriesPresenter
   end
 
   def select_string
-    'article_translations.*, category_translations.name as category_name, teams.name as team_name'
+    'article_translations.*, category_translations.name as category_name, teams.name as team_name, articles.id as article_id'
   end
 
 end
