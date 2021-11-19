@@ -11,9 +11,15 @@
       = link_to t('admin_articles.cancel_link'), '#', {class: 'btn-link', id: 'cancel-article-btn', 'data-value' => admin_categories_path(@translated_category.key)}
       = link_to t('admin_articles.save_article_button'), '#', {id: 'save-article', class: 'btn-primary', 'data-form-path' => articles_create_path}
 %div#errors-in-form-modal{style: 'display: none'}
-  = render partial: 'partials/modal_dialog', locals: {prefix: 'error', modal_title: t('admin_articles.error_modal.modal_title'), modal_content: '', modal_btn_text: t('admin_articles.error_modal.ok_button'), show_cancel: false}
+  = render partial: 'partials/modal_dialog', locals: {prefix: 'error',
+   modal_title: t('admin_articles.error_modal.modal_title'),
+   modal_content: '',
+   modal_btn_text: t('admin_articles.error_modal.ok_button'),
+   show_cancel: false}
 %div#cancel-article-modal{style: 'display: none'}
-  = render partial: 'partials/modal_dialog', locals: {prefix: 'cancel', modal_title: 'Are you sure?', modal_content: 'All changes will NOT be saved'}
+  = render partial: 'partials/modal_dialog', locals: {prefix: 'cancel',
+   modal_title: t('admin_articles.cancel_modal.cancel_title'),
+   modal_content: t('admin_articles.cancel_modal.cancel_content')}
 = form_with(url: articles_create_path, local: true, html: { autocomplete: "off" }, id: 'create-article-form') do |form|
   %div.create-article-form
     %div.preview-link-container
