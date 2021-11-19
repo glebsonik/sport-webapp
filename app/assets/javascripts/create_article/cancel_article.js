@@ -1,7 +1,5 @@
 function confirmModalEvent() {
-    console.log(document.getElementById('cancel-article-btn').dataValue);
     location.href = document.getElementById('cancel-article-btn').getAttribute('data-value');
-
 }
 
 function showModal(modal) {
