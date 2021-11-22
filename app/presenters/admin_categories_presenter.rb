@@ -6,10 +6,6 @@ class AdminCategoriesPresenter
     @category_translation = CategoryTranslation.translation_for(category_key, @language_key)
   end
 
-  def category_translation
-    @category_translation
-  end
-
   def articles
     @articles ||= ArticleTranslation.left_joins(:language, :article)
                         .where(*where_params)
