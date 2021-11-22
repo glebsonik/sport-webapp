@@ -10,6 +10,9 @@ en:
     error_modal:
       modal_title: 'Error in forms'
       ok_button: 'Ok'
+    cancel_modal:
+      cancel_title: 'Are you sure?'
+      cancel_content: 'All changes will NOT be saved'
     preview_link: 'Preview'
     picture_label: 'Picture'
     add_picture: '+ Add picture'

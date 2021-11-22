@@ -1,0 +1,11 @@
+%div.modal-outer{id: "#{local_assigns[:prefix]}-modal-outer"}
+  %div.error-modal-icon
+    %div= File.read(local_assigns[:icon_path] || 'app/assets/images/svgs/warning_in_triangle.svg').html_safe
+  %div.modal-body
+    %div.offset-block
+    %p{id: "#{local_assigns[:prefix]}-modal-title"}= local_assigns[:modal_title]
+    %p{id: "#{local_assigns[:prefix]}-modal-content"}= local_assigns[:modal_content]
+    %button.btn-primary{id: "#{local_assigns[:prefix]}-modal-confirm"}
+      = local_assigns[:modal_confirm_text] || 'Ok'
+    - if local_assigns[:show_cancel].nil? || local_assigns[:show_cancel]
+      %button.btn-link{id: "#{local_assigns[:prefix]}-modal-cancel"}= local_assigns[:modal_cancel_text] || 'Cancel'

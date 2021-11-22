@@ -1,11 +1,11 @@
 function addModalEvents(modalId) {
     const modal = document.getElementById(modalId);
-    const modalOuterSpace = document.getElementById('modal-outer');
+    const modalOuterSpace = document.getElementById('error-modal-outer');
     modalOuterSpace.addEventListener('click', () => {
         modal.style.display = "none";
     });
 
-    const modalButton = document.getElementById('modal-confirm');
+    const modalButton = document.getElementById('error-modal-confirm');
     modalButton.addEventListener('click', () => {
         modal.style.display = "none";
     });
@@ -29,7 +29,7 @@ function isValidImage(){
 
 function showModalWithErrors(modalId, modalText) {
     const modal = document.getElementById(modalId);
-    document.getElementById('modal-content').textContent = modalText;
+    document.getElementById('error-modal-content').textContent = modalText;
     modal.style.display = 'block';
 }
 

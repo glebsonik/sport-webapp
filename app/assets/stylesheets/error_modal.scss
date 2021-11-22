@@ -5,7 +5,7 @@ $modal-icon-size: 75px;
 $modal-position-top: 30%;
 $modal-position-left: 50%;
 
-#modal-outer {
+.modal-outer {
   position: fixed;
   z-index: 10;
   left: 0;
@@ -13,6 +13,13 @@ $modal-position-left: 50%;
   height: 100%;
   width:100%;
   background-color: rgba(255, 255, 255, 0.4);
+
+  .error-modal-icon {
+    z-index: 12;
+  }
+  .modal-body {
+    z-index: 11;
+  }
 }
 
 .error-modal-icon {
