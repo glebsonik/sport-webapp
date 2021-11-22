@@ -1,7 +1,6 @@
 function showContextOptions(event, background, popup) {
     showBackground(background);
     showPopup(event, popup);
-    console.log(event.target);
     preparePopupInfo(event.target);
 }
 

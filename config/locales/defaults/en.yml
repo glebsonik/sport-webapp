@@ -1,0 +1,5 @@
+en:
+  defaults:
+    modals:
+      modal_confirm_button: 'Ok'
+      modal_cancel_button: 'Cancel'

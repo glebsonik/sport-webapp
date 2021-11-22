@@ -9,7 +9,6 @@ en:
     save_article_button: 'Save'
     error_modal:
       modal_title: 'Error in forms'
-      ok_button: 'Ok'
     cancel_modal:
       cancel_title: 'Are you sure?'
       cancel_content: 'All changes will NOT be saved'
@@ -37,3 +36,7 @@ en:
     team: 'Team goes here'
     headline: 'Your future article headline'
     back_to_edit_page_link: 'Back to edit page'
+  admin_categories:
+    delete_modal:
+      modal_title: 'Are you sure?'
+      modal_content: 'Applying this will delete ALL other existing translations'

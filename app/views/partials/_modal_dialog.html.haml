@@ -6,6 +6,6 @@
     %p{id: "#{local_assigns[:prefix]}-modal-title"}= local_assigns[:modal_title]
     %p{id: "#{local_assigns[:prefix]}-modal-content"}= local_assigns[:modal_content]
     %button.btn-primary{id: "#{local_assigns[:prefix]}-modal-confirm"}
-      = local_assigns[:modal_confirm_text] || 'Ok'
+      = local_assigns[:modal_confirm_text] || t('defaults.modals.modal_confirm_button')
     - if local_assigns[:show_cancel].nil? || local_assigns[:show_cancel]
-      %button.btn-link{id: "#{local_assigns[:prefix]}-modal-cancel"}= local_assigns[:modal_cancel_text] || 'Cancel'
+      %button.btn-link{id: "#{local_assigns[:prefix]}-modal-cancel"}= local_assigns[:modal_cancel_text] || t('defaults.modals.modal_cancel_button')
