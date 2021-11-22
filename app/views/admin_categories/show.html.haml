@@ -17,7 +17,8 @@
   = render partial: 'partials/modal_dialog',
    locals: {prefix: 'delete',
     modal_title: t('admin_categories.delete_modal.modal_title'),
-    modal_content: t('admin_categories.delete_modal.modal_content')}
+    modal_content: t('admin_categories.delete_modal.modal_content'),
+    icon_path: 'app/assets/images/svgs/removal_icon.svg'}
 %div.article-tiles-container
   - @presenter.articles.each do |translated_article|
     %div.article-tile{value: translated_article.id, published: translated_article.published?.to_s}
