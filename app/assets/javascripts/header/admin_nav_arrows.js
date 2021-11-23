@@ -1,3 +1,6 @@
+const ACTIVE_ARROW_COLOR = '#B2B2B2';
+const DISABLED_ARROW_COLOR = '#E02232';
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -16,17 +19,17 @@ async function scrollAdminNav(isBackwards, navElement, leftArrow, rightArrow) {
 function updateRightArrow(navElement, button) {
     const currentScrollPosition = navElement.scrollLeft + navElement.clientWidth;
     if (currentScrollPosition >= navElement.scrollWidth) {
-        button.style.fill = '#B2B2B2'
+        button.style.fill = DISABLED_ARROW_COLOR;
     } else {
-        button.style.fill = '#E02232'
+        button.style.fill = ACTIVE_ARROW_COLOR;
     }
 }
 
 function updateLeftArrow(navElement, button) {
     if (navElement.scrollLeft > 0) {
-        button.style.fill = '#E02232'
+        button.style.fill = ACTIVE_ARROW_COLOR;
     } else {
-        button.style.fill = '#B2B2B2'
+        button.style.fill = DISABLED_ARROW_COLOR;
     }
 }
 
