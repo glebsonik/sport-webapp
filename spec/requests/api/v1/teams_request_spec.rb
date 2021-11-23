@@ -40,8 +40,9 @@ RSpec.describe Api::V1::TeamsController, type: :request do
       subject(:no_param_result) {JSON.parse(response.body)}
       let(:additional_conference) { create(:conference, category: category) }
       let(:expected_teams) do
-        [team, *create_list(:team, 2, :with_category)].map{|team| team.as_json(except: [:created_at, :updated_at])}
+        [team, *additional_teams].map{|team| team.as_json(except: [:created_at, :updated_at])}
       end
+      let(:additional_teams) { create_list(:team, 2, :with_category) }
 
       before do
         additional_conference
