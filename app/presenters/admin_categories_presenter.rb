@@ -4,6 +4,10 @@ class AdminCategoriesPresenter
   def initialize(language_key, category_key)
     @language_key = language_key
     @category_translation = CategoryTranslation.translation_for(category_key, @language_key)
+
+    unless @category_translation
+      raise ArgumentError.new "No category translation found by #{category_key} and #{@language_key}"
+    end
   end
 
   def articles
