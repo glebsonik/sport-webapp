@@ -2,6 +2,11 @@ en:
   categories:
     category_current: 'You are in category: %{category}'
     new_article: '+ New Article'
+    options:
+      delete: 'Delete'
+      unpublish: 'Unpublish'
+      publish: 'Publish'
+      move_to_category: 'Move to Category >'
   admin_home:
     title: 'You are on admin home page'
   admin_articles:
@@ -31,6 +36,12 @@ en:
     content_placeholder: 'Please write your article content here'
     show_comments_label: 'Show comments:'
     save_article_error: "Couldn't save article. Something went wrong!"
+    save_article_success: 'Article saved successfully!'
+    publish_article_success: 'Article published'
+    publish_article_error: 'An error while publishing article'
+    unpublish_article_success: 'Article unpublished'
+    unpublish_article_error: 'An error while unpublishing article'
+    delete_article_success: 'Article deleted'
   article_preview:
     conference: 'Conference goes here'
     team: 'Team goes here'

@@ -13,7 +13,7 @@ class ArticlesController < AdminController
     article_hash = ArticleParamsBuilder.new(params, current_user).build
     @article = Article.new(article_hash)
     if @article.save
-      redirect_to admin_categories_path(@article.category.key), notice: "Article saved successfully!"
+      redirect_to admin_categories_path(@article.category.key), notice: t('admin_articles.save_article_success')
     else
       flash.now[:alert] = t('admin_articles.save_article_error')
       render :new
@@ -29,9 +29,9 @@ class ArticlesController < AdminController
     article.status = Article::PUBLISHED
 
     if article.save
-      redirect_to admin_categories_path(article.category_key), notice: 'Article published'
+      redirect_to admin_categories_path(article.category_key), notice: t('admin_articles.publish_article_success')
     else
-      redirect_to admin_categories_path(article.category_key), alert: 'An error while publishing article'
+      redirect_to admin_categories_path(article.category_key), alert: t('admin_articles.publish_article_error')
     end
   end
 
@@ -40,16 +40,16 @@ class ArticlesController < AdminController
     article.status = Article::UNPUBLISHED
 
     if article.save
-      redirect_to admin_categories_path(article.category_key), notice: 'Article unpublished'
+      redirect_to admin_categories_path(article.category_key), notice: t('admin_articles.unpublish_article_success')
     else
-      redirect_to admin_categories_path(article.category_key), alert: 'An error while unpublishing article'
+      redirect_to admin_categories_path(article.category_key), alert: t('admin_articles.unpublish_article_error')
     end
   end
 
   def destroy
     article = Article.left_joins(:category).select('articles.*, categories.key as category_key').find(params[:id])
     article.destroy
-    redirect_to admin_categories_path(article.category_key), alert: 'Article deleted'
+    redirect_to admin_categories_path(article.category_key), alert: t('admin_articles.delete_article_success')
   end
 
   private

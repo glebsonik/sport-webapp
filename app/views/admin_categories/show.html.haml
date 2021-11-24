@@ -8,11 +8,12 @@
       = link_to t('categories.new_article'), new_article_path, {class: "btn-primary" }
 %div#popup-outer.popup-outer{style: 'display: none'}
 %div#options-popup.additional-options-popup{style: 'display: none'}
-  %div.popup-btn= link_to "Publish", '/', id: 'publish', method: :put
-  %div.popup-btn= link_to "Unpublish", '/', id: 'unpublish', method: :put
-  %div.popup-btn= link_to "Delete", '#', id: 'show-modal-delete'
+=
+  %div.popup-btn= link_to t('categories.options.publish'), '/', id: 'publish', method: :put
+  %div.popup-btn= link_to t('categories.options.unpublish'), '/', id: 'unpublish', method: :put
+  %div.popup-btn= link_to t('categories.options.delete'), '#', id: 'show-modal-delete'
   =link_to "Delete", '/', id: 'delete', method: :delete, style: 'display: none';
-  %div.popup-btn= link_to "Move to Category >", '/', id: 'move', method: :put
+  %div.popup-btn= link_to t('categories.options.move_to_category'), '/', id: 'move', method: :put
 %div#delete-article-modal{style: 'display: none'}
   = render partial: 'partials/modal_dialog',
    locals: {prefix: 'delete',
