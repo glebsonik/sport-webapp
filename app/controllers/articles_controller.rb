@@ -27,19 +27,23 @@ class ArticlesController < AdminController
   def publish
     article = prepare_article(params[:id])
     article.status = Article::PUBLISHED
-    unless article.save
-      return redirect_to admin_categories_path(article.category_key), alert: 'An error while publishing article'
+
+    if article.save
+      redirect_to admin_categories_path(article.category_key), notice: 'Article published'
+    else
+      redirect_to admin_categories_path(article.category_key), alert: 'An error while publishing article'
     end
-    redirect_to admin_categories_path(article.category_key), notice: 'Article published'
   end
 
   def unpublish
     article = prepare_article(params[:id])
     article.status = Article::UNPUBLISHED
-    unless article.save
-      return redirect_to admin_categories_path(article.category_key), alert: 'An error while unpublishing article'
+
+    if article.save
+      redirect_to admin_categories_path(article.category_key), notice: 'Article unpublished'
+    else
+      redirect_to admin_categories_path(article.category_key), alert: 'An error while unpublishing article'
     end
-    redirect_to admin_categories_path(article.category_key), notice: 'Article unpublished'
   end
 
   def destroy
