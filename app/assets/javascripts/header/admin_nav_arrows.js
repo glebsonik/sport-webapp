@@ -1,5 +1,5 @@
-const ACTIVE_ARROW_COLOR = '#B2B2B2';
-const DISABLED_ARROW_COLOR = '#E02232';
+const ACTIVE_ARROW_COLOR = '#E02232';
+const DISABLED_ARROW_COLOR = '#B2B2B2';
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
