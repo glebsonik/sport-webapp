@@ -81,3 +81,11 @@
   width: 100%;
   height: 100%;
 }
+
+.filter-sort {
+  display: flex;
+  justify-content: space-evenly;
+  select {
+    width: 25%
+  }
+}

@@ -13,8 +13,25 @@ class AdminCategoriesPresenter
   def articles
     @articles ||= ArticleTranslation.left_joins(:language, :article)
                         .where(*article_translation_query)
-                        .left_joins(:article, { article: :team }, article: {category: :category_translations})
+                        .left_joins(article_join_params)
                         .select(selected_fields)
+  end
+
+  def sorted_articles(params)
+    final_filter_query = {}
+    final_filter_query[:conferences] = {id: params[:conference]} if params[:conference].present?
+    final_filter_query[:teams] = {id: params[:team]} if params[:team].present?
+    final_filter_query[:status] = params[:published] if params[:published].present?
+
+    final_filter_query.empty? ? articles : @articles.where(final_filter_query)
+  end
+
+  def teams_hash
+    articles.map{|article| [article.team_name, article.team_id]}.uniq.to_h
+  end
+
+  def conferences_hash
+    articles.map{|article| [article.conference_name, article.conference_id]}.uniq.to_h
   end
 
   private
@@ -23,8 +40,15 @@ class AdminCategoriesPresenter
     [languages: { key: @language_key }, articles: { category_id: @category_translation.category_id }]
   end
 
+  def article_join_params
+    [:article, { article: :team }, article: {category: :category_translations, conference: :conference_translations}]
+  end
+
   def selected_fields
-    'article_translations.*, category_translations.name as category_name, teams.name as team_name, articles.id as article_id'
+    'article_translations.*, articles.id as article_id'\
+    ', category_translations.name as category_name'\
+    ', teams.id as team_id, teams.name as team_name'\
+    ', conferences.id as conference_id, conference_translations.name as conference_name'
   end
 
 end
