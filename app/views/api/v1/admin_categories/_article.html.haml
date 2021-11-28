@@ -1,0 +1,18 @@
+%div.article-tile{value: article.id, published: article.published?.to_s}
+  %div.article-tile-image= image_tag(article.picture_url, size: '284x158')
+  %div.article-tile-text-container
+    %div
+      %div.tile-headline= article.headline
+      %div.tile-content-preview= article.caption
+    %div.tile-footer
+      %div
+        %span= article.category_name
+        %span= '/'
+        %span= article.team_name
+      %div= article.status.capitalize
+  %div.tile-opts{article: article.id,
+        published: article.published?.to_s,
+        delete_url: delete_article_path(article.article_id),
+        publish_url: publish_article_path(id: article.id),
+        unpublish_url: unpublish_article_path(id: article.id),
+        } ...

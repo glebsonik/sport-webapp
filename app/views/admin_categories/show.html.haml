@@ -21,27 +21,9 @@
     modal_title: t('admin_categories.delete_modal.modal_title'),
     modal_content: t('admin_categories.delete_modal.modal_content'),
     icon_path: 'app/assets/images/svgs/removal_icon.svg'}
-%div.article-tiles-container
+%div.article-tiles-container#article-tiles-container{'category' => params[:key]}
   %div#filter-sort-section.filter-sort
     = select_tag('conference', options_for_select({'All conferences' => nil}.merge(@presenter.conferences_hash), params[:conference]))
-    = select_tag('team', options_for_select({'All Teams' => nil}.merge(@presenter.teams_hash), params[:team]))
+    = select_tag('team', options_for_select({'All Teams' => nil}.merge(@presenter.teams_hash(params[:conference])), params[:team]))
     = select_tag('published', options_for_select({'All' => nil, 'Published' => Article::PUBLISHED, 'Unpublished' => Article::UNPUBLISHED}, params[:published]))
-  - @presenter.sorted_articles(params).each do |translated_article|
-    %div.article-tile{value: translated_article.id, published: translated_article.published?.to_s}
-      %div.article-tile-image= image_tag(translated_article.picture_url, size: '284x158')
-      %div.article-tile-text-container
-        %div
-          %div.tile-headline= translated_article.headline
-          %div.tile-content-preview= translated_article.caption
-        %div.tile-footer
-          %div
-            %span= translated_article.category_name
-            %span= '/'
-            %span= translated_article.team_name
-          %div= translated_article.status.capitalize
-      %div.tile-opts{article: translated_article.id,
-        published: translated_article.published?.to_s,
-        delete_url: delete_article_path(translated_article.article_id),
-        publish_url: publish_article_path(id: translated_article.id),
-        unpublish_url: unpublish_article_path(id: translated_article.id),
-        } ...
+%div#load-more-button= File.read('app/assets/images/svgs/plus_circle.svg').html_safe

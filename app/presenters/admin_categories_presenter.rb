@@ -1,9 +1,11 @@
 class AdminCategoriesPresenter
+  ARTICLES_PER_PAGE = 10
   attr_reader :category_translation
 
-  def initialize(language_key, category_key)
+  def initialize(language_key, category_key, per_page = ARTICLES_PER_PAGE)
     @language_key = language_key
     @category_translation = CategoryTranslation.translation_for(category_key, @language_key)
+    @per_page = per_page
 
     unless @category_translation
       raise ArgumentError.new "No category translation found by #{category_key} and #{@language_key}"
@@ -12,9 +14,11 @@ class AdminCategoriesPresenter
 
   def articles
     @articles ||= ArticleTranslation.left_joins(:language, :article)
-                        .where(*article_translation_query)
-                        .left_joins(article_join_params)
-                        .select(selected_fields)
+                                    .where(*article_translation_query)
+                                    .left_joins(article_join_params)
+                                    .select(selected_fields)
+                                    .order(created_at: :desc)
+
   end
 
   def sorted_articles(params)
@@ -23,18 +27,29 @@ class AdminCategoriesPresenter
     final_filter_query[:teams] = {id: params[:team]} if params[:team].present?
     final_filter_query[:status] = params[:published] if params[:published].present?
 
-    final_filter_query.empty? ? articles : @articles.where(final_filter_query)
-  end
+    page = params[:page] ? params[:page].to_i : 0
 
-  def teams_hash
-    articles.map{|article| [article.team_name, article.team_id]}.uniq.to_h
+    final_filter_query.empty? ? with_offset(articles, page) : with_offset(articles.where(final_filter_query), page)
   end
 
   def conferences_hash
     articles.map{|article| [article.conference_name, article.conference_id]}.uniq.to_h
   end
 
+  def teams_hash(conference_id = nil)
+    if conference_id && conference_id.to_s.strip != ''
+      articles_array = articles.to_a.select { |article| article.conference_id == conference_id.to_i }
+    else
+      articles_array = articles.to_a
+    end
+    articles_array.map{|article| [article.team_name, article.team_id]}.uniq.to_h
+  end
+
   private
+
+  def with_offset(collection, page)
+    collection.limit(@per_page).offset(page * @per_page)
+  end
 
   def article_translation_query
     [languages: { key: @language_key }, articles: { category_id: @category_translation.category_id }]
