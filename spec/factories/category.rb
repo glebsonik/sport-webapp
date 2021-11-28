@@ -8,5 +8,7 @@ FactoryBot.define do
   factory :category_translation do
     sequence(:name) {|n| "Category translation #{n}"}
     sequence(:key) {|n| "category_translation_#{n}"}
+
+    category
   end
 end
