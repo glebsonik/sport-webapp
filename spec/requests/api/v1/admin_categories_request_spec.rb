@@ -1,6 +1,7 @@
 RSpec.describe Api::V1::AdminCategoriesController, type: :request do
 
   describe "GET /admin_categories/:key/articles" do
+    subject(:result) {JSON.parse(response.body)}
     let(:articles_translations) do
       create_list(:article_translation, 3,
                   :with_article, category: category, conference: conference, team: team, language: language)
@@ -30,9 +31,9 @@ RSpec.describe Api::V1::AdminCategoriesController, type: :request do
     end
 
     it 'has corresponding team in JSON array' do
-      expect(result[:articles]).not_to be_nil
-      expect(result[:count]).to eq(expected[:count])
-      expect(result[:last]).to eq(expected[:last])
+      expect(result["articles"]).not_to be_nil
+      expect(result["count"]).to eq(expected[:count])
+      expect(result["last"]).to eq(expected[:last])
     end
   end
 end
