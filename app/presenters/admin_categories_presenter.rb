@@ -21,7 +21,7 @@ class AdminCategoriesPresenter
 
   end
 
-  def sorted_articles(params)
+  def filtered_articles(params)
     final_filter_query = {}
     final_filter_query[:conferences] = {id: params[:conference]} if params[:conference].present?
     final_filter_query[:teams] = {id: params[:team]} if params[:team].present?
