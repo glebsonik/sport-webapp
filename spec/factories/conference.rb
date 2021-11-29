@@ -21,7 +21,7 @@ FactoryBot.define do
 
   factory :conference_translation do
     sequence(:name) {|n| "Conference translation #{n}"}
-    sequence(:key) {|n| "conference_translation_#{n}"}
+    sequence(:key) { conference.key }
 
     association :conference, :with_category
   end
