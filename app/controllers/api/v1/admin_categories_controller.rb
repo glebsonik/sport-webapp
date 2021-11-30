@@ -8,7 +8,7 @@ module Api
         render json: {
           articles: render_to_string(partial: "api/v1/admin_categories/article", collection: filtered_articles),
           count: filtered_articles.length,
-          last: filtered_articles.length < AdminCategoriesPresenter::ARTICLES_PER_PAGE
+          last: filtered_articles.length < @presenter.per_page
         }
       end
     end

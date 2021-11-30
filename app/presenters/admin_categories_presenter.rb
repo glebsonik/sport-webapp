@@ -1,6 +1,6 @@
 class AdminCategoriesPresenter
   ARTICLES_PER_PAGE = 10
-  attr_reader :category_translation
+  attr_reader :category_translation, :per_page
 
   def initialize(language_key, category_key, per_page = ARTICLES_PER_PAGE)
     @language_key = language_key
