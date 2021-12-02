@@ -29,7 +29,7 @@ RSpec.describe AdminCategoriesPresenter, type: :presenter do
 
   describe "#articles" do
     subject(:articles) {AdminCategoriesPresenter.new(language.key, category.key).articles.to_a}
-    let(:actual_article) { articles[0] }
+    let(:actual_article) { articles.first }
     let(:expected_article_translations) do
       [
         create(:article_translation, :with_article, category: category, conference: conferences[0], team: teams[0], language: language),

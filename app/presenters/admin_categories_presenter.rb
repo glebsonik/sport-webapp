@@ -27,7 +27,7 @@ class AdminCategoriesPresenter
     final_filter_query[:teams] = {id: params[:team]} if params[:team].present?
     final_filter_query[:status] = params[:published] if params[:published].present?
 
-    page = params[:page] ? params[:page].to_i : 0
+    page = params[:page].to_i
 
     final_filter_query.empty? ? with_offset(articles, page) : with_offset(articles.where(final_filter_query), page)
   end
@@ -37,7 +37,7 @@ class AdminCategoriesPresenter
   end
 
   def teams_hash(conference_id = nil)
-    if conference_id && conference_id.to_s.strip != ''
+    if conference_id.present?
       articles_array = articles.to_a.select { |article| article.conference_id == conference_id.to_i }
     else
       articles_array = articles.to_a
