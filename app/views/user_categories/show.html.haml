@@ -1,0 +1,23 @@
+- if @first_articles.first
+  %div.breadcrumbs
+    = render partial: 'partials/user_categories_breadcrumbs'
+  %a.main-article
+    = image_tag(@first_articles.first.picture_url, class: 'main-article-image')
+    %div.main-article-details
+      %div.info Published / #{@first_articles.first.publish_date.strftime("%d.%m.%Y")}
+      %div.secondary= @first_articles.first.caption
+      %div.main-headline= @first_articles.first.headline
+      %div.main-more.btn-primary More
+  %div#articles-list.user-articles-list{page: 0, 'last-loaded' => @last_page.to_s}
+    - if @first_articles.size > 1
+      - @first_articles[1..-1].each do |article|
+        %a.user-article-tile{href: '#'}
+          %div
+            = image_tag(article.picture_url, class: 'user-article-image')
+          %div
+            %div.main-headline= article.headline
+            %div.info= "#{rich_text_as_string(article.content[0..250])}..."
+      - unless @last_page
+        %div#load-more-button= File.read('app/assets/images/svgs/plus_circle.svg').html_safe
+- else
+  %div Sorry no articles yet... ¯\_(ツ)_/¯
