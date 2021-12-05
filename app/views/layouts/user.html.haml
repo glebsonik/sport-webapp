@@ -1,0 +1,31 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title SportWebapp
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    = yield :head
+  %body
+    %header
+      = render partial: "partials/header"
+      -# = render partial: "partials/user_nav"
+    %nav
+      %div.user-nav-categories.user-nav-layout
+        - @navigation[:categories].each do |category|
+          %div.nav-item
+            =link_to category[:name], user_categories_path(category[:key])
+            %div.user-nav-conferences.user-nav-layout
+              - category[:conferences].each do |conference|
+                %div.nav-item
+                  = link_to conference[:name], user_categories_path(category[:key], conference[:key])
+                  %div.user-nav-teams.user-nav-layout
+                    - conference[:teams].each do |team|
+                      %div.nav-item
+                        = link_to team[:name], user_categories_path(category[:key], conference[:key], team[:id])
+    %div.user-nav-main-container
+      %div.space-user-nav
+      %main.user-main
+        = yield
