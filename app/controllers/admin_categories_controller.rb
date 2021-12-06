@@ -4,5 +4,4 @@ class AdminCategoriesController < AdminController
 
     redirect_to(admin_home_url, alert: 'incorrect category') unless @presenter.category_translation.present?
   end
-
 end

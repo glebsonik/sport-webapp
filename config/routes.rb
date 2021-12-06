@@ -11,13 +11,14 @@ Rails.application.routes.draw do
   end
 
   # TODO: transform to resources
+  get 'articles/view/:id', to: 'user_articles#show', as: :user_article
   put 'articles/:id/publish', to: 'articles#publish', as: :publish_article
   put 'articles/:id/unpublish', to: 'articles#unpublish', as: :unpublish_article
   put 'articles/update'
-
   delete 'articles/:id', to: 'articles#destroy', as: :delete_article
   post 'articles/create'
   get 'articles/:key', to: 'articles#new', as: :new_article
+
   get 'create_articles/create'
 
   get 'admin_categories/:key', to: 'admin_categories#show', as: :admin_categories
