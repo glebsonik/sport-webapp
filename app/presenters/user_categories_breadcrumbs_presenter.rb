@@ -8,9 +8,9 @@ class UserCategoriesBreadcrumbsPresenter
 
   def breadcrumbs
     @breadcrumbs ||= {
-      category: prepare_category,
-      conference: prepare_conference,
-      team: prepare_team
+      category: prepare_category.slice(:key, :name),
+      conference: prepare_conference&.slice(:key, :name),
+      team: prepare_team&.slice(:id, :name)
     }
   end
 
@@ -30,9 +30,8 @@ class UserCategoriesBreadcrumbsPresenter
   end
 
   def prepare_team
-    conference = prepare_conference
-    if conference
-      conference[:teams].find{|team| team[:id] == @team_id.to_i}
+    if @team_id.present?
+      prepare_conference[:teams].find{|team| team[:id] == @team_id.to_i}
     else
       nil
     end
