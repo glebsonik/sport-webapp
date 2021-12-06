@@ -10,13 +10,7 @@
       %div.main-more.btn-primary More
   %div#articles-list.user-articles-list{page: 0, 'last-loaded' => @last_page.to_s}
     - if @first_articles.size > 1
-      - @first_articles[1..-1].each do |article|
-        %a.user-article-tile{href: '#'}
-          %div
-            = image_tag(article.picture_url, class: 'user-article-image')
-          %div
-            %div.main-headline= article.headline
-            %div.info= "#{rich_text_as_string(article.content[0..250])}..."
+      = render partial: 'partials/user_article', collection: @first_articles[1..-1]
       - unless @last_page
         %div#load-more-button= File.read('app/assets/images/svgs/plus_circle.svg').html_safe
 - else
