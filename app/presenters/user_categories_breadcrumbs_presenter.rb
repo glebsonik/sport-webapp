@@ -22,18 +22,10 @@ class UserCategoriesBreadcrumbsPresenter
   end
 
   def prepare_conference
-    if @conference_key.present?
-      prepare_category[:conferences].find{|conference| conference[:key] == @conference_key}
-    else
-      nil
-    end
+    prepare_category[:conferences].find{|conference| conference[:key] == @conference_key} if @conference_key.present?
   end
 
   def prepare_team
-    if @team_id.present?
-      prepare_conference[:teams].find{|team| team[:id] == @team_id.to_i}
-    else
-      nil
-    end
+    prepare_conference[:teams].find{|team| team[:id] == @team_id.to_i} if @team_id.present?
   end
 end
