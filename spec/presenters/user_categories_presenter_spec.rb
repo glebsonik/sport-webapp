@@ -15,26 +15,31 @@ RSpec.describe UserCategoriesPresenter, type: :presenter do
 
   describe '#articles' do
     let(:presenter) { UserCategoriesPresenter.new(language.key, category.key, articles_per_page) }
-    let(:articles_per_page) {10}
+    let(:articles_per_page) { 10 }
 
     describe 'articles fetching' do
       subject(:articles) {presenter.articles(params)}
       let(:params) {ActionController::Parameters.new}
-      let(:unrelated_conference) { create(:conference, category: category) }
+      let(:conference) { create(:conference, category: category) }
       let(:expected_articles) do
         create_list(:article_translation, 3, :with_article, :published,
-                    language: language, category: category,
-                    conference: unrelated_conference, team: create(:team, conference: unrelated_conference)
-        )
+                    language: language,
+                    category: category,
+                    conference: conference,
+                    team: create(:team, conference: conference))
       end
-      let(:unrelated_articles) do
-        create_list(:article_translation, 2, :with_article, :unpublished,
-                    language: language, category: category, conference: conference, team: team)
+      let(:unrelated_unpublished_articles) do
+        create_list(:article_translation, 2, :with_article,
+                    :unpublished,
+                    language: language,
+                    category: category,
+                    conference: conference,
+                    team: team)
       end
 
       before do
         expected_articles
-        unrelated_articles
+        unrelated_unpublished_articles
       end
 
       it 'returns published articles for category' do
@@ -47,20 +52,28 @@ RSpec.describe UserCategoriesPresenter, type: :presenter do
     end
 
     describe 'conference and team filtering' do
+      subject(:articles) {presenter.articles(params)}
+      let(:unrelated_articles) do
+        create_list(:article_translation, 2, :with_article,
+                    :unpublished,
+                    language: language,
+                    category: category,
+                    conference: conference,
+                    team: create(:team, conference: unrelated_conference))
+      end
+      let(:unrelated_conference) { create(:conference, category: category) }
+
       context 'when conference key param given' do
-        subject(:articles) {presenter.articles(params_with_conference)}
-        let(:params_with_conference) {ActionController::Parameters.new(conference: conference.key)}
-        let(:unrelated_conference) { create(:conference, category: category) }
+        let(:params) {ActionController::Parameters.new(conference: conference.key)}
         let(:expected_articles) do
-          create_list(:article_translation, 3, :with_article, :published,
-                      language: language, category: category,
-                      conference: conference, team: create(:team, conference: conference)
+          create_list(:article_translation, 3,
+                      :with_article,
+                      :published,
+                      language: language,
+                      category: category,
+                      conference: conference,
+                      team: create(:team, conference: conference)
           ).reverse
-        end
-        let(:unrelated_articles) do
-          create_list(:article_translation, 2, :with_article, :unpublished,
-                      language: language, category: category,
-                      conference: unrelated_conference, team: create(:team, conference: unrelated_conference))
         end
 
         before do
@@ -74,19 +87,16 @@ RSpec.describe UserCategoriesPresenter, type: :presenter do
       end
 
       context 'when conference key and team id params given' do
-        subject(:articles) {presenter.articles(params_with_team)}
-        let(:params_with_team) {ActionController::Parameters.new(conference: conference.key, team: team.id)}
+        let(:params) {ActionController::Parameters.new(conference: conference.key, team: team.id)}
         let(:expected_articles) do
-          create_list(:article_translation, 3, :with_article, :published,
-                      language: language, category: category, conference: conference, team: team
+          create_list(:article_translation, 3, :with_article,
+                      :published,
+                      language: language,
+                      category: category,
+                      conference: conference,
+                      team: team
           ).reverse
         end
-        let(:unrelated_articles) do
-          create_list(:article_translation, 2, :with_article, :unpublished,
-                      language: language, category: category, conference: conference,
-                      team: create(:team, conference: unrelated_conference))
-        end
-        let(:unrelated_conference) { create(:conference, category: category) }
 
         before do
           expected_articles
@@ -100,15 +110,25 @@ RSpec.describe UserCategoriesPresenter, type: :presenter do
     end
 
     describe 'page navigation' do
+      subject(:articles) { presenter.articles(params) }
       let(:presenter) { UserCategoriesPresenter.new(language.key, category.key, articles_per_page) }
-      let(:articles_per_page) {2}
+      let(:articles_per_page) { 2 }
       let(:articles_records) do
-        create_list(:article_translation, 3, :with_article, :published,
-                    language: language, category: category, conference: conference, team: team).reverse
+        create_list(:article_translation, 3, :with_article,
+                    :published,
+                    language: language,
+                    category: category,
+                    conference: conference,
+                    team: team
+        ).reverse
       end
       let(:unrelated_articles_records) do
-        create_list(:article_translation, 2, :with_article, :unpublished,
-                    language: language, category: category, conference: conference, team: team)
+        create_list(:article_translation, 2, :with_article,
+                    :unpublished,
+                    language: language,
+                    category: category,
+                    conference: conference,
+                    team: team)
       end
 
       before do
@@ -117,8 +137,7 @@ RSpec.describe UserCategoriesPresenter, type: :presenter do
       end
 
       context 'when no page given' do
-        subject(:articles) { presenter.articles(empty_params) }
-        let(:empty_params) { ActionController::Parameters.new }
+        let(:params) { ActionController::Parameters.new }
         let(:expected_articles) { articles_records.first(articles_per_page) }
 
         it 'returns articles for first page' do
@@ -127,8 +146,7 @@ RSpec.describe UserCategoriesPresenter, type: :presenter do
       end
 
       context 'when first page param given' do
-        subject(:articles) { presenter.articles(params_with_first_page) }
-        let(:params_with_first_page) { ActionController::Parameters.new(page: 0) }
+        let(:params) { ActionController::Parameters.new(page: 0) }
         let(:expected_articles) { articles_records.first(articles_per_page) }
 
         it 'returns articles for first page' do
@@ -137,9 +155,8 @@ RSpec.describe UserCategoriesPresenter, type: :presenter do
       end
 
       context 'when second page param given' do
-        subject(:articles) { presenter.articles(params_with_second_page) }
-        let(:params_with_second_page) { ActionController::Parameters.new(page: 1) }
-        let(:expected_articles) { articles_records[articles_per_page..-1] }
+        let(:params) { ActionController::Parameters.new(page: 1) }
+        let(:expected_articles) { articles_records.last(1) }
 
         it 'returns articles for second page' do
           expect(articles).to eq(expected_articles)
@@ -147,8 +164,7 @@ RSpec.describe UserCategoriesPresenter, type: :presenter do
       end
 
       context 'when page with no articles given' do
-        subject(:articles) { presenter.articles(params_for_empty_page) }
-        let(:params_for_empty_page) { ActionController::Parameters.new(page: 3) }
+        let(:params) { ActionController::Parameters.new(page: 3) }
 
         it 'returns articles for empty page' do
           expect(articles).to eq([])
