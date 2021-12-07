@@ -28,6 +28,10 @@ FactoryBot.define do
     status {:unpublished}
     show_comments { true }
 
+    trait :unpublished do
+      status {:unpublished}
+    end
+
     trait :published do
       status {:published}
     end
