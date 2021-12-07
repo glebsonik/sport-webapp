@@ -3,6 +3,7 @@ require './app/services/builders/user_navigation_builder.rb'
 RSpec.describe UserNavigationBuilder, type: :service do
   describe "#build" do
     subject(:build) {UserNavigationBuilder.new(language).build}
+    let(:language) { create(:language) }
     let(:categories) { create_list(:category, 2, :with_translation, language: language) }
     let(:conferences) do
       [
@@ -19,7 +20,10 @@ RSpec.describe UserNavigationBuilder, type: :service do
         create(:team, conference: conferences[2])
       ]
     end
-    let(:language) { create(:language) }
+    let(:unrelated_category_with_no_conference) {create(:category, :with_translation, language: language)}
+    let(:unrelated_conference_with_no_team) do
+      create(:conference, :with_translation, :with_category, language: language)
+    end
 
     let(:expected) do
       {categories: [
@@ -65,6 +69,8 @@ RSpec.describe UserNavigationBuilder, type: :service do
       categories
       conferences
       teams
+      unrelated_category_with_no_conference
+      unrelated_conference_with_no_team
     end
 
     it "returns expected navigation structure without unfinished navigation" do
