@@ -1,6 +1,8 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
 
+  mount Commontator::Engine => '/commontator'
+
   get 'user_categories/:category(/:conference(/:team))', to: 'user_categories#show', as: :user_categories
 
   namespace :api do
