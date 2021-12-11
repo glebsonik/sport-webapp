@@ -3,18 +3,10 @@ require 'rails_helper'
 RSpec.describe Api::V1::TeamsController, type: :request do
 
   describe "GET /teams" do
-    let(:language) do
-      Language.create(key: 'en', display_name: 'English')
-    end
-    let(:category) do
-      Category.create(key: 'nba')
-    end
-    let(:conference) do
-      Conference.create(key: 'nba_conf_1', category: category)
-    end
-    let(:team) do
-      Team.create(name: 'NBA Conf Team 1', conference: conference)
-    end
+    let(:language)    { create(:language) }
+    let(:category)    { create(:category) }
+    let(:conference)  { create(:conference, category: category) }
+    let(:team)        { create(:team, conference: conference) }
 
     before do
       language
@@ -46,20 +38,15 @@ RSpec.describe Api::V1::TeamsController, type: :request do
 
     context 'when no conference_id given' do
       subject(:no_param_result) {JSON.parse(response.body)}
-      let(:additional_conference) do
-        Conference.create(key: 'other_key', category: category)
-      end
-      let(:additional_team) do
-        Team.create(name: 'Other Team', conference: additional_conference)
-      end
+      let(:additional_conference) { create(:conference, category: category) }
       let(:expected_teams) do
-        [team, additional_team].map{|team| team.as_json(except: [:created_at, :updated_at])}
+        [team, *additional_teams].map{|team| team.as_json(except: [:created_at, :updated_at])}
       end
+      let(:additional_teams) { create_list(:team, 2, :with_category) }
 
       before do
         additional_conference
-        #TODO: Add another additional team using Factory Bot
-        additional_team
+        expected_teams
         get '/api/v1/teams'
       end
 
@@ -72,7 +59,6 @@ RSpec.describe Api::V1::TeamsController, type: :request do
 
     context 'when invalid conference_id given' do
       subject(:result) { JSON.parse(response.body) }
-
       let(:invalid_conference_id) { "invalid_id" }
 
       before do

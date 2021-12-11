@@ -41,6 +41,7 @@ gem 'trix'
 group :development, :test do
   gem 'pry'
   gem 'dotenv'
+  gem 'factory_bot_rails'
 end
 
 group :development do

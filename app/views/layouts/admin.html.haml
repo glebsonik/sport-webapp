@@ -4,6 +4,7 @@
   = csp_meta_tag
   = stylesheet_link_tag    'application', media: 'all'
   = javascript_include_tag 'application'
+  = javascript_include_tag 'header/admin_nav_arrows'
   = yield :head
 %body
   %header
@@ -12,10 +13,18 @@
     %div
       %div
         = yield :before_nav
-      %div
-        - @translated_categories.each do |translated_category|
-          = link_to translated_category.name, admin_categories_path(translated_category.key)
+      %nav.admin-nav-menu
+        %div
+          #{File.read('app/assets/images/svgs/arrow_nav_left.svg').html_safe}
+        %div.admin-nav-categories
+          - @translated_categories.each do |translated_category|
+            = link_to translated_category.name, admin_categories_path(translated_category.key),
+             class: "admin-nav-link#{params[:key] == translated_category.key ? ' selected' : nil }"
+        %div
+          #{File.read('app/assets/images/svgs/arrow_nav_right.svg').html_safe}
   %main
     - if notice
-      %div#notice #{notice}
+      %div#notice= notice
+    - if alert
+      %div#alert= alert
     = yield

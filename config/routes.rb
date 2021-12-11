@@ -2,7 +2,16 @@
 Rails.application.routes.draw do
 
   # TODO: transform to resources
+  namespace :api do
+    namespace :v1 do
+      get 'admin_categories/:key/articles', to: 'admin_categories#index'
+    end
+  end
+  put 'articles/:id/publish', to: 'articles#publish', as: :publish_article
+  put 'articles/:id/unpublish', to: 'articles#unpublish', as: :unpublish_article
   put 'articles/update'
+
+  delete 'articles/:id', to: 'articles#destroy', as: :delete_article
   post 'articles/create'
   get 'articles/:key', to: 'articles#new', as: :new_article
   get 'create_articles/create'

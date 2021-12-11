@@ -7,6 +7,6 @@ class Article < ApplicationRecord
   belongs_to :team, optional: true
   belongs_to :location, optional: true
 
-  has_many :article_translations
+  has_many :article_translations, dependent: :destroy
   accepts_nested_attributes_for :article_translations
 end

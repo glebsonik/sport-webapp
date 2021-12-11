@@ -41,8 +41,17 @@ div {
   }
 }
 
+#alert {
+  border: 3px solid #ff7d7f;
+  background-color: #ffecf3;
+  border-radius: 6px;
+  padding: 7px 10px;
+}
 #notice {
-  color: green;
+  border: 3px solid #0f9d0f;
+  background-color: #d7fadd;
+  border-radius: 6px;
+  padding: 7px 10px;
 }
 
 .field_with_errors {

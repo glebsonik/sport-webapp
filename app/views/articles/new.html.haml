@@ -3,6 +3,7 @@
 = javascript_include_tag "create_article/submit_form"
 = javascript_include_tag "create_article/show_preview"
 = javascript_include_tag "create_article/cancel_article"
+= javascript_include_tag "create_article/trix_buttons_tabindex"
 
 - content_for :before_nav do
   %div.create-article-pre-header
@@ -14,7 +15,6 @@
   = render partial: 'partials/modal_dialog', locals: {prefix: 'error',
    modal_title: t('admin_articles.error_modal.modal_title'),
    modal_content: '',
-   modal_btn_text: t('admin_articles.error_modal.ok_button'),
    show_cancel: false}
 %div#cancel-article-modal{style: 'display: none'}
   = render partial: 'partials/modal_dialog', locals: {prefix: 'cancel',

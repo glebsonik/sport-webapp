@@ -1,3 +1,5 @@
+require './app/services/sanitizers/boolean_sanitizer.rb'
+
 class ArticleParamsBuilder
   def initialize(params, author)
     @params = params

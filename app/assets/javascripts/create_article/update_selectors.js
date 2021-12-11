@@ -1,5 +1,5 @@
 async function getTranslatedTeams(languageName, conferenceId) {
-    const translatedTeamsResponse = await fetch(`/api/v1/teams/teams?lang_key=${languageName}&conference_id=${conferenceId}`)
+    const translatedTeamsResponse = await fetch(`/api/v1/teams?lang_key=${languageName}&conference_id=${conferenceId}`)
     const responseJson = await translatedTeamsResponse.json();
 
     return responseJson['error'] ? [] : responseJson

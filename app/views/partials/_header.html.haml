@@ -15,7 +15,3 @@
       - else
         = link_to t('user_header.sign_in'), sign_in_path, {class: 'btn-link'}
         = link_to t('user_header.sign_up'), sign_up_path, {class: 'btn-secondary'}
-- if notice
-  %p#notice= notice
-- if alert
-  %div#alert-error= alert
