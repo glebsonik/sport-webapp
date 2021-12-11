@@ -38,6 +38,11 @@ gem 'haml-rails'
 
 gem 'trix'
 
+gem 'commontator'
+gem 'jquery-rails'
+gem 'sassc-rails'
+gem 'acts_as_votable'
+
 group :development, :test do
   gem 'pry'
   gem 'dotenv'
