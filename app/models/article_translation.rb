@@ -12,4 +12,6 @@ class ArticleTranslation < ApplicationRecord
   }
 
   mount_uploader :picture, ArticlePictureUploader
+
+  acts_as_commontable dependent: :destroy
 end
