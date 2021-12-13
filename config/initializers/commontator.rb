@@ -140,7 +140,7 @@ Commontator.configure do |config|
   #   :l (only if it's the latest comment)
   #   :n (never)
   # Default: :l
-  config.comment_editing = :l
+  config.comment_editing = :a
 
   # comment_deletion
   # Type: Symbol
@@ -151,7 +151,7 @@ Commontator.configure do |config|
   #   :n (never)
   # Note: For moderators, see the next option
   # Default: :l
-  config.comment_deletion = :l
+  config.comment_deletion = :a
 
   # moderator_permissions
   # Type: Symbol
@@ -161,7 +161,7 @@ Commontator.configure do |config|
   #   :d (delete comments and close threads)
   #   :c (close threads only)
   # Default: :d
-  config.moderator_permissions = :d
+  config.moderator_permissions = :e
 
   # comment_voting
   # Type: Symbol
@@ -184,7 +184,7 @@ Commontator.configure do |config|
   #   ((thread.config.comment_voting == :ld ? '%+d' : '%d') % (pos - neg)).sub('+0', '0')
   # end
   config.vote_count_proc = ->(thread, pos, neg) do
-    ((thread.config.comment_voting == :ld ? '%+d' : '%d') % (pos - neg)).sub('+0', '0')
+    (thread.config.comment_voting == :ld ? "#{pos}|#{neg}" : '%d')
   end
 
   # comment_order
