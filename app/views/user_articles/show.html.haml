@@ -4,5 +4,6 @@
 
 %div= sanitize @article.content
 
-%div= commontator_thread(@article)
+%div.article-comments
+  %div= commontator_thread(@article)
 

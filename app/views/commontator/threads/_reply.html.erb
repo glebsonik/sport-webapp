@@ -1,0 +1,32 @@
+<%#
+  Views that use this partial must supply the following variables:
+  thread
+  user
+%>
+
+<div id="commontator-thread-<%= thread.id %>-reply" class="reply">
+  <% if thread.is_closed? %>
+    <p><%= t 'commontator.thread.status.cannot_post' %></p>
+  <% elsif !user %>
+    <p><%= t 'commontator.require_login' %></p>
+  <% else %>
+    <% if @commontator_new_comment.nil? %>
+      <%= render partial: 'commontator/comments/form',
+                 locals: { comment: Commontator::Comment.new(thread: thread, creator: user),
+                           thread: thread,
+                           show_cancel: false
+                 } %>
+    <% end %>
+
+    <div id="commontator-thread-<%= thread.id %>-new-comment" class="new-comment<%=
+    @commontator_new_comment.nil? ? ' commontator-hidden' : '' %>">
+      <% unless @commontator_new_comment.nil? %>
+        <%=
+          render partial: 'commontator/comments/form', locals: {
+            comment: @commontator_new_comment, thread: thread
+          }
+        %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

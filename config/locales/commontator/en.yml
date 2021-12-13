@@ -1,0 +1,7 @@
+en:
+  commontator:
+    comment:
+      actions:
+        reply: "Comment"
+    new:
+      comment_placeholder: "Write a comment"
