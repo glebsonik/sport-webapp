@@ -1,4 +1,3 @@
-require './app/services/builders/user_navigation_builder.rb'
 class UserApplicationController < ApplicationController
   before_action :navigation
 
