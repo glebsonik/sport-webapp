@@ -3,4 +3,4 @@
     = image_tag(user_article.picture_url, class: 'user-article-image')
   %div
     %div.main-headline= user_article.headline
-    %div.info= "#{rich_text_as_string(user_article.content[0..250])}..."
+    %div.info= "#{user_article.raw_content_preview}..."
