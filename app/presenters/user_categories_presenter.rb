@@ -12,9 +12,7 @@ class UserCategoriesPresenter
 
   def articles(params)
     @articles ||= ArticleTranslation.left_joins(:language,
-                                                { article: :category },
-                                                { article: :conference },
-                                                { article: :team })
+                                                { article: [:category, :conference, :team] })
                                     .where(query_from_params(params))
                                     .order(created_at: :desc)
                                     .limit(@per_page).offset(params[:page].to_i * @per_page)
