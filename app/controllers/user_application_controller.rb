@@ -8,5 +8,4 @@ class UserApplicationController < ApplicationController
   def navigation
     @navigation = UserNavigationBuilder.new(current_language).build
   end
-
 end
