@@ -32,9 +32,10 @@ RSpec.describe UserCategoriesBreadcrumbsPresenter, type: :presenter do
   end
 
   describe '#breadcrumbs' do
+    subject(:breadcrumbs) {described_class.new(navigation, page_params).breadcrumbs}
+
     context 'when on category page' do
-      subject(:breadcrumbs) {described_class.new(navigation, category_page_params).breadcrumbs}
-      let(:category_page_params) do
+      let(:page_params) do
         ActionController::Parameters.new(category: "nba")
       end
       let(:expected_hash) do
@@ -44,14 +45,14 @@ RSpec.describe UserCategoriesBreadcrumbsPresenter, type: :presenter do
           team: nil
         }
       end
+
       it 'returns expected hash for category page' do
         expect(breadcrumbs).to eq(expected_hash)
       end
     end
 
     context 'when on conference page' do
-      subject(:breadcrumbs) {described_class.new(navigation, conference_page_params).breadcrumbs}
-      let(:conference_page_params) { ActionController::Parameters.new(category: "nfl", conference: "west_division") }
+      let(:page_params) { ActionController::Parameters.new(category: "nfl", conference: "west_division") }
       let(:expected_hash) do
         {
           category: {:key=>"nfl", :name=>"NFL"},
@@ -59,14 +60,14 @@ RSpec.describe UserCategoriesBreadcrumbsPresenter, type: :presenter do
           team: nil
         }
       end
+
       it 'returns expected hash for category page' do
         expect(breadcrumbs).to eq(expected_hash)
       end
     end
 
     context 'when on team page' do
-      subject(:breadcrumbs) {described_class.new(navigation, team_page_params).breadcrumbs}
-      let(:team_page_params) do
+      let(:page_params) do
         ActionController::Parameters.new(category: "nfl", conference: "east_division", team: "64")
       end
       let(:expected_hash) do
@@ -76,6 +77,7 @@ RSpec.describe UserCategoriesBreadcrumbsPresenter, type: :presenter do
           team: {:id=>64, :name=>"ED 2"}
         }
       end
+
       it 'returns expected hash for category page' do
         expect(breadcrumbs).to eq(expected_hash)
       end

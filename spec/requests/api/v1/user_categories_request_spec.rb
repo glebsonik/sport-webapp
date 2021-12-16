@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.shared_examples "user categories api request validation" do |parameter|
+RSpec.shared_examples "user categories api request validation" do
   it "returns http success" do
     expect(response).to have_http_status(:success)
   end

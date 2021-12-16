@@ -15,4 +15,4 @@
       - unless @last_page
         %div#load-more-button= File.read('app/assets/images/svgs/plus_circle.svg').html_safe
 - else
-  %div Sorry no articles yet... ¯\_(ツ)_/¯
+  %div= t('user_articles.no_article_message')
