@@ -12,4 +12,8 @@ class ArticleTranslation < ApplicationRecord
   }
 
   mount_uploader :picture, ArticlePictureUploader
+
+  def raw_content_preview
+    ApplicationController.helpers.rich_text_as_string(content[0..250])
+  end
 end

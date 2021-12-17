@@ -1,0 +1,88 @@
+// Place all the styles related to the UserCategories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$main-image-width: 800px;
+
+.main-article {
+  display: flex;
+}
+
+.main-article-image {
+  width: $main-image-width;
+  height: 450px;
+}
+
+.main-article-details {
+  position: relative;
+  left: -169px;
+  align-self: center;
+  height: 190px;
+  box-shadow: 5px -4px 37px 0px rgba(0, 0, 0, 15%);
+
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  background-color: #F6F6F6;
+  gap: 12px;
+
+  > * {
+    margin-left: 50px;
+  }
+}
+
+.main-article-details :first-child {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.main-headline {
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: bold;
+  margin-top: 0;
+  margin-right: 20px;
+  color: #000000;
+}
+
+.main-more {
+  width: 35%;
+  text-align: center;
+  margin-top: auto;
+  margin-left: 0;
+}
+
+.user-articles-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  gap: 10px;
+  width: $main-image-width;
+}
+
+.user-article-tile {
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+}
+
+.user-article-tile:hover {
+  box-shadow: 0px 2px 24px rgba(0, 0, 0, 0.110932);
+}
+
+.user-article-image {
+  width: 258px;
+  height: 154px;
+}
+
+.breadcrumbs {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.breadcrumb {
+  color: #B2B2B2
+}
+
+.breadcrumb:hover {
+  text-decoration: underline;
+}

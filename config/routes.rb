@@ -1,19 +1,24 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
 
-  # TODO: transform to resources
+  get 'user_categories/:category(/:conference(/:team))', to: 'user_categories#show', as: :user_categories
+
   namespace :api do
     namespace :v1 do
       get 'admin_categories/:key/articles', to: 'admin_categories#index'
+      get 'user_categories/:category(/:conference(/:team))', to: 'user_categories#index'
     end
   end
+
+  # TODO: transform to resources
+  get 'articles/view/:id', to: 'user_articles#show', as: :user_article
   put 'articles/:id/publish', to: 'articles#publish', as: :publish_article
   put 'articles/:id/unpublish', to: 'articles#unpublish', as: :unpublish_article
   put 'articles/update'
-
   delete 'articles/:id', to: 'articles#destroy', as: :delete_article
   post 'articles/create'
   get 'articles/:key', to: 'articles#new', as: :new_article
+
   get 'create_articles/create'
 
   get 'admin_categories/:key', to: 'admin_categories#show', as: :admin_categories

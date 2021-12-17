@@ -1,0 +1,124 @@
+$nav-item-height: 25px;
+
+$user-nav-menu-top: 70px;
+$user-nav-width: 285px;
+$animation-offset: 25px;
+$nav-padding-left: 25px;
+
+$categories-nav-width: $user-nav-width - $nav-padding-left;
+
+$conferences-nav-left: $nav-padding-left + $categories-nav-width;
+
+$nav-teams-left: $conferences-nav-left + $user-nav-width + $nav-padding-left;
+
+.nav-outer {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.21);
+  height: 100%;
+  width: 100%;
+  z-index: 9;
+}
+
+.space-user-nav {
+  width: $user-nav-width;
+}
+
+.user-nav-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  z-index: 11;
+  * {
+    z-index: 11;
+  }
+}
+
+.user-nav-layout:hover ~.nav-outer {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.1s ease-in;
+}
+
+.user-nav-categories {
+  background-color: #FFFFFF;
+  top: $user-nav-menu-top;
+  padding-top: 36px;
+
+  left: 0;
+  z-index: 11;
+  padding-left: $nav-padding-left;
+  position: fixed;
+  width: $categories-nav-width;
+  height: 100%;
+
+  .nav-item {
+    color: #B2B2B2;
+    font-weight: 700;
+    line-height: $nav-item-height;
+    font-size: 1.25rem;
+  }
+
+  .nav-item:hover {
+    color: #D72130;
+    cursor: pointer;
+
+    .user-nav-conferences{
+      transition: left 0.1s;
+      visibility: visible;
+      left: $conferences-nav-left;
+      color: #B2B2B2;
+      border: 1px solid rgba(212, 217, 226, 0.29);
+    }
+  }
+
+  .nav-item:hover:after  {
+    content: '';
+    float: right;
+    display: inline-block;
+    width: 5px;
+    height: $nav-item-height;
+    margin-right: 2px;
+    background-color: #D72130;
+  }
+  a {
+    all: unset;
+  }
+}
+
+.user-nav-conferences {
+  position: fixed;
+  visibility: hidden;
+  top: 70px;
+  padding-top: 50px;
+  padding-left: $nav-padding-left;
+
+  left: $conferences-nav-left - $animation-offset;
+  width: $user-nav-width;
+  height: 100%;
+  background-color: #FFFFFF;
+}
+
+.user-nav-conferences {
+  .nav-item:hover {
+    .user-nav-teams {
+      visibility: visible;
+    }
+  }
+}
+
+.user-nav-teams {
+  position: fixed;
+  visibility: hidden;
+  top: 70px;
+  padding-top: 50px;
+  padding-left: $nav-padding-left;
+
+  left: $nav-teams-left;
+  width: $user-nav-width;
+  height: 100%;
+  background-color: #FFFFFF;
+}

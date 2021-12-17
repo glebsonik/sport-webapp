@@ -33,7 +33,11 @@ FactoryBot.define do
     end
 
     trait :published do
-      status {:published}
+      status { :published }
+    end
+
+    trait :unpublished do
+      status { :unpublished }
     end
 
     trait :with_article do

@@ -27,6 +27,7 @@ class ArticlesController < AdminController
   def publish
     article = prepare_article(params[:id])
     article.status = Article::PUBLISHED
+    article.publish_date = Time.current
 
     if article.save
       redirect_to admin_categories_path(article.category_key), notice: t('admin_articles.publish_article_success')

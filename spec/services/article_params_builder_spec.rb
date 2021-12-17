@@ -49,6 +49,10 @@ RSpec.describe ArticleParamsBuilder, type: :service do
       allow_any_instance_of(described_class).to receive(:sanitize_bool).with(anything) do
         true
       end
+
+      allow_any_instance_of(described_class).to receive(:sanitize_content).with(anything) do
+        'Some <b>content</b> goes here'
+      end
     end
 
     it 'returns hash' do

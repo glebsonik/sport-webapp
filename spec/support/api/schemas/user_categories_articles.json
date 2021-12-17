@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "admin_categories.schema.json",
+  "title": "User categories",
+  "description": "A articles html partial with additional params",
+  "type": "object",
+  "properties": {
+    "articles": {
+      "type": "string",
+      "pattern": "^(<[^>]+>)+$"
+    },
+    "count": {
+      "type": "integer"
+    },
+    "last": {
+      "type": "boolean"
+    }
+  },
+  "required": ["articles", "count", "last"]
+}

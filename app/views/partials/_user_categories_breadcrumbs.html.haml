@@ -1,0 +1,18 @@
+%span.bold
+  = link_to @breadcrumbs_presenter.breadcrumbs[:category][:name],
+        user_categories_path(@breadcrumbs_presenter.breadcrumbs[:category][:key]),
+        class: params[:conference] ? "breadcrumb" : "secondary"
+- if params[:conference]
+  %span{class: params[:team] ? "" : "highlight"} >
+  %span
+    = link_to @breadcrumbs_presenter.breadcrumbs[:conference][:name],
+        user_categories_path(@breadcrumbs_presenter.breadcrumbs[:category][:key],
+          @breadcrumbs_presenter.breadcrumbs[:conference][:key]),
+          class: params[:team] ? "breadcrumb" : ""
+- if params[:team]
+  %span.highlight >
+  %span.bold
+    = link_to @breadcrumbs_presenter.breadcrumbs[:team][:name],
+        user_categories_path(@breadcrumbs_presenter.breadcrumbs[:category][:key],
+          @breadcrumbs_presenter.breadcrumbs[:conference][:key],
+          @breadcrumbs_presenter.breadcrumbs[:team][:id])

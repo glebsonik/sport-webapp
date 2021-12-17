@@ -40,4 +40,8 @@ class ArticleParamsBuilder
   def sanitize_bool(value)
     BooleanSanitizer.sanitize(value)
   end
+
+  def sanitize_content(value)
+    HtmlSeoSanitizer.sanitize(value)
+  end
 end
