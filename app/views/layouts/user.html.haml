@@ -11,7 +11,7 @@
   %body
     %header
       = render partial: "partials/header"
-    %nav
+    %nav.user-nav
       %div.user-nav-categories.user-nav-layout
         - @navigation[:categories].each do |category|
           %div.nav-item

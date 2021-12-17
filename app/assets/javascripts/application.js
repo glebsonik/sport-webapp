@@ -14,3 +14,4 @@
 //= require activestorage
 //= require_directory .
 //= require trix
+//= require jquery

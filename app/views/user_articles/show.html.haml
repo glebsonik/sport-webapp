@@ -3,3 +3,8 @@
 %div= @article.caption
 
 %div= sanitize @article.content
+
+- if @article.show_comments
+  %div.article-comments
+    %div= commontator_thread(@article)
+

@@ -1,7 +1,8 @@
+= javascript_include_tag('user_categories/user_categories')
 - if @first_articles.first
   %div.breadcrumbs
     = render partial: 'partials/user_categories_breadcrumbs'
-  %a.main-article
+  %a.main-article{href: user_article_path(@first_articles.first.article_id)}
     = image_tag(@first_articles.first.picture_url, class: 'main-article-image')
     %div.main-article-details
       %div.info Published / #{@first_articles.first.publish_date.strftime("%d.%m.%Y")}

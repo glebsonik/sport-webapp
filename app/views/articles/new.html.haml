@@ -7,7 +7,7 @@
 
 - content_for :before_nav do
   %div.create-article-pre-header
-    %h1= @translated_category.name
+    %h2.admin-category-name= @translated_category.name
     %div
       = link_to t('admin_articles.cancel_link'), '#', {class: 'btn-link', id: 'cancel-article-btn', 'data-value' => admin_categories_path(@translated_category.key)}
       = link_to t('admin_articles.save_article_button'), '#', {id: 'save-article', class: 'btn-primary', 'data-form-path' => articles_create_path}

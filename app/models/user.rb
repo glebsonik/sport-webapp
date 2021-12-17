@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  acts_as_commontator
+
   validates :email, :user_name, presence: true, uniqueness: true
   validates_format_of :email, with: EMAIL_REGEX
   validates :password, length: { in: 6..20 }, allow_nil: true
