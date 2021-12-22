@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_163912) do
 
   create_table "newsletter_subscriptions", force: :cascade do |t|
     t.string "email"
-    t.string "type"
+    t.string "subscription_type"
     t.string "name"
     t.index ["email"], name: "index_newsletter_subscriptions_on_email", unique: true
   end
