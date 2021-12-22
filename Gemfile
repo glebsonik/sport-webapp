@@ -43,6 +43,10 @@ gem 'jquery-rails'
 gem 'sassc-rails'
 gem 'acts_as_votable'
 
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'redis-namespace'
+
 group :development, :test do
   gem 'pry'
   gem 'dotenv'
