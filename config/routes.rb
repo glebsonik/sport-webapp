@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  post 'newsletter_subscribe', to: 'newsletters#subscribe', as: :newsletter_subscribe
+
   mount Sidekiq::Web => '/sidekiq'
   mount Commontator::Engine => '/commontator'
 
