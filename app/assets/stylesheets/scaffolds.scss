@@ -57,7 +57,14 @@ div {
   border-radius: 6px;
   padding: 7px 10px;
 }
-
+.user-main {
+  #alert {
+    margin-bottom: 15px;
+  }
+  #notice {
+    margin-bottom: 15px;
+  }
+}
 .field_with_errors {
   input {
     border: #B00100 2px solid;

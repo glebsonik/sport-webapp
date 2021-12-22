@@ -1,0 +1,39 @@
+footer {
+  display: flex;
+  position: relative;
+  z-index: 9;
+
+  .footer-layout {
+    border-top: 1px solid #B2B2B2;
+    display: flex;
+    gap: 90px;
+    flex-basis: 80%;
+
+    > * {
+      flex-basis: 33%;
+    }
+  }
+
+  .newsletter-form {
+    display: flex;
+
+    .btn-primary {
+      padding: 0;
+    }
+    input {
+      vertical-align: center;
+      height: 35px;
+      font-size: 1rem;
+      line-height: 25px;
+    }
+
+    input[type=email] {
+      width: 55%;
+    }
+
+    input[type=text]:not(:focus) {
+      color: #B2B2B2;
+    }
+
+  }
+}

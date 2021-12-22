@@ -1,0 +1,14 @@
+%div.footer-layout
+  %div
+    %h2 Company info
+  %div
+    %h2 Contributors
+  %div
+    %h2 Newsletter
+    %div Sign up to receive the latest sports news
+    %div
+      = form_with(url: newsletter_subscribe_path, local: true, id: 'newsletter-form', class: 'newsletter-form') do |form|
+        = form.email_field(:email, placeholder: 'Your email address', required: true)
+        = form.hidden_field :subscription_type, value: local_assigns[:subscription_type]
+        = form.hidden_field :name, value: local_assigns[:name], id: 'newsletter_name'
+        = form.submit "Subscribe", class: 'btn-primary'
