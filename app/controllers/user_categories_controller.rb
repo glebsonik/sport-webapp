@@ -5,6 +5,7 @@ class UserCategoriesController < UserApplicationController
     @last_page = @first_articles.length < presenter.per_page
 
     @breadcrumbs_presenter = UserCategoriesBreadcrumbsPresenter.new(@navigation, params)
+    @subscription_presenter = FooterSubscriptionPresenter.new(params)
   end
 
   private

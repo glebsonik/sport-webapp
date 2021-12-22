@@ -11,6 +11,7 @@
   %body
     %header
       = render partial: "partials/header"
+
     %nav.user-nav
       %div.user-nav-categories.user-nav-layout
         - @navigation[:categories].each do |category|
@@ -28,4 +29,11 @@
     %div.user-nav-main-container
       %div.space-user-nav
       %main.user-main
+        - if notice
+          %div#notice= notice
+        - if alert
+          %div#alert= alert
         = yield
+  %footer
+    %div.space-user-nav
+    = yield :footer

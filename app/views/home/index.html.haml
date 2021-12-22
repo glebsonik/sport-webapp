@@ -1,1 +1,4 @@
 %h1= t('user_home.title')
+
+= content_for :footer do
+  = render partial: 'partials/parameterized_footer', locals: {subscription_type: 'home'}
